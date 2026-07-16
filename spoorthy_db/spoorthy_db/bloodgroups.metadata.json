@@ -1,0 +1,1 @@
+{"indexes":[{"v":{"$numberInt":"2"},"key":{"_id":{"$numberInt":"1"}},"name":"_id_"}],"uuid":"f7c2e3cb52994ed9a55fecd85a2e5b3d","collectionName":"bloodgroups","type":"collection"}

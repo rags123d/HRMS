@@ -1,0 +1,1 @@
+{"indexes":[{"v":{"$numberInt":"2"},"key":{"_id":{"$numberInt":"1"}},"name":"_id_"}],"uuid":"84c3b6dc45c0454cb4d6f39441033f7a","collectionName":"workorderroles","type":"collection"}

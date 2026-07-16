@@ -1,0 +1,337 @@
+<div class="dashboard-screen m-4">
+
+    <div class="h5 double-header-title d-flex align-items-center flex-wrap mt-4 pl-2">
+        <a [routerLink]="['/allcandidate/overview']" class="font-weight-bolder">All Candidates</a>
+        <a [routerLink]="['/allemployees/overview']" class="font-weight-bolder ml-5">All Employees/Hired</a>
+        <a [routerLink]="['/rejectedcandidates/overview']" class="font-weight-bolder ml-5">Rejected Candidates</a>
+    </div>
+
+    <div class="row">
+        <div class="col-12 col-sm-4 col-md-4 col-lg-4 col-xl-2 mt-3 mb-2">
+            <div class="counter-box p-3">
+                <h6>Hired</h6>
+                <div class="d-flex justify-content-between align-items-center">
+                    <h2>{{DashboardDetail?.Hired || 0}}</h2>
+                    <span class="icon"><img alt="total-clients-icon"
+                            src="./assets/images/employees-hired-icon.svg"></span>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-sm-4 col-md-4 col-lg-4 col-xl-2 mt-3 mb-2">
+            <div class="counter-box p-3">
+                <h6>Waiting for Approval</h6>
+                <div class="d-flex justify-content-between align-items-center">
+                    <h2>{{DashboardDetail?.WaitingForApproval || 0}}</h2>
+                    <span class="icon"><img alt="total-clients-icon"
+                            src="./assets/images/total-requerment-icon.svg"></span>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-sm-4 col-md-4 col-lg-4 col-xl-2 mt-3 mb-2">
+            <div class="counter-box p-3">
+                <h6>Under GM Approval</h6>
+                <div class="d-flex justify-content-between align-items-center">
+                    <h2>{{DashboardDetail?.UnderGMApproval || 0}}</h2>
+                    <span class="icon"><img alt="total-clients-icon" src="./assets/images/vaccines-icon.svg"></span>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-sm-4 col-md-4 col-lg-4 col-xl-2 mt-3 mb-2">
+            <div class="counter-box p-3">
+                <h6>Under MD Approval</h6>
+                <div class="d-flex justify-content-between align-items-center">
+                    <h2>{{DashboardDetail?.UnderMDApproval || 0}}</h2>
+                    <span class="icon"><img alt="total-clients-icon"
+                            src="./assets/images/employees-hired-icon.svg"></span>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-sm-4 col-md-4 col-lg-4 col-xl-2 mt-3 mb-2">
+            <div class="counter-box p-3">
+                <h6>Total Vacancies</h6>
+                <div class="d-flex justify-content-between align-items-center">
+                    <h2>{{DashboardDetail?.TotalVacancies || 0}}</h2>
+                    <span class="icon"><img alt="total-clients-icon" src="./assets/images/vaccines-icon.svg"></span>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-sm-4 col-md-4 col-lg-4 col-xl-2 mt-3 mb-2">
+            <div class="counter-box p-3">
+                <h6>Rejected Candidates</h6>
+                <div class="d-flex justify-content-between align-items-center">
+                    <h2>{{DashboardDetail?.RejectedCandidates || 0}}</h2>
+                    <span class="icon"><img alt="total-clients-icon" src="./assets/images/vaccines-icon.svg"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- <div class="mt-5 d-flex justify-content-between align-items-center flex-wrap">
+        <h3 class="m-0">List of Employees <span>({{ employeeData?.length }} Employees)</span></h3>
+        <div style="display: flex;">
+            <mat-form-field class="mr-5">
+                <mat-label>Search by Name, Client</mat-label>
+                <input (keyup)="SearchFilter(input.value)" matInput placeholder="Search..." #input>
+            </mat-form-field>
+        </div>
+    </div>
+
+    <div class="example-container">
+        <div class="table-responsive">
+            <table mat-table [dataSource]="employeeDataSource" matSort>
+
+
+                <ng-container matColumnDef="PaySlip">
+                    <th mat-header-cell *matHeaderCellDef style="text-align: center !important;">PaySlip</th>
+                    <td mat-cell *matCellDef="let row">
+                        <div class="actions">
+                            <button style="font-size: 14px;" [routerLink]="['/master/pay-slip']" [queryParams]="{ Id: row._id }"
+                                class="form-control btn btn-danger btn-search btn-generate">GENERATE</button>
+                        </div>
+                    </td>
+                </ng-container>
+
+                <ng-container matColumnDef="ID">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header>ID</th>
+                    <td mat-cell *matCellDef="let row" style="white-space: nowrap;">{{ row.EmployeeId }}</td>
+                </ng-container>
+
+                <ng-container matColumnDef="Employee Name">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Employee Name</th>
+                    <td mat-cell *matCellDef="let row">{{ row.FullName }}</td>
+                </ng-container>
+
+                <ng-container matColumnDef="Client - Work Order Info">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Client - Work Order Info</th>
+                    <td mat-cell *matCellDef="let row">{{ row.WorkOrder?.client?.name }}<br>({{row.WorkOrder?.name}})
+                    </td>
+                </ng-container>
+
+                <ng-container matColumnDef="Job/Role With Salary">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Job/Role With Salary</th>
+                    <td mat-cell *matCellDef="let row">{{ row.WorkOrderRole?.role?.name }}<br>Salary : {{row.Salary}}
+                    </td>
+                </ng-container>
+
+                <ng-container matColumnDef="Joining Date">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Joining Date</th>
+                    <td mat-cell *matCellDef="let row">{{ row.WorkOrder?.StartDate | date: "dd-MM-yyyy"}}</td>
+                </ng-container>
+
+                <ng-container matColumnDef="Action">
+                    <th mat-header-cell *matHeaderCellDef style="text-align: center !important;">Action</th>
+                    <td mat-cell *matCellDef="let row">
+                        <div class="actions">
+                            <i routerLink="/allcandidate/overview/employee/view/{{row._id}}" class="fas fa-eye view"
+                                tooltip="View"></i>
+                            <i routerLink="/allcandidate/overview/employee/edit/{{row._id}}" class="fas fa-edit edit"
+                                tooltip="Edit"></i>
+                            <i (click)="deleteEmployee(row._id)" class="fas fa-trash delete" tooltip="Delete"></i>
+                        </div>
+                    </td>
+                </ng-container>
+
+                <tr mat-header-row *matHeaderRowDef="employeeColumn; sticky: true"></tr>
+                <tr mat-row *matRowDef="let row; columns: employeeColumn;"></tr>
+
+                <tr class="mat-row" *matNoDataRow>
+                    <td class="mat-cell" colspan="9" style="text-align: center;">No data matching the filter</td>
+                </tr>
+            </table>
+        </div>
+
+    </div> -->
+
+    <div class="mt-5 mb-4 d-flex justify-content-between align-items-center flex-wrap alignments">
+        <div class="col-lg-6" style="padding: 0px;">
+            <h3 class="title-header">List of Employees
+                <span>({{ ListTotal }} Employees)</span>
+            </h3>
+        </div>
+        <div class="col-lg-4" style="padding: 10px 0px; display: flex; justify-content: flex-end;">
+            <div class="download-xlx-button" style="cursor: pointer;">
+                <a (click)="export('Excel')">
+                    <span class="icon">
+                        <img src="./assets/images/download-xls-btn-icon.svg">
+                    </span>Download
+                </a>
+            </div>
+            <!-- <div class="download-xlx-button" style="cursor: pointer;">
+                <a (click)="export('PDF')">
+                    <span class="icon">
+                        <img src="./assets/images/pdf-icon.png">
+                    </span>Download PDF
+                </a>
+            </div> -->
+        </div>
+    </div>
+
+    <div class="select-daterange-with-category-dropdowns">
+        <!-- <form [formGroup]="ClientwiseEmpHiredForm"> -->
+        <ul class="w-50" style="display: flex; justify-content: space-between;">
+            <li style="width: 75%;">
+                <div class="selectbox-top">
+                    <div class="form-group">
+                        <mat-select id="ClientData" [(ngModel)]="searchText" placeholder="Enter Client Name"
+                            class="form-control sources" (keydown)="$event.stopPropagation()">
+                            <mat-option (keydown)="$event.stopPropagation()" disabled>
+                                <div class="form-group">
+                                    <input type="text" placeholder="Search Here..."
+                                        style="border: none;outline: none;background: transparent;color: rgb(28, 28, 36);"
+                                        (keyup)="onSearchClient($event)">
+                                </div>
+                            </mat-option>
+                            <mat-option *ngFor="let item of filteredClient" (keydown)="$event.stopPropagation()"
+                                [value]="item.name">
+                                {{item.name}}
+                            </mat-option>
+                        </mat-select>
+                    </div>
+                </div>
+            </li>
+            <li style="width: 10%;">
+                <div class="general-report-box">
+                    <a (click)="onFilterUpdate()" class="general-report-btn" style="text-decoration: none;">Go </a>
+                </div>
+            </li>
+        </ul>
+        <!-- </form> -->
+    </div>
+
+    <div class="example-container">
+        <div class="table-responsive">
+            <table mat-table [dataSource]="clientwiseHiredEmpDataSource" matSort>
+
+                <ng-container matColumnDef="Sl No">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Sl.No</th>
+                    <td mat-cell *matCellDef="let row; let i=index;" style="white-space: nowrap;">
+                        {{ pagination.pageIndex * pagination.pageSize + i + 1 }}
+                    </td>
+                </ng-container>
+
+                <ng-container matColumnDef="Action">
+                    <th style="width: 5%;" mat-header-cell *matHeaderCellDef style="text-align: center !important;">
+                        Action</th>
+                    <td style="width: 5%;" mat-cell *matCellDef="let row">
+                        <div class="actions">
+                            <i routerLink="/allcandidate/overview/employee/view/{{row._id}}" class="fas fa-eye view"
+                                tooltip="View"></i>
+                            <i routerLink="/allcandidate/overview/employee/edit/{{row._id}}" class="fas fa-edit edit"
+                                tooltip="Edit"></i>
+                            <i (click)="deleteEmployee(row._id)" class="fas fa-trash delete" tooltip="Delete"></i>
+                        </div>
+                    </td>
+                </ng-container>
+
+                <ng-container matColumnDef="ID">
+                    <th style="width: 15%;" mat-header-cell *matHeaderCellDef mat-sort-header>ID</th>
+                    <td style="width: 15%;" mat-cell *matCellDef="let row" style="white-space: nowrap;">
+                        {{row.UniqueEmpId}}</td>
+                </ng-container>
+
+                <ng-container matColumnDef="Employee Name">
+                    <th style="width: 15%;" mat-header-cell *matHeaderCellDef mat-sort-header>Employee Name</th>
+                    <td style="width: 15%;" mat-cell *matCellDef="let row">{{ row.FullName }}</td>
+                </ng-container>
+
+                <ng-container matColumnDef="Client - Work Order Info">
+                    <th style="width: 45%;" mat-header-cell *matHeaderCellDef mat-sort-header>Client - Work Order Info</th>
+                    <td style="width: 45%;" mat-cell *matCellDef="let row">
+                        <!-- {{ row.WorkOrder?.client?.name }} - ({{ row.WorkOrder?.name }})
+                        <br>
+                        {{ row.WorkOrderRole?.role?.name }} - (Salary : {{ row.WorkOrderRole?.salary }})
+                        <br> -->
+                        <!-- GrossSalary : {{ row.GrossSalary }}
+                        <br>
+                        NetSalary : {{ row.NetSalary }}
+                        <br>
+                        DeductedSalary : {{ row.DeductedSalary }} -->
+
+                        <table class="avoid-table ad-timelite">
+                            <tr>
+                                <td matTooltipPosition="left"
+                                    style="width: 100% !important; white-space: break-spaces;">
+                                    <h4 class="subtitle">Client Name</h4>
+                                    <p class="subtitle-head">{{ row.WorkOrder?.client?.name }}</p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td matTooltipPosition="left"
+                                    style="width: 100% !important; white-space: break-spaces;">
+                                    <h4 class="subtitle">WorkOrder Name</h4>
+                                    <p class="subtitle-head">{{ row.WorkOrder?.name }}</p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td matTooltipPosition="left"
+                                    style="width: 100% !important; white-space: break-spaces;">
+                                    <h4 class="subtitle">WorkOrder Role and Salary</h4>
+                                    <p class="subtitle-head">{{ row.WorkOrderRole?.role?.name }} =>
+                                        (Salary : <i style="color: #757878;">₹</i> {{ row.WorkOrderRole?.salary }})
+                                    </p>
+                                </td>
+                            </tr>
+                            <tr style="width: 100%;" matTooltipPosition="left">
+                                <td style="width: 45%;">
+                                    <h4>GrossSalary</h4>
+                                </td>
+                                <td style="width: 10%;">
+                                    <h4>:</h4>
+                                </td>
+                                <td style="width: 45%;">
+                                    <p style="text-align: right;"><i style="color: #757878;">₹</i> {{ row.GrossSalary }}
+                                    </p>
+                                </td>
+                            </tr>
+                            <tr style="width: 100%;" matTooltip="Sand Cost CGST" matTooltipPosition="left">
+                                <td style="width: 45%;">
+                                    <h4>NetSalary</h4>
+                                </td>
+                                <td style="width: 10%;">
+                                    <h4>:</h4>
+                                </td>
+                                <td style="width: 45%;">
+                                    <p style="text-align: right;"><i style="color: #757878;">₹</i> {{ row.NetSalary }}
+                                    </p>
+                                </td>
+                            </tr>
+                            <tr style="width: 100%;" matTooltip="Sand Cost SGST" matTooltipPosition="left">
+                                <td style="width: 45%;">
+                                    <h4>DeductedSalary</h4>
+                                </td>
+                                <td style="width: 10%;">
+                                    <h4>:</h4>
+                                </td>
+                                <td style="width: 45%;">
+                                    <p style="text-align: right;"><i style="color: #757878;">₹</i> {{ row.DeductedSalary
+                                        }}</p>
+                                </td>
+                            </tr>
+                        </table>
+
+                    </td>
+                </ng-container>
+
+                <ng-container matColumnDef="Joining Date">
+                    <th style="width: 10%;" mat-header-cell *matHeaderCellDef mat-sort-header>Joining Date</th>
+                    <td style="width: 10%;" mat-cell *matCellDef="let row">{{ row.WorkOrder?.StartDate | date: "dd-MM-yyyy"}}</td>
+                </ng-container>
+
+                <tr mat-header-row *matHeaderRowDef="clientwiseHiredEmpColumn; sticky: true"></tr>
+                <tr mat-row *matRowDef="let row; columns: clientwiseHiredEmpColumn;"></tr>
+
+                <!-- Row shown when there is no matching data. -->
+                <tr class="mat-row" *matNoDataRow>
+                    <td class="mat-cell" colspan="9" style="text-align: center;">No data matching the filter</td>
+                </tr>
+            </table>
+        </div>
+
+        <mat-paginator #pagination [length]="ListTotal" [pageSizeOptions]="[10, 25, 50, 100]" id="tblstyPagination"
+            (page)="getServerData($event)">
+        </mat-paginator>
+
+        <!-- <mat-paginator #pagination [length]="totalNumberOfRows" [pageSizeOptions]="[5, 10, 25, 100]" (page)="onLoadData()"></mat-paginator> -->
+    </div>
+
+</div>

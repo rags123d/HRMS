@@ -1,0 +1,137 @@
+<div class="dashboard-screen m-4" id="showSearch">
+    <h2 class="font-weight-bolder">Bill Details</h2>
+
+    <form class="form" [formGroup]="billForm">
+        <div class="row mt-3">
+
+            <div class="col-lg-4">
+                <div class="form-group">
+                    <label class="required" for="billMonth">Bill Month</label>
+                    <select formControlName="billMonth" class="form-control">
+                        <option value="" disabled selected style="color: red;">Select Bill Month</option>
+                        <option *ngFor="let data of billMonth" [value]="data">{{data}}</option>
+                    </select>
+                    <!-- <div class="text-danger"
+                        *ngIf="(billForm.controls['billMonth'].touched || billForm.controls['billMonth'].dirty) && billForm.controls['billMonth'].errors?.required">
+                        Bill Month is required.
+                    </div> -->
+                </div>
+            </div>
+
+            <div class="col-lg-4">
+                <div class="form-group">
+                    <label class="required" for="clientName">Client Name</label>
+                    <select formControlName="clientName" class="form-control">
+                        <option value="" disabled style="color: red;">Select Client Name</option>
+                        <option value="All" selected>All</option>
+                        <option *ngFor="let data of allClient" [value]="data._id">{{data.name}}</option>
+                    </select>
+                    <!-- <div class="text-danger"
+                        *ngIf="(billForm.controls['clientName'].touched || billForm.controls['clientName'].dirty) && billForm.controls['clientName'].errors?.required">
+                        Client Name is required.
+                    </div> -->
+                </div>
+            </div>
+
+            <div class="col-lg-4">
+                <div style="margin-top: 20px;" class="form-group">
+                    <button type="button" (click)="ViewBills()" class="btn btn-danger" [disabled]="!billForm.valid">VIEW
+                        BILL DETAILS</button>
+                </div>
+            </div>
+
+        </div>
+    </form>
+</div>
+
+<div class="dashboard-screen ml-4 mr-4 mb-4" id="showDetail">
+    <div class="mt-4">
+        <div class="example-container">
+            <div class="table-responsive">
+                <table *ngFor="let data of bills" class="mt-3" style="display: block;">
+                    <tr class="border" style="display: grid;">
+                        <th class="text-center" class="text-center"
+                            style="padding: 20px; font-size: 15px; font-weight: 500px">
+                            {{data.billItems[0].WorkOrder.client.name}} - {{data.TableName}}</th>
+                    </tr>
+                    <tr style="display: block; overflow: auto;">
+                        <table class="table table-bordered">
+                            <tr>
+                                <th>Sl.No</th>
+                                <th>Action</th>
+                                <th>Invoice No.</th>
+                                <th>Bill Month & Year</th>
+                                <th>Client</th>
+                                <th>Workorder</th>
+                                <th>Gross Amount</th>
+                                <th>Amount Received</th>
+                                <th>Status Of Payment</th>
+                                <th>Bill Generated On</th>
+                                <th>Due Date On</th>
+                                <th>Last Paid On</th>
+                            </tr>
+                            <tr *ngFor="let item of data.billItems; let i=index">
+                                <td>{{ i+1 }}</td>
+                                <td style="vertical-align: middle;">
+                                    <div class="actions d-flex justify-content-around align-items-center">
+                                        <i *ngIf="item.isGenerated == true" routerLink="/invoice/{{item._id}}"
+                                            class="fas fa-eye view" tooltip="View"></i>
+                                        <i *ngIf="item.isGenerated == true" class="fas fa-download"
+                                            tooltip="Download"></i>
+                                        <i *ngIf="item.isGenerated == true" class="fas fa-file-excel"
+                                            tooltip="Salary-Stat" (click)="export('Excel', item._id)"></i>
+                                        <button *ngIf="item.isGenerated == false" (click)="goto(item)"
+                                            style="font-size: 8px;" class="btn btn-danger">GENERATE BILL</button>
+                                    </div>
+                                    <div *ngIf="!item._id"
+                                        class="actions d-flex justify-content-around align-items-center">
+                                        <button (click)="goto1(item)" style="font-size: 8px;"
+                                            class="btn btn-danger">GENERATE BILL</button>
+                                    </div>
+                                </td>
+
+                                <!-- <td>
+                                    <div class="actions d-flex justify-content-around align-items-center">
+                                        <i *ngIf="item.isGenerated == true" routerLink="/invoice/{{item._id}}"
+                                            class="fas fa-eye view" tooltip="View"></i>
+                                        <a *ngIf="item.isGenerated == true" [href]="item?.InvoiceURL" target="_blank"
+                                            download="bill.pdf">
+                                            <i class="fas fa-download" tooltip="Download"></i>
+                                        </a>
+                                        <button *ngIf="item.isGenerated == false" (click)="goto(item)"
+                                            style="font-size: 8px;" class="btn btn-danger">GENERATE BILL</button>
+                                    </div>
+                                    <div class="actions d-flex justify-content-around align-items-center"
+                                        style="margin-top: 5px;">
+                                        <i *ngIf="item.isGenerated == true" class="fas fa-file-excel"
+                                            tooltip="Salary-Stat" (click)="export('Excel', item._id)"></i>
+
+                                        <i *ngIf="item.isGenerated == true" class="fas fa-receipt"
+                                            tooltip="All PaySlip"></i>
+                                    </div>
+                                    <div *ngIf="!item._id"
+                                        class="actions d-flex justify-content-around align-items-center">
+                                        <button (click)="goto1(item)" style="font-size: 8px;"
+                                            class="btn btn-danger">GENERATE BILL</button>
+                                    </div>
+                                </td> -->
+
+
+                                <td>{{ item?.BillId || "#NA" }}</td>
+                                <td>{{ item?.Month || '-' }} {{ item.Year }}</td>
+                                <td>{{ item.WorkOrder.client.name || '-' }}</td>
+                                <td>{{ item?.WorkOrder.name || '-' }}</td>
+                                <td>{{ item?.GrossAmount || '-' }}</td>
+                                <td>{{ item?.AmountReceived || '-' }}</td>
+                                <td>{{ item?.BillStatus || '-' }}</td>
+                                <td>{{ item?.GeneratedOn | date: 'dd-MM-yyyy' || '-' }}</td>
+                                <td>{{ item?.DueDate | date: 'dd-MM-yyyy' || '-' }}</td>
+                                <td>{{ item?.LastPaidOn | date: 'dd-MM-yyyy' || '-' }}</td>
+                            </tr>
+                        </table>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

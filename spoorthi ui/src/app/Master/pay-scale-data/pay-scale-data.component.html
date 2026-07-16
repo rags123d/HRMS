@@ -1,0 +1,268 @@
+<div class="dashboard-screen" id="showSearch">
+    <div class="row bdy-box">
+        <div class="col-lg-4">
+            <h2 class="font-weight-bolder">Client wise PayScale Data</h2>
+        </div>
+
+        <div class="col-lg-8">
+            <div class="manage-buttons1">
+                <button class="edit-button edit-gen" [routerLink]="['/master/payscale-data/Add']">
+                    <i class="fas fa-plus-circle"></i> Add PayScale
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="project-list-view table-responsive">
+        <div class="main-content">
+
+            <div class="row">
+                <div class="col-md-12" style="padding: 0; padding-top: 5px;">
+                    <div class="card card-plain" style="padding: 0;">
+
+                        <div class="card-body">
+                            <table class="live-tracking-list-table" id="PayscaleTable" datatable [dtOptions]="dtOptions"
+                                [dtTrigger]="dtTrigger">
+
+                                <thead>
+                                    <tr style="width: 100%;">
+                                        <th scope="col" rowspan="2" style="width: 1%;">Edit</th>
+                                        <th scope="col" rowspan="2" style="width: 20%;">Client</th>
+                                        <th scope="col" rowspan="2" style="width: 30%;">WorkOrder Data</th>
+                                        <th scope="col" rowspan="2" style="width: 11%;">Salary Data</th>
+                                        <th scope="col" colspan="2" style="width: 26%;">Salary Benefits</th>
+                                        <th scope="col" rowspan="2" style="width: 11%;">Deductions</th>
+                                        <th scope="col" rowspan="2" style="width: 1%;">Delete</th>
+                                    </tr>
+
+                                    <tr style="width: 100%;">
+                                        <th scope="col">Type 1</th>
+                                        <th scope="col">Type 2</th>
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+                                    <tr *ngFor="let item of allFixationData; let i=index" style="width: 100%;">
+                                        <td style="width: 1%;">
+                                            <div class="actions">
+                                                <i routerLink="/master/payscale-data/Edit/{{item._id}}" class="fas fa-edit edit"></i>
+                                            </div>
+                                        </td>
+                                        <td style="width: 20%;">
+                                            <div class="employee-info">
+                                                <h5>
+                                                    {{ item?.WorkOrder?.client?.name ? item?.WorkOrder?.client?.name :
+                                                    '-' }}
+                                                </h5>
+                                                <span class="emp-name">
+                                                    {{ item?.WorkOrder?.name ? item?.WorkOrder?.name : '-' }}
+                                                </span>
+                                            </div>
+                                        </td>
+                                        <td style="width: 30%;">
+                                            <table class="avoid-table ad-timelite">
+                                                <tr style="width: 100%;" placement="right">
+                                                    <td>
+                                                        <h4>WORole</h4>
+                                                    </td>
+                                                    <td>
+                                                        <h4>:</h4>
+                                                    </td>
+                                                    <td>
+                                                        <p style="text-align: left;">
+                                                            {{ item?.WorkOrderRole?.role?.name ?
+                                                            item?.WorkOrderRole?.role?.name : '-' }}
+                                                        </p>
+                                                    </td>
+                                                </tr>
+                                                <tr style="width: 100%;" placement="right">
+                                                    <td>
+                                                        <h4>WO Salary</h4>
+                                                    </td>
+                                                    <td>
+                                                        <h4>:</h4>
+                                                    </td>
+                                                    <td>
+                                                        <p style="text-align: left;">
+                                                            ₹ {{ item?.WorkOrderRole?.salary ?
+                                                            item?.WorkOrderRole?.salary : '-' }}/-
+                                                        </p>
+                                                    </td>
+                                                </tr>
+                                                <tr style="width: 100%;" placement="right">
+                                                    <td>
+                                                        <h4>Unit/Branch</h4>
+                                                    </td>
+                                                    <td>
+                                                        <h4>:</h4>
+                                                    </td>
+                                                    <td>
+                                                        <p style="text-align: left;">
+                                                            {{ item?.WorkOrderRole?.branchName ?
+                                                            item?.WorkOrderRole?.branchName : '-' }}
+                                                        </p>
+                                                    </td>
+                                                </tr>
+                                                <tr style="width: 100%;" placement="right">
+                                                    <td>
+                                                        <h4>Location</h4>
+                                                    </td>
+                                                    <td>
+                                                        <h4>:</h4>
+                                                    </td>
+                                                    <td>
+                                                        <p style="text-align: left;">
+                                                            {{ item?.WorkOrderRole?.siteAddress ?
+                                                            item?.WorkOrderRole?.siteAddress : '-' }}
+                                                        </p>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                        <td style="width: 11%;">
+                                            <table class="avoid-table ad-timelite design-update">
+                                                <tr>
+                                                    <td>
+                                                        <h4>Gross</h4>
+                                                        <p>₹ {{ item?.GrossSalary ? item?.GrossSalary : 0 }}/-</p>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <h4>Deduction</h4>
+                                                        <p>₹ {{ item?.DeductedSalary ? item?.DeductedSalary : 0 }}/-</p>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <h4>Take Home</h4>
+                                                        <p>₹ {{ item?.NetSalary ? item?.NetSalary : 0 }}/-</p>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                        <td style="width: 13%;">
+                                            <table class="avoid-table ad-timelite design-update">
+                                                <tr>
+                                                    <td>
+                                                        <h4>Basic+VDA</h4>
+                                                        <p>₹ {{ item?.BasicVDA ? item?.BasicVDA : 0 }}/-</p>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <h4>Bonus</h4>
+                                                        <p>₹ {{ item?.Bonus ? item?.Bonus : 0 }}/-</p>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <h4>Conveyance</h4>
+                                                        <p>₹ {{ item?.Conveyance ? item?.Conveyance : 0 }}/-</p>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <h4>Gratuity</h4>
+                                                        <p>₹ {{ item?.Gratuity ? item?.Gratuity : 0 }}/-</p>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <h4>HRA</h4>
+                                                        <p>₹ {{ item?.HRA ? item?.HRA : 0 }}/-</p>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <h4>Leave with Wages</h4>
+                                                        <p>₹ {{ item?.LeaveWithWages ? item?.LeaveWithWages : 0 }}/-</p>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                        <td style="width: 13%;">
+                                            <table class="avoid-table ad-timelite design-update">
+                                                <tr>
+                                                    <td>
+                                                        <h4>Medical Alw.</h4>
+                                                        <p>₹ {{ item?.MedicalAllowance ? item?.MedicalAllowance : 0 }}/-
+                                                        </p>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <h4>NFS</h4>
+                                                        <p>₹ {{ item?.NationalFestivalHolidays ?
+                                                            item?.NationalFestivalHolidays : 0 }}/-</p>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <h4>Reliever Charges</h4>
+                                                        <p>₹ {{ item?.RelieverCharges ? item?.RelieverCharges : 0 }}/-
+                                                        </p>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <h4>Special Alw.</h4>
+                                                        <p>₹ {{ item?.SpecialAllowance ? item?.SpecialAllowance : 0 }}/-
+                                                        </p>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <h4>Washing Alw.</h4>
+                                                        <p>₹ {{ item?.WashingAllowance ? item?.WashingAllowance : 0 }}/-
+                                                        </p>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                        <td style="width: 11%;">
+                                            <table class="avoid-table ad-timelite design-update">
+                                                <tr *ngIf="item?.ESIBasedOn != ''">
+                                                    <td>
+                                                        <h4>ESI Basedon</h4>
+                                                        <p>{{ item?.ESIBasedOn ? item?.ESIBasedOn : '' }}</p>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <h4>ESI</h4>
+                                                        <p>₹ {{ item?.ESIAmount ? item?.ESIAmount : 0 }}/-</p>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <h4>PF</h4>
+                                                        <p>₹ {{ item?.PFAmount ? item?.PFAmount : 0 }}/-</p>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <h4>PT</h4>
+                                                        <p>₹ {{ item?.ProfessionalTax ? item?.ProfessionalTax : 0 }}/-
+                                                        </p>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                        <td style="width: 1%;"><div class="actions">
+                                            <i class="fas fa-trash-alt delete" (click)="deleteFixation(item?._id)"></i>
+                                        </div>
+                                    </td>
+                                    </tr>
+                                </tbody>
+
+                            </table>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

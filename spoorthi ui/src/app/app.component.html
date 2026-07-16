@@ -1,0 +1,21 @@
+<app-header
+    *ngIf="(location.path() != '/login' && _path != 'reset-password' && (location.path().indexOf('/master/pay-slip') === -1)
+    && !(location.path().toString().startsWith('/openlinkForm')) && location.path() != '/thankyou' && location.path() != '/unauthorised')"></app-header>
+
+<app-sidebar
+    *ngIf="(location.path() != '/login' && _path != 'reset-password' && (location.path().indexOf('/master/pay-slip') === -1) 
+    && !(location.path().toString().startsWith('/openlinkForm')) && location.path() != '/thankyou' && location.path() != '/unauthorised')"></app-sidebar>
+
+<div [ngClass]="{'is-login': (location.path() === '/login' || _path == 'reset-password' || location.path() === '/master/pay-slip'
+    || location.path() === 'master/pay-slip/:id' || location.path().toString().startsWith('/openlinkForm') || 
+    location.path() === '/thankyou' || location.path() === '/unauthorised')}" class="content-wrapper">
+    <router-outlet></router-outlet>
+</div>
+
+<!-- <app-header *ngIf="(location.path() != '/login' && _path != 'reset-password')"></app-header>
+<app-sidebar *ngIf="(location.path() != '/login' && _path != 'reset-password')"></app-sidebar>
+<div [ngClass]="{'is-login': (location.path() === '/login' || _path == 'reset-password')}" class="content-wrapper">
+    <router-outlet></router-outlet>
+</div> -->
+
+<ngx-ui-loader></ngx-ui-loader>

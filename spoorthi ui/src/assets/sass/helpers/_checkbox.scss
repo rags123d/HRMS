@@ -1,0 +1,36 @@
+.checkbox {
+	margin: 0 5px;
+	cursor: pointer;
+	@include positioning(relative, $top: 2px);
+	input {
+		width: 0;
+		height: 0;
+		opacity: 0;
+		&:checked {
+			&+span {
+				&:before {
+					opacity: 1;
+					@include transitions(all,0.2s,ease-in-out);
+				}
+			}
+		}
+	}
+	span {
+		&.check {
+			width: 14px;
+			height: 14px;
+			border: 1px solid #4a85c5;
+			display: inline-block;
+			position: relative;
+			@include border-radius(2px);
+			@include transitions(all,0.2s,ease-in-out);
+			&:before {
+				content: "\f00c";
+				font-size: fontSize(-7px);
+				opacity: 0;
+				@include positioning(absolute, $top: 0x, $left: 1px);
+				@extend %font-awesome;
+			}
+		}
+	}
+}

@@ -1,0 +1,145 @@
+const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
+const autoIncrement = require("mongoose-auto-increment");
+
+const EmployeeSchema = new Schema({
+  FullName: String,
+  ParentName: String,
+  EmailId: String,
+  SpouseName: String,
+  DateOfBirth: Date,
+  PlaceOfBirth: String,
+  Age: String,
+  Gender: { type: Schema.Types.ObjectId, ref: 'Gender' },
+  MaritalStatus: { type: Schema.Types.ObjectId, ref: 'MaritalStatus' },
+  Religion: { type: Schema.Types.ObjectId, ref: 'Religion' },
+  MotherTongue: String,
+  BloodGroup: { type: Schema.Types.ObjectId, ref: 'BloodGroup' },
+  // BloodGroup: String,
+  AadharNo: String,
+  PAN: String,
+
+  PresentAddress: String,
+  PresentAddressPincode: String,
+  PresentAddressPhone: String,
+  PermanentAddress: String,
+  PermanentAddressPincode: String,
+  PermanentAddressPhone: String,
+
+  Identification1: String,
+  Identification2: String,
+  Mark1: String,
+  Mark2: String,
+
+  
+  IsESIPFAdded: { type: Boolean, default: false },
+  UniversalAccount: String,
+  PFAccount: String,
+  ESI: String,
+  SchemeCertificate: String,
+  PPONumber: String,
+  NonContributoryPeriod: String,
+
+  CandidatePhoto: String,
+  ResumeDocument: String,
+  AadharDocument: String,
+  IDProofDocument: String,
+  PassbookDocument: String,
+  PANDocument: String,
+  AssessmentDocument: String,
+  QualificationDocument: String,
+
+  WorkExperienceType: String,
+  ESIBasedOn: String,
+
+  JobRole: String,
+  GrossSalary: Number,
+  NetSalary: Number,
+  DeductedSalary: Number,
+  // WorkOrderUnitBranch: String,
+  DateOfJoining: Date,
+  DateOfExit: Date,
+  ReasonForExit: String,
+
+  BasicVDA: String,
+  benefitType: String,
+  Gratuity: String,
+  MedicalAllowance: String,
+  RelieverCharges: String,
+  Bonus: String,
+  HRA: String,
+  NationalFestivalHolidays: String,
+  Conveyance: String,
+  LeaveWithWages: String,
+  WashingAllowance: String,
+  SpecialAllowance: String,
+
+  deductionType: String,
+  PFAmount: String,
+  ESIAmount: String,
+  ProfessionalTax: String,
+
+  ViewStatus: { type: Array, default: undefined },
+  ApprovedByGM: { type: Boolean, default: false },
+  ApprovedByMD: { type: Boolean, default: false },
+  RemarksByGM: String,
+  RemarksByMD: String,
+  GMApprovedDate: Date,
+  MDApprovedDate: Date,
+  // FeedbackType: String,
+  // FeedbackRemark: String,
+  // FeedbackDoc: String,
+  IsEmployee: { type: Boolean, default: false },
+  RegisterDate: Date,
+  HiredOn: Date,
+
+  Attendance: [{ type: Schema.Types.ObjectId, ref: 'Attendance' }],
+  InterviewDetail: { type: Array, default: undefined },
+  Feedback: [{ type: Schema.Types.ObjectId, ref: 'Feedback' }],
+  Status: { type: String, default: "Under GM Approval" },
+  RejectionRemark: String,
+  NoOfDaysWorked: { type: Number, default: 0 },
+  NoOfLeaves: { type: Number, default: 0 },
+  TDSAmount: { type: Number, default: 0 },
+  AdvanceAmount: { type: Number, default: 0 },
+  UniformFee: { type: Number, default: 0 },
+  FineAmount: { type: Number, default: 0 },
+  OtherDeductionAmount: { type: Number, default: 0 },
+  SalaryAfterDeduction: { type: Number, default: 0 },
+  IsOTEmp: { type: Boolean, default: false },
+  OTBasedOn: String,
+  NoOfOTDays: { type: Number, default: 0 },
+  OTWages: { type: Number, default: 0 },
+
+  BankName: String,
+  Branch: String,
+  AccountNumber: String,
+  IFSC: String,
+  IsBankDetailAdded: { type: Boolean, default: false },
+  // AccountHolder : String,
+
+  FamilyDetail: [{ type: Schema.Types.ObjectId, ref: 'FamilyDetail' }],
+  WorkOrder: { type: Schema.Types.ObjectId, ref: 'WorkOrder' },
+  EducationalQualification: [{ type: Schema.Types.ObjectId, ref: 'EducationalQualification' }],
+  WorkExperience: [{ type: Schema.Types.ObjectId, ref: 'WorkExperience' }],
+  LanguagesKnown: [{ type: Schema.Types.ObjectId, ref: 'LanguagesKnown' }],
+  References: [{ type: Schema.Types.ObjectId, ref: 'References' }],
+  WorkOrderRole: { type: Schema.Types.ObjectId, ref: 'WorkOrderRole' },
+  FetchFixation: { type: Schema.Types.ObjectId, ref: 'PayscaleFixation' },
+  EmployeeId: String,
+  UniqueEmpId: String,
+  isDeleted: { type: Boolean, default: false }
+}, {
+  timestamps: true
+});
+
+autoIncrement.initialize(mongoose.connection);
+EmployeeSchema.plugin(autoIncrement.plugin, {
+  model: "Employee",
+  field: "EmployeeId",
+  prefix: "SISIPL",
+  startAt: 1,
+  incrementBy: 1,
+});
+
+module.exports = mongoose.model('Employee', EmployeeSchema)

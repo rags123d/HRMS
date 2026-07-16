@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      .container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .left-section {
+        width: 20%;
+      }
+
+      .center-section {
+        width: 100%;
+      }
+
+      .A4-body {
+        /* margin-left: auto;
+            margin-right: auto;
+            margin-top: 50px; */
+        margin: 50px;
+      }
+
+      .head-table div {
+        width: 40%;
+        display: inline-block;
+      }
+
+      .left-table {
+        margin: 15px;
+      }
+
+      .right-table {
+        margin: 15px;
+        float: right;
+      }
+
+      .left-table tr td:first-child,
+      .right-table tr td:first-child {
+        width: 20%;
+        font-size: 9px;
+        font-weight: 400;
+      }
+
+      .left-table tr td:nth-child(n + 2),
+      .right-table tr td:nth-child(n + 2) {
+        width: 10%;
+        font-size: 9px;
+        font-weight: 400;
+      }
+
+      .left-table tr td:last-child,
+      .right-table tr td:last-child {
+        width: 40%;
+      }
+
+      table.pay-slip {
+        border-collapse: collapse;
+        width: 100%;
+        border: 1px solid;
+        border-left: none;
+        border-right: none;
+        border-bottom: none;
+      }
+
+      table.pay-slip thead {
+        background: none;
+        color: black;
+      }
+
+      table.pay-slip thead tr th {
+        padding: 10px;
+        border: 1px solid;
+        font-size: 10px;
+        width: 20%;
+        font-weight: 600;
+        border-left: none;
+      }
+
+      table.pay-slip thead tr th:last-child {
+        border-right: none;
+      }
+
+      table.pay-slip tbody tr td {
+        padding: 10px;
+        border: 1px solid;
+        border-left: none;
+        font-size: 10px;
+        width: 20%;
+        font-weight: 600;
+      }
+
+      table.pay-slip tbody tr td:nth-child(n + 2) {
+        font-size: 10px;
+      }
+
+      table.pay-slip tbody tr td:last-child {
+        border-right: none;
+      }
+
+      table.pay-slip tfoot tr td {
+        font-size: 8px;
+        font-weight: 600;
+        padding: 4px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="A4-body" style="border: 1px solid">
+      <div class="container">
+        <div class="left-section">
+          <div style="margin: 15px; width: 20%">
+            <img
+              width="100px"
+              height="50px"
+              src="data:image/jpeg;base64,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"
+              class="img-fluid mob-logo"
+            />
+          </div>
+        </div>
+        <div class="center-section">
+          <div style="text-align: center; width: 100%">
+            <blockquote>
+              <b
+                >M/s. SPOORTHY <br />
+                INTEGRATED SOLUTIONS (I) PVT. LTD.,</b
+              >
+            </blockquote>
+            <p style="font-size: 12px; font-weight: 600">
+              Pay Slip for The Month of - {{month}}
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div
+          class="head-table"
+          style="display: flex; justify-content: space-between"
+        >
+          <div>
+            <table class="left-table">
+              <tr>
+                <td>EMP. ID No</td>
+                <td>:</td>
+                <td>{{employeeID}}</td>
+              </tr>
+              <tr>
+                <td>Employee Name</td>
+                <td>:</td>
+                <td>{{employeeName}}</td>
+              </tr>
+              <tr>
+                <td>Designation</td>
+                <td>:</td>
+                <td>{{designation}}</td>
+              </tr>
+              <tr>
+                <td>Bank Account No</td>
+                <td>:</td>
+                <td>{{bankAccountNo}}</td>
+              </tr>
+              <tr>
+                <td>IFSC Code</td>
+                <td>:</td>
+                <td>{{ifscCode}}</td>
+              </tr>
+              <tr>
+                <td>Site/Unit Name</td>
+                <td>:</td>
+                <td>{{site}}</td>
+              </tr>
+            </table>
+          </div>
+
+          <div style="float: right;">
+            <table class="right-table">
+              <tr>
+                <td>Pay Days</td>
+                <td>:</td>
+                <td>{{payableDays}}</td>
+              </tr>
+              <tr>
+                <td>Present Days</td>
+                <td>:</td>
+                <td>{{presentDays}}</td>
+              </tr>
+              <tr>
+                <td>OT Days</td>
+                <td>:</td>
+                <td>{{otDays}}</td>
+              </tr>
+              <tr>
+                <td>UAN NO</td>
+                <td>:</td>
+                <td>{{uanNo}}</td>
+              </tr>
+              <tr>
+                <td>ESI NO</td>
+                <td>:</td>
+                <td>{{esiNo}}</td>
+              </tr>
+              <tr>
+                <td>Aadhar No</td>
+                <td>:</td>
+                <td>{{aadharNo}}</td>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div>
+          <table class="pay-slip">
+            <thead>
+              <tr>
+                <th>Particulars</th>
+                <th>Fixed Wages</th>
+                <th>Earned Wages</th>
+                <th>Deductions</th>
+                <th>Amount</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Basic+VDA</td>
+                <td>{{fixedBasic}}</td>
+                <td>{{earnedBasic}}</td>
+                <td>PF : 12%</td>
+                <td>{{pfAmount}}</td>
+              </tr>
+              <tr>
+                <td>HRA</td>
+                <td>{{fixedHRA}}</td>
+                <td>{{earnedHRA}}</td>
+                <td>ESI : 0.75%</td>
+                <td>{{esiAmount}}</td>
+              </tr>
+              <tr>
+                <td>Conveyance</td>
+                <td>{{fixedConveyance}}</td>
+                <td>{{earnedConveyance}}</td>
+                <td>PT</td>
+                <td>{{professionalTax}}</td>
+              </tr>
+              <tr>
+                <td>Medical Al</td>
+                <td>{{fixedMedicalAllowance}}</td>
+                <td>{{earnedMedicalAllowance}}</td>
+                <td>TDS</td>
+                <td>{{tdsAmount}}</td>
+              </tr>
+              <tr>
+                <td>Spl Allow</td>
+                <td>{{fixedSpecialAllowance}}</td>
+                <td>{{earnedSpecialAllowance}}</td>
+                <td>Advance</td>
+                <td>{{advanceAmount}}</td>
+              </tr>
+              <tr>
+                <td>Bonus</td>
+                <td>{{fixedBonusAmount}}</td>
+                <td>{{earnedBonusAmount}}</td>
+                <td>Uniform</td>
+                <td>{{uniformAmount}}</td>
+              </tr>
+              <tr>
+                <td>Leave Wages</td>
+                <td>{{fixedLeaveWages}}</td>
+                <td>{{earnedLeaveWages}}</td>
+                <td>Fines/Damages</td>
+                <td>{{fineAmount}}</td>
+              </tr>
+              <tr>
+                <td>Washing Allowance</td>
+                <td>{{fixedWashingAllowance}}</td>
+                <td>{{earnedWashingAllowance}}</td>
+                <td>Other Deductions</td>
+                <td>{{deductionAmount}}</td>
+              </tr>
+              <tr>
+                <td>OT Wages</td>
+                <td>-</td>
+                <td>{{otWages}}</td>
+                <td colspan="2" style="border-bottom: none"></td>
+              </tr>
+              <tr>
+                <td>National Festival Holidays</td>
+                <td>{{fixedFestiveAllowance}}</td>
+                <td>{{earnedFestiveAllowance}}</td>
+                <td colspan="2" style="border-top: none"></td>
+              </tr>
+              <tr>
+                <td>Total</td>
+                <td>{{fixedTotal}}</td>
+                <td>{{earnedTotal}}</td>
+                <td>Total</td>
+                <td>{{deductionTotal}}</td>
+              </tr>
+              <tr>
+                <td colspan="2">Net Amount</td>
+                <td>{{netAmount}}</td>
+                <td colspan="2"></td>
+              </tr>
+            </tbody>
+            <tfoot>
+              <tr>
+                <td colspan="5" style="text-align: center">
+                  This is System Generated Payslip and does not require
+                  signature.
+                </td>
+              </tr>
+            </tfoot>
+          </table>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,1 @@
+{"indexes":[{"v":{"$numberInt":"2"},"key":{"_id":{"$numberInt":"1"}},"name":"_id_"},{"v":{"$numberInt":"2"},"unique":true,"key":{"WorkOrderId":{"$numberInt":"1"}},"name":"WorkOrderId_1","background":true}],"uuid":"91b1a79368d54c7a8a26300a30a9d7c7","collectionName":"workorders","type":"collection"}

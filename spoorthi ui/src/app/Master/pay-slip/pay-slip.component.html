@@ -1,0 +1,223 @@
+<div class="A4-body" style="border: 1px solid;">
+
+    <div class="row" style="position: relative;">
+        <div class="col-lg-3 d-flex justify-content-start align-items-center" style="margin: 15px;">
+            <img width="100px" height="50px" src="./assets/img/UIimages/SpoorthyImages/Spoorthy.png"
+                class="img-fluid mob-logo" />
+        </div>
+        <div class="col-lg-12 text-center" style="position: absolute; margin: 15px;">
+            <span style="font-weight: 600;">M/s. Spoorthy Integrated Solutions (I) Private Limited</span>
+            <br>
+            <span class="sub-head">
+                Pay Slip for The Month of -
+                <div class="start-date-picker" style="padding-left: 5px;">
+                    <span class="icon selection-input form-group">
+                        <!-- <img src="./assets/images/calendar-icon.svg"> -->
+                        <input type="text" value="{{selectedMonth | date : 'MMMM-yyyy'}}" readonly
+                            (click)="FromPickerMonthly.open()" class="datepicker_input form-control"
+                            placeholder="Select Month-Year">
+                        <input matInput [(ngModel)]="selectedMonth" [matDatepicker]="FromPickerMonthly"
+                            style="position: absolute; visibility: hidden;">
+                        <mat-datepicker #FromPickerMonthly startView="multi-year"
+                            (monthSelected)="chosenMonthHandler($event, FromPickerMonthly)"></mat-datepicker>
+                    </span>
+                </div>
+            </span>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-12 head-table d-flex justify-content-between">
+            <div>
+                <table class="left-table">
+                    <tr>
+                        <td>EMP. ID No</td>
+                        <td>:</td>
+                        <td>
+                            <div style="display: flex;">
+                                <input class="fetch-code" [(ngModel)]="EmpID" matInput placeholder="Search..." #input>
+                                <div class="general-report-box">
+                                    <a *ngIf="showPrint" (click)="fetchData()" class="general-report-btn"
+                                        style="text-decoration: none;">Go </a>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Employee Name</td>
+                        <td>:</td>
+                        <td>{{ paySlipData?.EmployeeName ? paySlipData?.EmployeeName : '-'}}</td>
+                    </tr>
+                    <tr>
+                        <td>Designation</td>
+                        <td>:</td>
+                        <td>{{ paySlipData?.EmployeeDesignation ? paySlipData?.EmployeeDesignation : '-'}}</td>
+                    </tr>
+                    <tr>
+                        <td>Bank Account No</td>
+                        <td>:</td>
+                        <td>{{ paySlipData?.BankAccountNo ? paySlipData?.BankAccountNo : '-'}}</td>
+                    </tr>
+                    <tr>
+                        <td>IFSC Code</td>
+                        <td>:</td>
+                        <td>{{ paySlipData?.BankIFSC ? paySlipData?.BankIFSC : '-'}}</td>
+                    </tr>
+                    <tr>
+                        <td>Site/Unit Name</td>
+                        <td>:</td>
+                        <td>{{ paySlipData?.WorkBranch ? paySlipData?.WorkBranch : '-'}}</td>
+                    </tr>
+                </table>
+            </div>
+
+            <div>
+                <table class="right-table">
+                    <tr>
+                        <td>Pay Days</td>
+                        <td>:</td>
+                        <td>{{ paySlipData?.NoOfWorkingDays ? paySlipData?.NoOfWorkingDays : 0}}</td>
+                    </tr>
+                    <tr>
+                        <td>Present Days</td>
+                        <td>:</td>
+                        <td>{{ paySlipData?.NoOfDaysWorked ? paySlipData?.NoOfDaysWorked : 0}}</td>
+                    </tr>
+                    <tr>
+                        <td>OT Days</td>
+                        <td>:</td>
+                        <td>{{ paySlipData?.NoOfOTDays ? paySlipData?.NoOfOTDays : 0}}</td>
+                    </tr>
+                    <tr>
+                        <td>UAN NO</td>
+                        <td>:</td>
+                        <td>{{ paySlipData?.UAN ? paySlipData?.UAN : '-'}}</td>
+                    </tr>
+                    <tr>
+                        <td>ESI NO</td>
+                        <td>:</td>
+                        <td>{{ paySlipData?.ESI ? paySlipData?.ESI : '-'}}</td>
+                    </tr>
+                    <tr>
+                        <td>Aadhar No</td>
+                        <td>:</td>
+                        <td>{{ paySlipData?.Aadhaar ? paySlipData?.Aadhaar : '-'}}</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-12">
+            <table class="pay-slip">
+                <thead>
+                    <tr>
+                        <th>Particulars</th>
+                        <th>Fixed Wages</th>
+                        <th>Earned Wages</th>
+                        <th>Deductions</th>
+                        <th>Amount</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Basic+VDA</td>
+                        <td>{{ paySlipData?.BasicVDA ? paySlipData?.BasicVDA : 0}}</td>
+                        <td>{{ paySlipData?.EWBasiVDA ? paySlipData?.EWBasiVDA : 0}}</td>
+                        <td>PF : 12%</td>
+                        <td>{{ paySlipData?.EWPFbasedBAsicVDA ? paySlipData?.EWPFbasedBAsicVDA.toFixed(2) : 0}}</td>
+                    </tr>
+                    <tr>
+                        <td>HRA</td>
+                        <td>{{ paySlipData?.HRA ? paySlipData?.HRA : 0}}</td>
+                        <td>{{ paySlipData?.EWHRA ? paySlipData?.EWHRA : 0}}</td>
+                        <td>ESI : 0.75%</td>
+                        <td>{{ paySlipData?.EWESI ? paySlipData?.EWESI : 0}}</td>
+                    </tr>
+                    <tr>
+                        <td>Conveyance</td>
+                        <td>{{ paySlipData?.Conveyance ? paySlipData?.Conveyance : 0}}</td>
+                        <td>{{ paySlipData?.EWConveyance ? paySlipData?.EWConveyance : 0}}</td>
+                        <td>PT</td>
+                        <td>{{ paySlipData?.EWPT ? paySlipData?.EWPT : 0}}</td>
+                    </tr>
+                    <tr>
+                        <td>Medical Al</td>
+                        <td>{{ paySlipData?.MedicalAllowance ? paySlipData?.MedicalAllowance : 0}}</td>
+                        <td>{{ paySlipData?.EWMedicalAllowance ? paySlipData?.EWMedicalAllowance : 0}}</td>
+                        <td>TDS</td>
+                        <td>{{ paySlipData?.TDSAmount ? paySlipData?.TDSAmount : 0}}</td>
+                    </tr>
+                    <tr>
+                        <td>Spl Allow</td>
+                        <td>{{ paySlipData?.SpecialAllowance ? paySlipData?.SpecialAllowance : 0}}</td>
+                        <td>{{ paySlipData?.EWSpecialAllowance ? paySlipData?.EWSpecialAllowance : 0}}</td>
+                        <td>Advance</td>
+                        <td>{{ paySlipData?.AdvanceAmount ? paySlipData?.AdvanceAmount : 0}}</td>
+                    </tr>
+                    <tr>
+                        <td>Bonus</td>
+                        <td>{{ paySlipData?.Bonus ? paySlipData?.Bonus : 0}}</td>
+                        <td>{{ paySlipData?.EWBonus ? paySlipData?.EWBonus : 0}}</td>
+                        <td>Uniform</td>
+                        <td>{{ paySlipData?.UniformFee ? paySlipData?.UniformFee : 0}}</td>
+                    </tr>
+                    <tr>
+                        <td>Leave Wages</td>
+                        <td>{{ paySlipData?.LeaveWithWages ? paySlipData?.LeaveWages : 0}}</td>
+                        <td>{{ paySlipData?.EWLeaveWages ? paySlipData?.EWLeaveWages : 0}}</td>
+                        <td>Fines/Damages</td>
+                        <td>{{ paySlipData?.FineAmount ? paySlipData?.FineAmount : 0}}</td>
+                    </tr>
+                    <tr>
+                        <td>Washing Allowance</td>
+                        <td>{{ paySlipData?.WashingAllowance ? paySlipData?.WashingAllowance : 0}}</td>
+                        <td>{{ paySlipData?.EWWashingAllowance ? paySlipData?.EWWashingAllowance : 0}}</td>
+                        <td>Other Deductions</td>
+                        <td>{{ paySlipData?.OtherDeductionAmount ? paySlipData?.OtherDeductionAmount : 0}}</td>
+                    </tr>
+                    <tr>
+                        <td>OT Wages</td>
+                        <td> - </td>
+                        <td>{{ paySlipData?.OTWages ? paySlipData?.OTWages : 0}}</td>
+                        <td colspan="2" style="border-bottom: none;"></td>
+                    </tr>
+                    <tr>
+                        <td>National Festival Holidays</td>
+                        <td>{{ paySlipData?.NationalFestivalHolidays ? paySlipData?.NationalFestivalHolidays : 0}}</td>
+                        <td>{{ paySlipData?.EWNationalFestivalHolidays ? paySlipData?.EWNationalFestivalHolidays : 0}}
+                        </td>
+                        <td colspan="2" style="border-top: none;"></td>
+                    </tr>
+                    <tr>
+                        <td>Total</td>
+                        <td>{{ paySlipData?.TotalFixedWages ? paySlipData?.TotalFixedWages : 0}}</td>
+                        <td>{{ paySlipData?.TotalEarnedWages ? paySlipData?.TotalEarnedWages : 0}}</td>
+                        <td>Total</td>
+                        <td>{{ paySlipData?.Deduction ? paySlipData?.Deduction : 0}}</td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">Net Amount</td>
+                        <td>{{ paySlipData?.TotalNetPayable ? paySlipData?.TotalNetPayable : 0}}</td>
+                        <td colspan="2"></td>
+                    </tr>
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan="5" style="text-align: center;">This is System Generated Payslip and does not
+                            require signature.</td>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+    </div>
+
+</div>
+
+
+<div class="row">
+    <div class="col-lg-12 d-flex justify-content-center" style="margin-top: 25px;">
+        <button class="btn btn-info" *ngIf="showPrint" (click)="SavePDF()">Print</button>
+    </div>
+</div>

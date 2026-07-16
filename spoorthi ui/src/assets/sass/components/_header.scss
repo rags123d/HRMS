@@ -1,0 +1,113 @@
+header {
+    width: calc(100% - 220px);
+    height: 10vh;
+    float: right;
+    @include transitions(all,0.3s,ease-in-out);
+    @include smdevice {
+        width: calc(100% - 60px);
+        height: 10.4vh;
+        @include transitions(all, 0.3s, ease-in-out);
+    }
+    .main {
+        @extend %disFlex;
+        justify-content: space-between;
+        align-items: center;
+        background: $agent-color-3;
+        // border-bottom: 1px solid $agent-color-4;
+        border-bottom: 1px solid #5bb6ea;
+        padding: 0 15px;
+        height: 10vh;
+        @include smdevice {
+            padding: 0 5px;
+        }
+        h1 {
+            color: $primary-color;
+            font-size: fontSize(4px);
+            margin: 0;
+            font-weight: fontWeight(300);
+            text-transform: capitalize;
+            @include smdevice {
+                text-transform: capitalize;
+                font-size: 12px;
+                padding-left: 15px;
+            }
+        }
+        ul.ham-icon-search-holder {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            @extend %disFlex;
+            justify-content: space-between;
+            li {
+                position: relative;
+                display: flex;
+                align-items: center;
+                padding: 15px;
+                cursor: pointer;
+                &:after {
+                    content: "";
+                    width: 1px;
+                    height: 100%;
+                    @include positioning(absolute, $top: 0, $right: 0);
+                    background: linear-gradient(to bottom,rgba(51,51,51,0) 0,rgba(51,51,51,.2) 50%,rgba(51,51,51,0) 100%);
+                }
+                button {
+                    border: 0;
+                    border-radius: 0;
+                    background: $primary-color;
+                }
+                &:nth-child(1) {
+                    padding: 0 15px 0 0;
+                }
+                &:nth-child(2) {
+                    @include smdevice {
+                        display: none;
+                    }
+                }
+                &:last-child {
+                    margin-right: 0;
+                    @include smdevice {
+                        display: none;
+                    }
+                    &:after {
+                        display: none;
+                    }
+                }
+                .form-group {
+                    position: relative;
+                    margin: 0;
+                    input.form-control {
+                        background: transparent;
+                        border: 0;
+                    }
+                    i {
+                        @include positioning(absolute, $right: 5px, $top: 10px);
+                        color: #797575;
+                    }
+                }
+            }
+        }
+    }
+    .secondary {
+        height: 6.4vh;
+        padding: 15px;
+        background: $agent-color-1;
+        border-bottom: 1px solid darken($agent-color-4, 10%);
+        @extend %disFlex;
+        align-items: center;
+        justify-content: space-between;
+        @include smdevice {
+            display: none;
+        }
+        p {
+            margin: 0;
+        }
+        ol.breadcrumb {
+            li {
+                &.active {
+                    font-weight: fontWeight(300);
+                }
+            }
+        }
+    }
+}

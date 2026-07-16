@@ -1,0 +1,1 @@
+{"indexes":[{"v":{"$numberInt":"2"},"key":{"_id":{"$numberInt":"1"}},"name":"_id_"}],"uuid":"7b4ab1d59f2442898cb63d1291d502f3","collectionName":"maritalstatuses","type":"collection"}

@@ -1,0 +1,158 @@
+<div class="dashboard-screen" id="showSearch">
+    <div class="row bdy-box">
+        <div class="col-lg-4">
+            <h2 class="font-weight-bolder">Year Details</h2>
+        </div>
+
+        <div class="col-lg-8">
+            <div class="manage-buttons1">
+                <button class="edit-button edit-gen" (click)="openAddYearsModal(AddYearsModal)">
+                    <i class="fas fa-plus-circle"></i> Add Year
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="project-list-view table-responsive">
+        <div class="main-content">
+
+            <div class="row">
+                <div class="col-md-12" style="padding: 0; padding-top: 5px;">
+                    <div class="card card-plain" style="padding: 0;">
+
+                        <div class="card-body">
+                            <table class="live-tracking-list-table" id="YearsTable" datatable [dtOptions]="dtOptions"
+                                [dtTrigger]="dtTrigger">
+
+                                <thead>
+                                    <tr style="width: 100%;">
+                                        <th scope="col" style="width: 10%;">Edit</th>
+                                        <th scope="col" style="width: 80%;">Years</th>
+                                        <th scope="col" style="width: 10%;">Delete</th>
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+                                    <tr *ngFor="let item of allYears; let i=index" style="width: 100%;">
+                                        <td width="10%">
+                                            <div class="actions">
+                                                <i (click)="onEditYears(AddYearsModal, item)"
+                                                    class="fas fa-edit edit"></i>
+                                            </div>
+                                        </td>
+                                        <td style="width: 80%;">{{ item?.Year ? item?.Year : '-' }}</td>
+                                        <td style="border-right: none; width: 10%;">
+                                            <div class="actions">
+                                                <i class="fas fa-trash-alt delete"
+                                                    (click)="onDeleteAlert(DeleteAlertModal, item)"></i>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+
+                            </table>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+<!-- Delete alert modal -->
+<ng-template #DeleteAlertModal>
+    <div class="alrt-container alrt-center alrt-backdrop-show" style="overflow: hidden;">
+        <div aria-labelledby="alrt-title" aria-describedby="alrt-content"
+            class="alrt-popup alrt-modal alrt-icon-warning alrt-show" ole="dialog" aria-live="assertive"
+            aria-modal="true" style="display: flex;">
+            <div class="alrt-header">
+                <div class="alrt-icon alrt-warning alrt-icon-show" style="display: flex;">
+                    <div class="alrt-icon-content">!</div>
+                </div>
+                <h2 class="alrt-title" id="alrt-title" style="display: flex;">Are you sure?</h2>
+            </div>
+            <div class="alrt-content">
+                <div id="alrt-content" class="alrt-html-container" style="display: block;">
+                    You will not be able to recover this data
+                </div>
+                <input class="alrt-input" style="display: none;">
+                <div class="alrt-validation-message" id="alrt-validation-message"></div>
+            </div>
+            <div class="alrt-actions">
+                <button type="button" class="alrt-confirm alrt-styled" aria-label="" (click)="onDeleteYear()"
+                    style="display: inline-block; background-color: rgb(184, 26, 52); border-left-color: rgb(184, 44, 26); border-right-color: rgb(184, 26, 26);">
+                    Yes, delete it!
+                </button>
+                <button type="button" class="alrt-cancel alrt-styled" (click)="modalRef.hide()" aria-label=""
+                    style="display: inline-block;">
+                    Cancel
+                </button>
+            </div>
+            <div class="alrt-footer" style="display: none;"></div>
+            <div class="alrt-timer-progress-bar-container">
+                <div class="alrt-timer-progress-bar" style="display: none;">
+                </div>
+            </div>
+        </div>
+    </div>
+</ng-template>
+
+<!-- Add/Edit Years Modal-->
+<ng-template #AddYearsModal>
+    <div class="global-create-modal-wrapper" style="width: 100%;">
+        <div class="modal-body">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div style=" float: right; width: fit-content;">
+                        <button type="button" class="close close-btn" aria-label="Close"
+                            style="margin-left: -10px; margin-top: -7px" (click)="modalRef.hide()">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div>
+                        <h4><i class="fas fa-list" style="margin: 3px; margin-right: 8px;"></i>
+                            Year Details</h4>
+                        <hr style="margin-top: 4px; margin-bottom: 4px;">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-holder col-sm-12" style="padding: 3px;">
+                    <div class="card card-plain" style="padding: 0;">
+                        <div class="card-body" style="padding-bottom: 5px;">
+                            <form [formGroup]="createYearForm" (ngSubmit)="onAddYears()" style="width: 100%;">
+                                <div class="row">
+
+                                    <div class="col-lg-6">
+                                        <label class="label-aa" for="Year"><i>Year</i></label>
+                                        <div class="form-group" style="width: 100%;">
+                                            <input matInput id="Year" formControlName="Year"
+                                                placeholder="Enter Year" class="form-control" maxlength="4">
+
+                                        </div>
+                                    </div>
+
+
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg">
+                                        <hr style="margin-top: 2px; margin-bottom: 6px;">
+                                        <div class="button-holder">
+                                            <button type="button" (click)="modalRef.hide()" style="margin-right: 5px;"
+                                                class="btn btn-danger">Cancel</button>
+                                            <button type="submit" [disabled]="!createYearForm.valid" style="margin-left: 5px;"
+                                                class="btn btn-success">Save</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</ng-template>

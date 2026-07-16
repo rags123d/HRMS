@@ -1,0 +1,54 @@
+<div *ngIf="page" class="card-actions align-items-center justify-content-end" >
+    <span class="align-self-center mb-1 mx-1 text-muted"><i style="font-size: 14px; color: rgba(19, 49, 19, 0.534);">Elements per page:</i> </span>
+    <div class="dropdown">
+      <button [matMenuTriggerFor]="drop"
+        class="btn btn-outline" type="button">
+        {{page.pageable.pageSize}} <i class="fas fa-caret-down"></i>
+      </button>
+      <mat-menu #drop="matMenu" style="background: transparent;z-index: 1051;">
+        <a mat-menu-item class="dropdown-item" (click)="updatePageSize(10)">10</a>
+        <a mat-menu-item class="dropdown-item" (click)="updatePageSize(50)">50</a>
+        <a mat-menu-item class="dropdown-item" (click)="updatePageSize(100)">100</a>
+        <a mat-menu-item class="dropdown-item" (click)="updatePageSize(250)">250</a>
+      </mat-menu>
+    </div>
+    <span class="align-self-center mb-1 mr-2 text-muted">
+      <i style="font-size: 14px; color: rgba(30, 19, 49, 0.534);">
+        Shows {{1+(page.pageable.pageSize * (page.pageable.pageNumber))}}-{{page.numberOfElements +(page.pageable.pageSize * (page.pageable.pageNumber))}} of {{page.totalElements}}
+      </i>
+    </span>
+
+    <a  class="mb-2 mr-2 btn btn-light" [ngClass]="{'disabled': page.first }" style="border-radius: 2.5px;"
+      (click)="firstPage()">
+      <span style="position: relative; ">First</span>
+    </a>
+
+    <a  class="mb-2 mr-2 btn btn-light" [ngClass]="{'disabled': page.first }" style="width: 30px;border-radius: 2.5px;"
+      (click)="previousPage()">
+      <i class="material-icons" style="margin-left: -8px;">chevron_left</i>
+    </a>
+    
+    <a class="mb-2 mr-2 btn btn-light" *ngIf="!page.first" style="border-radius: 2.5px;"
+      (click)="previousPage()">
+      <span   style="position: relative;">{{page.pageable.pageNumber}}</span>
+    </a>
+
+    <a class="mb-2 mr-2 btn btn-light" [ngClass]="{'disabled': true }"   style="padding-bottom: 10px;padding-top: 10px;border-radius: 2.5px;">
+      <span>{{page.pageable.pageNumber + 1}}</span>
+    </a>
+
+    <a class="mb-2 mr-2 btn btn-light" *ngIf="!page.last"  style="border-radius: 2.5px;"
+      (click)="nextPage()">
+      <span  style="position: relative;">{{page.pageable.pageNumber + 2}}</span>
+    </a>
+
+    <a class="mb-2 mr-2 btn btn-light" [ngClass]="{'disabled': page.last }" style="width: 30px;border-radius: 2.5px;"
+      (click)="nextPage()">
+      <i class="material-icons" style="margin-left: -8px;">chevron_right</i>
+    </a>
+    
+    <a class="mb-2 mr-2 btn btn-light" [ngClass]="{'disabled': page.last }" style="border-radius: 2.5px;"
+      (click)="lastPage()">
+      <span style="position: relative;">Last</span>
+    </a>
+</div>

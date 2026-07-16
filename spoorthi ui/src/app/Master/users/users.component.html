@@ -1,0 +1,361 @@
+<div class="dashboard-screen" id="showSearch">
+    <div class="row bdy-box">
+        <div class="col-lg-4">
+            <h2 class="font-weight-bolder">User Details</h2>
+        </div>
+
+        <div class="col-lg-8">
+            <div class="manage-buttons1">
+                <button class="edit-button edit-gen" (click)="openAddUserModal(AddUserModal)">
+                    <i class="fas fa-plus-circle"></i> Add Users
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="project-list-view table-responsive">
+        <div class="main-content">
+
+            <div class="row">
+                <div class="col-md-12" style="padding: 0; padding-top: 5px;">
+                    <div class="card card-plain" style="padding: 0;">
+
+                        <div class="card-body">
+                            <table class="live-tracking-list-table" id="UserTable" datatable [dtOptions]="dtOptions"
+                                [dtTrigger]="dtTrigger">
+
+                                <thead>
+                                    <tr style="width: 100%;">
+                                        <th scope="col" style="width: 5%;">Edit</th>
+                                        <th scope="col" style="width: 18%;">Name</th>
+                                        <th scope="col" style="width: 18%;">User Name</th>
+                                        <th scope="col" style="width: 18%;">Mobile</th>
+                                        <th scope="col" style="width: 18%;">Role</th>
+                                        <th scope="col" style="width: 18%;">Email</th>
+                                        <th scope="col" style="width: 5%;">Delete</th>
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+                                    <tr *ngFor="let item of allUser; let i=index" style="width: 100%;">
+                                        <td width="5%">
+                                            <div class="actions">
+                                                <i (click)="onEditUser(AddUserModal, item)"
+                                                    class="fas fa-edit edit"></i>
+                                            </div>
+                                        </td>
+                                        <td style="width: 18%;">{{ item?.firstName ? item?.firstName : '-' }}</td>
+                                        <td style="width: 18%;">{{ item?.userName ? item?.userName : '-' }}</td>
+                                        <td style="width: 18%;">{{ item?.mobile ? item?.mobile : '-' }}</td>
+                                        <td style="width: 18%;">{{ item?.role?.name ? item?.role?.name : '-' }}</td>
+                                        <td style="width: 18%;">{{ item?.email ? item?.email : '-' }}</td>
+                                        <td style="border-right: none; width: 5%;">
+                                            <div class="actions">
+                                                <i class="fas fa-trash-alt delete"
+                                                    (click)="onDeleteAlert(DeleteAlertModal, item?._id)"></i>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+
+                            </table>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+<!-- Delete alert modal -->
+<ng-template #DeleteAlertModal>
+    <div class="alrt-container alrt-center alrt-backdrop-show" style="overflow: hidden;">
+        <div aria-labelledby="alrt-title" aria-describedby="alrt-content"
+            class="alrt-popup alrt-modal alrt-icon-warning alrt-show" ole="dialog" aria-live="assertive"
+            aria-modal="true" style="display: flex;">
+            <div class="alrt-header">
+                <div class="alrt-icon alrt-warning alrt-icon-show" style="display: flex;">
+                    <div class="alrt-icon-content">!</div>
+                </div>
+                <h2 class="alrt-title" id="alrt-title" style="display: flex;">Are you sure?</h2>
+            </div>
+            <div class="alrt-content">
+                <div id="alrt-content" class="alrt-html-container" style="display: block;">
+                    You will not be able to recover this data
+                </div>
+                <input class="alrt-input" style="display: none;">
+                <div class="alrt-validation-message" id="alrt-validation-message"></div>
+            </div>
+            <div class="alrt-actions">
+                <button type="button" class="alrt-confirm alrt-styled" aria-label="" (click)="onDeleteUser()"
+                    style="display: inline-block; background-color: rgb(184, 26, 52); border-left-color: rgb(184, 44, 26); border-right-color: rgb(184, 26, 26);">
+                    Yes, delete it!
+                </button>
+                <button type="button" class="alrt-cancel alrt-styled" (click)="modalRef.hide()" aria-label=""
+                    style="display: inline-block;">
+                    Cancel
+                </button>
+            </div>
+            <div class="alrt-footer" style="display: none;"></div>
+            <div class="alrt-timer-progress-bar-container">
+                <div class="alrt-timer-progress-bar" style="display: none;">
+                </div>
+            </div>
+        </div>
+    </div>
+</ng-template>
+
+<!-- Add/Edit Users Modal-->
+<ng-template #AddUserModal>
+    <div class="global-create-modal-wrapper" style="width: 100%;">
+        <div class="modal-body">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div style=" float: right; width: fit-content;">
+                        <button type="button" class="close close-btn" aria-label="Close"
+                            style="margin-left: -10px; margin-top: -7px" (click)="modalRef.hide()">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div>
+                        <h4><i class="fas fa-list" style="margin: 3px; margin-right: 8px;"></i>
+                            User Details</h4>
+                        <hr style="margin-top: 4px; margin-bottom: 4px;">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-holder col-sm-12" style="padding: 3px;">
+                    <div class="card card-plain" style="padding: 0;">
+                        <div class="card-body" style="padding-bottom: 5px;">
+                            <form [formGroup]="createUserForm" (ngSubmit)="onAddUser()" style="width: 100%;">
+                                <div class="row">
+
+                                    <div class="col-lg-6">
+                                        <label class="label-aa" for="UserName"><i>User Name</i></label>
+                                        <div class="form-group" style="width: 100%;">
+                                            <input matInput id="UserName" formControlName="UserName"
+                                                placeholder="User Name" class="form-control" required>
+                                            <div class="form-err">
+                                                <span
+                                                    *ngIf="createUserForm.get('UserName').hasError('pattern')"><strong>Invalid</strong>
+                                                    User Name
+                                                </span>
+                                                <span *ngIf="createUserForm.get('UserName').hasError('required')">
+                                                    User Name <strong>is required</strong>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-6" *ngIf="!formEdit">
+                                        <label class="label-aa" for="Password"><i>Password</i></label>
+                                        <div class="form-group" style="width: 100%; position: relative;">
+
+                                            <input matInput id="Password" [type]="!isShowPass? 'password' : 'text'"
+                                                formControlName="Password" placeholder="Enter Password"
+                                                class="form-control" autocomplete="off" minlength="3" maxlength="12"
+                                                required>
+
+                                            <button (click)="isShowPass = !isShowPass" type="button"
+                                                class="btn md-view-btn"
+                                                style="cursor: pointer; position: absolute; right: 0px; top: 0%;">
+                                                <i class="fas fa-eye"
+                                                    [ngStyle]="{'color': !isShowPass? '#aaaaaa': '#5a6aaa'}"></i>
+                                            </button>
+
+                                            <div class="form-err">
+                                                <span *ngIf="createUserForm.get('Password').hasError('pattern')">
+                                                    Ensure string has Atleast 1 uppercase, 1 lowercase, 1 special case
+                                                    letter, 1 digits & has length more than 8.
+                                                </span>
+                                                <span *ngIf="createUserForm.get('Password').hasError('required')">
+                                                    Password <strong>is required</strong>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-6">
+                                        <label class="label-aa" for="FirstName"><i>First Name</i></label>
+                                        <div class="form-group" style="width: 100%;">
+                                            <input matInput id="FirstName" formControlName="FirstName"
+                                                placeholder="First Name" class="form-control" required>
+                                            <div class="form-err">
+                                                <span
+                                                    *ngIf="createUserForm.get('FirstName').hasError('pattern')"><strong>Invalid</strong>
+                                                    First Name
+                                                </span>
+                                                <span *ngIf="createUserForm.get('FirstName').hasError('required')">
+                                                    First Name <strong>is required</strong>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-6">
+                                        <label class="label-aa" for="LastName"><i>Last Name</i></label>
+                                        <div class="form-group" style="width: 100%;">
+                                            <input matInput id="LastName" formControlName="LastName"
+                                                placeholder="Last Name" class="form-control">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-6" style="margin-bottom: 1.2rem;">
+                                        <label class="label-aa" for="Gender"><i>Gender</i></label>
+                                        <mat-select formControlName="Gender" id="Gender" class="form-control"
+                                            placeholder="Enter Gender" (keydown)="$event.stopPropagation()">
+                                            <mat-option *ngFor="let item of filteredGender"
+                                                (keydown)="$event.stopPropagation()" [value]="item._id">
+                                                {{item.name}}
+                                            </mat-option>
+                                        </mat-select>
+                                        <mat-error class="form-err">
+                                            <span
+                                                *ngIf="createUserForm.get('Gender').hasError('pattern')"><strong>Invalid</strong>
+                                                Gender
+                                            </span>
+                                            <span *ngIf="createUserForm.get('Gender').hasError('required')">
+                                                Gender <strong>is required</strong>
+                                            </span>
+                                        </mat-error>
+                                    </div>
+
+                                    <div class="col-lg-6" style="margin-bottom: 1.2rem;">
+                                        <label class="required" for="RoleName">User Role</label>
+                                        <mat-select formControlName="RoleName" id="RoleName" class="form-control"
+                                            placeholder="Enter Role Name" (keydown)="$event.stopPropagation()">
+                                            <mat-option (keydown)="$event.stopPropagation()" disabled>
+                                                <div class="form-group">
+                                                    <input type="text" placeholder="Search Here..."
+                                                        style="border: none;outline: none;background: transparent;padding-top: 15px;color: rgb(28, 28, 36);"
+                                                        (keyup)="onSearchUserRole($event)">
+                                                </div>
+                                            </mat-option>
+                                            <!-- <mat-option value="All">All</mat-option> -->
+                                            <mat-option *ngFor="let item of filteredUserRole"
+                                                (keydown)="$event.stopPropagation()" [value]="item._id">
+                                                {{item.name}}
+                                            </mat-option>
+                                        </mat-select>
+                                        <mat-error class="form-err">
+                                            <span
+                                                *ngIf="createUserForm.get('RoleName').hasError('pattern')"><strong>Invalid</strong>
+                                                RoleName
+                                            </span>
+                                            <span *ngIf="createUserForm.get('RoleName').hasError('required')">
+                                                RoleName <strong>is required</strong>
+                                            </span>
+                                        </mat-error>
+                                    </div>
+
+                                    <div class="col-lg-6">
+                                        <label class="label-aa" for="Mobile"><i>Mobile</i></label>
+                                        <div class="form-group" style="width: 100%;">
+                                            <input matInput id="Mobile" formControlName="Mobile" placeholder="Mobile"
+                                                class="form-control" maxlength="10" required>
+                                            <div class="form-err">
+                                                <span
+                                                    *ngIf="createUserForm.get('Mobile').hasError('pattern')"><strong>Invalid</strong>
+                                                    Mobile
+                                                </span>
+                                                <span *ngIf="createUserForm.get('Mobile').hasError('required')">
+                                                    Mobile <strong>is required</strong>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-6">
+                                        <label class="label-aa" for="Email"><i>Email</i></label>
+                                        <div class="form-group" style="width: 100%;">
+                                            <input matInput id="Email" formControlName="Email" placeholder="Email"
+                                                class="form-control">
+                                            <div class="form-err">
+                                                <span
+                                                    *ngIf="createUserForm.get('Email').hasError('pattern')"><strong>Invalid</strong>
+                                                    Email
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-6">
+                                        <label class="label-aa" for="Age"><i>Age</i></label>
+                                        <div class="form-group" style="width: 100%;">
+                                            <input matInput id="Age" formControlName="Age" placeholder="Age"
+                                                class="form-control" required>
+                                            <div class="form-err">
+                                                <span
+                                                    *ngIf="createUserForm.get('Age').hasError('pattern')"><strong>Invalid</strong>
+                                                    Age
+                                                </span>
+                                                <span *ngIf="createUserForm.get('Age').hasError('required')">
+                                                    Age <strong>is required</strong>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <label class="label-aa" for="PresentAddress"><i>Present Address</i></label>
+                                        <div class="form-group" style="width: 100%;">
+                                            <textarea class="form-control" id="PresentAddress" rows="3"
+                                                formControlName="PresentAddress" placeholder="Enter Full Address"
+                                                required>
+                                            </textarea>
+                                            <div class="form-err">
+                                                <span
+                                                    *ngIf="createUserForm.get('PresentAddress').hasError('pattern')"><strong>Invalid</strong>
+                                                    Present Address
+                                                </span>
+                                                <span *ngIf="createUserForm.get('PresentAddress').hasError('required')">
+                                                    Present Address <strong>is required</strong>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-6">
+                                        <label class="label-aa" for="PermanentAddress"><i>Permanent Address</i></label>
+                                        <div class="form-group" style="width: 100%;">
+                                            <textarea class="form-control" id="PermanentAddress" rows="3"
+                                                formControlName="PermanentAddress" placeholder="Enter Full Address">
+                                            </textarea>
+                                        </div>
+                                    </div>
+
+                                    <!-- <div class="col-lg-6">
+                                        <label class="label-aa" for="User"><i>User</i></label>
+                                        <div class="form-group" style="width: 100%;">
+                                            <input matInput id="User" formControlName="User" placeholder="Enter User"
+                                                class="form-control">
+                                        </div>
+                                    </div> -->
+
+
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg">
+                                        <hr style="margin-top: 2px; margin-bottom: 6px;">
+                                        <div class="button-holder">
+                                            <button type="button" (click)="modalRef.hide()" style="margin-right: 5px;"
+                                                class="btn btn-danger">Cancel</button>
+                                            <button type="submit" [disabled]="!createUserForm.valid"
+                                                style="margin-left: 5px;" class="btn btn-success">Save</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</ng-template>

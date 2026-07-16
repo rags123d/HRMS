@@ -1,0 +1,363 @@
+{
+	"info": {
+		"_postman_id": "7ad99b76-013f-452c-847c-b2b6450a0ba9",
+		"name": "CustomAHP",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Login",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "username",
+							"value": "Naveen",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "123@456",
+							"type": "text"
+						},
+						{
+							"key": "grant_type",
+							"value": "password",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://35.200.182.243/RgrhclApi/login",
+					"protocol": "http",
+					"host": [
+						"35",
+						"200",
+						"182",
+						"243"
+					],
+					"path": [
+						"RgrhclApi",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Single Project",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "bearer F7iY3hF1vDN-AZh70Uf5AsF6eZ9kcQMWbgutbN-y05vuWOcKt4SlYDQhS3qGXn4BO0CjU9CmhG7lK9hmBROo1eIVKy6ba3v9BNIDsG70H1fc1xl7fA7_X7K7Y4emzzF8MNdfSbc982FAqtz10u__UVSULXJmLKKj9dZR9zq6aO-qGEiCc9m0ipU_5MNIn89_hR3RwNXLDoNSwQct85UfUY6lxp1mApWdo4F4INMGo2bvydXiYXzfOMgKCKj7sXowiJyGyawyRfejYJXDntKHg-kUlAWweOtTkS9ruec6UN5MT3ogX89acjXOhJIDDQXr",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://35.200.182.243/RgrhclApi/api/ProjectPayments?ProjectId=1",
+					"protocol": "http",
+					"host": [
+						"35",
+						"200",
+						"182",
+						"243"
+					],
+					"path": [
+						"RgrhclApi",
+						"api",
+						"ProjectPayments"
+					],
+					"query": [
+						{
+							"key": "ProjectId",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get All Projects",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "bearer F7iY3hF1vDN-AZh70Uf5AsF6eZ9kcQMWbgutbN-y05vuWOcKt4SlYDQhS3qGXn4BO0CjU9CmhG7lK9hmBROo1eIVKy6ba3v9BNIDsG70H1fc1xl7fA7_X7K7Y4emzzF8MNdfSbc982FAqtz10u__UVSULXJmLKKj9dZR9zq6aO-qGEiCc9m0ipU_5MNIn89_hR3RwNXLDoNSwQct85UfUY6lxp1mApWdo4F4INMGo2bvydXiYXzfOMgKCKj7sXowiJyGyawyRfejYJXDntKHg-kUlAWweOtTkS9ruec6UN5MT3ogX89acjXOhJIDDQXr",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://35.200.182.243/RgrhclApi/api/CustomProjects",
+					"protocol": "http",
+					"host": [
+						"35",
+						"200",
+						"182",
+						"243"
+					],
+					"path": [
+						"RgrhclApi",
+						"api",
+						"CustomProjects"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get All Project Documents",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://35.200.182.243/RgrhclApi/api/ProjectDocuments?ProjectId=1",
+					"protocol": "http",
+					"host": [
+						"35",
+						"200",
+						"182",
+						"243"
+					],
+					"path": [
+						"RgrhclApi",
+						"api",
+						"ProjectDocuments"
+					],
+					"query": [
+						{
+							"key": "ProjectId",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Project Contractor",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://35.200.182.243/RgrhclApi/api/Contractors?key=1",
+					"protocol": "http",
+					"host": [
+						"35",
+						"200",
+						"182",
+						"243"
+					],
+					"path": [
+						"RgrhclApi",
+						"api",
+						"Contractors"
+					],
+					"query": [
+						{
+							"key": "key",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Project Image upload for projectBlockFloor",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "Photo",
+							"type": "file",
+							"src": ""
+						}
+					]
+				},
+				"url": {
+					"raw": "http://35.200.182.243/RgrhclApi/api/GeotagUpload?FloorId=1&UploadedTime=20-Jul-2020 23:12:15&Latitude=22.2222&Longitude=72.21111&Accuracy=12.212&IMEI=IMEII32132131&Network=12:A2:32:S2&Remarks=Remarkss",
+					"protocol": "http",
+					"host": [
+						"35",
+						"200",
+						"182",
+						"243"
+					],
+					"path": [
+						"RgrhclApi",
+						"api",
+						"GeotagUpload"
+					],
+					"query": [
+						{
+							"key": "FloorId",
+							"value": "1"
+						},
+						{
+							"key": "UploadedTime",
+							"value": "20-Jul-2020 23:12:15"
+						},
+						{
+							"key": "Latitude",
+							"value": "22.2222"
+						},
+						{
+							"key": "Longitude",
+							"value": "72.21111"
+						},
+						{
+							"key": "Accuracy",
+							"value": "12.212"
+						},
+						{
+							"key": "IMEI",
+							"value": "IMEII32132131"
+						},
+						{
+							"key": "Network",
+							"value": "12:A2:32:S2"
+						},
+						{
+							"key": "Remarks",
+							"value": "Remarkss"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Project Geo Locations",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://35.200.182.243/RgrhclApi/api/ProjectGeoLocations?ProjectId=1",
+					"protocol": "http",
+					"host": [
+						"35",
+						"200",
+						"182",
+						"243"
+					],
+					"path": [
+						"RgrhclApi",
+						"api",
+						"ProjectGeoLocations"
+					],
+					"query": [
+						{
+							"key": "ProjectId",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update ProjectBlockFloors housing status details ",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"Id\": 1,\r\n    \"FloorName\": \"Floor1\",\r\n    \"BlockId\": 1,\r\n    \"LocationId\": 1 ,\r\n    \"ProjectId\": 2,\r\n    \"BHK1\": 22,\r\n    \"BHK2\": 22,\r\n    \"Primary1\": 4, \r\n    \"Plinth\":  3,\r\n    \"Lintel\":  2,\r\n    \"RoofLaid\":  3,\r\n    \"Completed\":  6,\r\n    \"Remarks\": \"Test\",\r\n    \"Status\":  true,\r\n    \"CreatedBy\": \"Naveen\",\r\n    \"ModifiedBy\": \"Naveen\"\r\n}"
+				},
+				"url": {
+					"raw": "http://35.200.182.243/RgrhclApi/api/BlockFloorUpdate",
+					"protocol": "http",
+					"host": [
+						"35",
+						"200",
+						"182",
+						"243"
+					],
+					"path": [
+						"RgrhclApi",
+						"api",
+						"BlockFloorUpdate"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Floor details & All floor images",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://35.200.182.243/RgrhclApi/api/GeoFloorImages?FloorId=1",
+					"protocol": "http",
+					"host": [
+						"35",
+						"200",
+						"182",
+						"243"
+					],
+					"path": [
+						"RgrhclApi",
+						"api",
+						"GeoFloorImages"
+					],
+					"query": [
+						{
+							"key": "FloorId",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

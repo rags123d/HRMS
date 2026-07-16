@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+        .A4-body {
+            margin: auto;
+            /* margin-left: auto;
+            margin-right: auto; */
+            /* margin-top: 50px; */
+        }
+
+        .img-fluid {
+            margin-top: 15px !important;
+            margin-left: 15px !important;
+        }
+
+        .mob-logo {
+            margin-top: 15px !important;
+            margin-left: 15px !important;
+        }
+
+        .center {
+            text-align: center;
+        }
+
+        table {
+            max-width: 2480px;
+            width: 100%;
+        }
+
+        .blank_row {
+            height: 25px !important;
+            background-color: #FFFFFF;
+        }
+
+        table.right-pane {
+            border: 1px solid;
+            width: 50%;
+            float: right;
+            /* margin-right: 25px; */
+            border-collapse: collapse;
+        }
+
+        table.right-pane tr {
+            border: 1px solid;
+            padding: 5px 10px;
+        }
+
+        table.right-pane tr th {
+            border: 1px solid;
+            padding: 5px 10px;
+        }
+
+        table.right-pane tr td {
+            width: auto;
+            overflow: hidden;
+            /*  word-wrap: break-word; */
+            border: 1px solid;
+            padding: 5px 10px;
+            font-size: 12px;
+        }
+
+        .row.align-section {
+            margin-left: 0px;
+            margin-right: 0px;
+            display: flex;
+            justify-content: space-between;
+            margin-top: 25px;
+        }
+
+        .row.align-section-top {
+            margin-left: 0px;
+            margin-right: 0px;
+            display: flex;
+            justify-content: space-between;
+            margin-top: 25px;
+            display: -webkit-box;
+            display: -webkit-flex;
+        }
+
+        .row.align-section-top > div {
+            -webkit-box-flex: 1;
+            -webkit-flex: 1;
+            flex: 1;
+        }
+
+        /* .row.align-section-top > div:last-child {
+            margin-right: 0;
+        } */
+
+        .address-box {
+            border: 1px solid;
+            height: fit-content;
+            margin-left: 25px;
+            width: 35%;
+        }
+
+        .address-box div {
+            padding: 10px 15px;
+        }
+
+        .address-box div span {
+            display: flex;
+            flex-wrap: wrap;
+            font-size: 12px;
+            width: auto;
+            margin-bottom: 10px;
+        }
+
+        .row {
+            margin-left: 0px;
+            margin-right: 50px;
+            margin-top: 35px;
+        }
+
+        .row table.none-effect {
+            border: 1px solid;
+            border-left: none;
+            border-collapse: collapse;
+        }
+
+        .row table.none-effect thead {
+            background: none;
+            color: black;
+        }
+
+        .row table.none-effect thead tr th {
+            border: 1px solid;
+            border-left: none;
+            font-size: 12px;
+            padding: 10px;
+        }
+
+        .row table.none-effect tbody tr td {
+            border: 1px solid;
+            border-left: none;
+            font-size: 12px;
+            padding: 10px;
+        }
+
+        .row.align-section-bottom {
+            margin-left: 0px;
+            margin-right: 0px;
+            justify-content: space-between;
+            margin-top: 50px;
+            margin-bottom: 25px;
+            display: flex;
+            display: -webkit-box;
+            display: -webkit-flex;
+        }
+
+        .row.align-section-bottom > div {
+            -webkit-box-flex: 1;
+            -webkit-flex: 1;
+            flex: 1;
+        }
+
+        .payment-info {
+            margin-left: 25px;
+            width: 35%;
+        }
+
+        .payment-info div {
+            padding: 15px 0px;
+        }
+
+        .payment-info div span {
+            display: flex;
+            flex-wrap: wrap;
+            font-size: 14px;
+            width: auto;
+            margin-bottom: 10px;
+            display: -webkit-box;
+            display: -webkit-flex;
+        }
+
+        .sign-info {
+            margin-left: 25px;
+            width: 35%;
+        }
+
+        .sign-info div {
+            padding: 15px 0px;
+            font-weight: 600;
+        }
+
+        .sign-info div span {
+            display: flex;
+            flex-wrap: wrap;
+            font-size: 12px;
+            width: auto;
+            display: -webkit-box;
+            display: -webkit-flex;
+        }
+
+        .avoid-table tr td {
+            padding: 0 !important;
+            border: none !important;
+        }
+
+        .ad-timelite tr td .ad-timelite1 tr td {
+            border: none;
+            outline: none;
+        }
+
+        .ad-timelite tr td h4 {
+            text-align: left;
+            font-size: 12px;
+            margin: 0;
+            line-height: 10px;
+            /* margin-right: 5px; */
+            white-space: nowrap !important;
+        }
+
+        .ad-timelite1 tr td h4 {
+            text-align: left;
+            font-size: 12px;
+            line-height: 10px;
+            margin-top: 10px;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+        }
+
+        .bank-detail-box {
+            border: 1px solid;
+            height: fit-content;
+            margin-left: 25px;
+            width: 75%;
+        }
+
+        .bank-detail-box div {
+            padding: 10px 15px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="A4-body" style="border: 1px solid;">
+
+        <div>
+            <img width="100px" height="50px"
+                src="data:image/png;base64,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"
+                class="img-fluid mob-logo" />
+            <div class="center" style="margin-top: -50px;">
+                <span style="font-weight: 600;">Goods and Services Tax Invoice</span>
+                <div>
+                    <blockquote><b>SPOORTHY INTEGRATED SOLUTIONS (I) PVT. LTD.,</b></blockquote>
+                </div>
+                <p style="font-size: 12px; font-weight: 600;">
+                    #880, 1st Floor, 60 Feet Main Road, 'D' Group Layout,
+                    Srigandhadakaval,
+                    Bangalore - 560 091</p>
+            </div>
+        </div>
+
+        <div class="row align-section-top" style="width: 100%;">
+
+            <div class="address-box">
+                <div>
+                    <span><b>To,</b></span><br>
+                    <span><b>The {{ authority }},</b></span><br>
+                    <span>{{ companyName }}</span><br>
+                    <!-- <span>{{ companyAddress}},</span><br> -->
+                    <span>{{ companyLocation }} - {{companyPincode}}</span><br>
+                    <span><b>GST # {{ companyGSTIN }}</b></span>
+                </div>
+            </div>
+
+            <div style="margin-right: 25px; width: 50%;">
+                <table class="right-pane">
+                    <tr class="blank_row">
+                        <th> </th>
+                        <th> </th>
+                    </tr>
+                    <tr>
+                        <td style="white-space: nowrap;">Invoice No</td>
+                        <td><b>{{ billInvoiceNumber }}</b></td>
+                    </tr>
+                    <tr>
+                        <td>Date</td>
+                        <td>{{ billInvoiceDate }}</td>
+                    </tr>
+                    <tr>
+                        <td>From</td>
+                        <td>{{ billPayFrom }}</td>
+                    </tr>
+                    <tr>
+                        <td>Upto</td>
+                        <td>{{ billPayTo }}</td>
+                    </tr>
+                </table>
+            </div>
+
+        </div>
+
+        <div class="row">
+            <table class="none-effect">
+                <thead>
+                    <tr>
+                        <th>Sl.no</th>
+                        <th>Particulars</th>
+                        <th>QTY</th>
+                        <th>No. of man days</th>
+                        <th>Wages per month</th>
+                        <th>Amount in Rs.</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{ particularsList }} 
+                    <tr>
+                        <td colspan="2" style="text-align: center;"><b>TOTAL</b></td>
+                        <td style="text-align: right;"><b>{{ overallTotalQTY }}</b></td>
+                        <td style="text-align: right;"><b>{{ overallnoOfManDays }}</b></td>
+                        <td style="text-align: right;"></td>
+                        <td style="text-align: right;"><b>{{ totalAmountinRS }}</b></td>
+                    </tr>
+                    <tr>
+                        <td colspan="5" style="text-align: center;"><b>TOTAL AMOUNT</b></td>
+                        <td style="font-size: 14px; text-align: right;"><b>{{ totalAmountinRS }}</b></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <table class="avoid-table ad-timelite">
+                                <tr style="width: 100%;" placement="right">
+                                    <td style="width: 15%;">
+                                        <h4>GSTIN</h4>
+                                    </td>
+                                    <td style="width: 5%;">
+                                        <h4>:</h4>
+                                    </td>
+                                    <td>
+                                        <h4 style="text-align: left;">29AAXCS0829B1Z2</h4>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                        <td colspan="3">CGST @{{ CGST }}%</td>
+                        <td style="text-align: right;">{{ totalCGST }}</td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <table class="avoid-table ad-timelite">
+                                <tr style="width: 100%;" placement="right">
+                                    <td style="width: 15%;">
+                                        <h4>PAN NO</h4>
+                                    </td>
+                                    <td style="width: 5%;">
+                                        <h4>:</h4>
+                                    </td>
+                                    <td>
+                                        <h4 style="text-align: left;">AAXCS0829B</h4>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                        <td colspan="3">SGST @{{ SGST }}%</td>
+                        <td style="text-align: right;">{{ totalSGST }}</td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <table class="avoid-table ad-timelite">
+                                <tr style="width: 100%;" placement="right">
+                                    <td style="width: 15%;">
+                                        <h4>HSN/SAC</h4>
+                                    </td>
+                                    <td style="width: 5%;">
+                                        <h4>:</h4>
+                                    </td>
+                                    <td>
+                                        <h4 style="text-align: left;">998523</h4>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                        <td colspan="3" style="font-size: 14px;"><b>Total Gross</b></td>
+                        <td style="font-size: 14px; text-align: right;"><b>{{ overallTotalAmount }}</b></td>
+                    </tr>
+                    <tr>
+                        <td colspan="5" style="text-align: center; font-size: 14px;"><b>{{ overallTotalAmountinWords }}</b>
+                        </td>
+                        <td style="font-size: 14px; text-align: right;"><b>{{ overallTotalRoundFiguredAmount }}</b></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="row" style="margin-left: 15px;">
+            All Payments should be made only by cheques drawn in favour of the Company. <br>
+            Interest Will be charged @ 24% on unpaid Bills
+        </div>
+
+        <div class="row">
+            <div style="margin-left: 15px;"><b> Bank Details:- </b></div>
+        </div>
+
+        <div class="row align-section" style="margin-top: 5px;">
+            <div class="bank-detail-box">
+                <div>
+                    <table class="avoid-table ad-timelite1">
+                        <tr placement="right">
+                            <td style="width: 25%;">
+                                <h4>Name</h4>
+                            </td>
+                            <td style="width: 5%;">
+                                <h4>:</h4>
+                            </td>
+                            <td style="width: 70%;">
+                                <h4 style="text-align: left; line-height: 20px; white-space: nowrap;">
+                                    SPOORTHY INTEGRATED SOLUTIONS (I) PVT LTD
+                                </h4>
+                            </td>
+                        </tr>
+                        <tr placement="right">
+                            <td style="width: 25%;">
+                                <h4 style="white-space: nowrap;">A/C Number</h4>
+                            </td>
+                            <td style="width: 5%;">
+                                <h4>:</h4>
+                            </td>
+                            <td style="width: 70%;">
+                                <h4 style="text-align: left;">37987189466</h4>
+                            </td>
+                        </tr>
+                        <tr placement="right">
+                            <td style="width: 25%;">
+                                <h4>Bank</h4>
+                            </td>
+                            <td style="width: 5%;">
+                                <h4>:</h4>
+                            </td>
+                            <td style="width: 70%;">
+                                <h4 style="text-align: left;">State Bank of India</h4>
+                            </td>
+                        </tr>
+                        <tr placement="right">
+                            <td style="width: 25%;">
+                                <h4>Ifsc Code</h4>
+                            </td>
+                            <td style="width: 5%;">
+                                <h4>:</h4>
+                            </td>
+                            <td style="width: 70%;">
+                                <h4 style="text-align: left;">SBIN0020348</h4>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="row align-section-bottom">
+
+            <div class="payment-info">
+                <div>
+                    <span>E.&.O.E</span>
+                    <span>Payment Due On : {{ billDueDate }}</span>
+                </div>
+            </div>
+
+            <div class="sign-info">
+                <div style="padding: 0px 10px;">
+                    <span style="padding-bottom: 25px; display: -webkit-flex; justify-content: center;">
+                        For SPOORTHY INTEGRATED SOLUTIONS (I) PVT. LTD,
+                    </span>
+                    <span style="padding-top: 25px; display: -webkit-flex; justify-content: center;">Authorised Signatory</span>
+                </div>
+            </div>
+
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>

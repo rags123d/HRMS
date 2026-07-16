@@ -1,0 +1,9 @@
+// Function for Font-Size
+@function fontSize($fontsize) {
+    @return 16px + $fontsize;
+}
+
+// Function for Font-Weight
+@function fontWeight($fontweight) {
+    @return 400 + $fontweight;
+}
