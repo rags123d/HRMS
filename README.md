@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # README - Start Here! 👋
 
 ## What You Need to Know
@@ -170,3 +171,6 @@ pm2 save
 ---
 
 *For Windows Systems • April 2026*
+=======
+# HRMS
+>>>>>>> 809b534dc75e8cfa97c7c4d0c649ec8815440f39
