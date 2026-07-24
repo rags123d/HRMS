@@ -1,0 +1,157 @@
+.A4-body {
+    /* height: 297mm;
+    width: 210mm; */
+    // height: 842px; //A4 size
+    // width: 595px;  //A4 size
+    /* to centre page on screen*/
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 50px;
+}
+
+.img-fluid {
+    margin-top: 15px !important;
+    margin-left: 15px !important;
+}
+
+.mob-logo {
+    margin-top: 15px !important;
+    margin-left: 15px !important;
+}
+
+table {
+    max-width: 2480px;
+    width: 100%;
+}
+
+// table td {
+//     width: auto;
+//     overflow: hidden;
+//     word-wrap: break-word;
+// }
+
+.blank_row {
+    height: 25px !important;
+    /* overwrites any other rules */
+    background-color: #FFFFFF;
+}
+
+table.right-pane {
+    border: 2px solid;
+    width: 20%;
+    float: right;
+    margin-right: 25px;
+
+    tr {
+        border: 1px solid;
+        padding: 5px 10px;
+
+        th {
+            border: 1px solid;
+            padding: 5px 10px;
+        }
+
+        td {
+            width: auto;
+            overflow: hidden;
+            // word-wrap: break-word;
+            white-space: nowrap;
+            border: 1px solid;
+            padding: 5px 10px;
+            font-size: 12px;
+        }
+    }
+}
+
+.row.align-section {
+    margin-left: 0px;
+    margin-right: 0px;
+    justify-content: space-between;
+    margin-top: 25px;
+}
+
+.address-box {
+    border: 2px solid;
+    height: 160px;
+    margin-left: 25px;
+    width: 35%;
+
+    div {
+        padding: 10px 15px;
+
+        span {
+            display: flex;
+            flex-wrap: wrap;
+            font-size: 12px;
+            width: auto;
+        }
+    }
+}
+
+.row {
+    margin-left: 0px;
+    margin-right: 50px;
+    margin-top: 35px;
+
+    table.none-effect {
+        border: 1px solid;
+
+        thead {
+            background: none;
+            color: black;
+
+            tr th {
+                border: 1px solid;
+                font-size: 12px;
+            }
+        }
+
+        tbody {
+
+            tr td {
+                border: 1px solid;
+                font-size: 12px;
+            }
+        }
+    }
+}
+
+.row.align-section-bottom {
+    margin-left: 0px;
+    margin-right: 0px;
+    justify-content: space-between;
+    margin-top: 50px;
+    margin-bottom: 25px;
+}
+
+.payment-info {
+    margin-left: 25px;
+    width: 35%;
+
+    div {
+        padding: 15px 0px;
+
+        span {
+            display: flex;
+            flex-wrap: wrap;
+            font-size: 12px;
+            width: auto;
+        }
+    }
+}
+
+.sign-info {
+    margin-left: 25px;
+    width: 35%;
+
+    div {
+        padding: 15px 0px;
+
+        span {
+            display: flex;
+            flex-wrap: wrap;
+            font-size: 12px;
+            width: auto;
+        }
+    }
+}

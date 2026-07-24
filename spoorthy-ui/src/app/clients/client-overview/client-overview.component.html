@@ -1,0 +1,246 @@
+<div class="dashboard-screen m-4">
+    <div class="double-header-title d-flex justify-content-between align-items-center flex-wrap">
+        <h4 class="font-weight-bolder pl-2">{{clientData?.name}} <span class="font-weight-light">- Overview</span></h4>
+        <h6 class="pr-2">REGISTERED ON <span>: {{clientData?.createdAt | date : 'dd-MMM-yyyy'}}</span></h6>
+    </div>
+    <div class="row">
+        <div class="col-12 col-sm-4 col-md-4 col-lg-4 col-xl-2 mt-3 mb-2">
+            <div class="profile-box"> <img width="160" height="160" *ngIf="clientData"
+                    [src]="DocUrl+clientData.companyLogo"> </div>
+        </div>
+        <div class="col-12 col-sm-4 col-md-4 col-lg-4 col-xl-2 mt-3 mb-2">
+            <div class="counter-box p-3">
+                <h6>Total Work Orders</h6>
+                <div class="d-flex justify-content-between align-items-center">
+                    <h1>{{DashboardDetail?.TotalWorkOrders || 0}}</h1>
+                    <span class="icon"><img alt="total-clients-icon" src="./assets/images/work-orders-icons.svg"></span>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-sm-4 col-md-4 col-lg-4 col-xl-2 mt-3 mb-2">
+            <div class="counter-box p-3">
+                <h6>Total Requirement</h6>
+                <div class="d-flex justify-content-between align-items-center">
+                    <h1>{{DashboardDetail?.TotalRequirements || 0}}</h1>
+                    <span class="icon"><img alt="total-clients-icon"
+                            src="./assets/images/total-requerment-icon.svg"></span>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-sm-4 col-md-4 col-lg-4 col-xl-2 mt-3 mb-2">
+            <div class="counter-box p-3">
+                <h6>Total Employees Hired</h6>
+                <div class="d-flex justify-content-between align-items-center">
+                    <h1>{{DashboardDetail?.TotalEmployeesHired || 0}}</h1>
+                    <span class="icon"><img alt="total-clients-icon"
+                            src="./assets/images/employees-hired-icon.svg"></span>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-sm-4 col-md-4 col-lg-4 col-xl-2 mt-3 mb-2">
+            <div class="counter-box p-3">
+                <h6>Total Vacancies</h6>
+                <div class="d-flex justify-content-between align-items-center">
+                    <h1>{{DashboardDetail?.TotalVacancies || 0}}</h1>
+                    <span class="icon"><img alt="total-clients-icon" src="./assets/images/vaccines-icon.svg"></span>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-sm-4 col-md-4 col-lg-4 col-xl-2 mt-3 mb-2">
+            <div class="counter-box p-3">
+                <h6>Waiting For Approval</h6>
+                <div class="d-flex justify-content-between align-items-center">
+                    <h1>{{DashboardDetail?.WaitingForApproval || 0}}</h1>
+                    <span class="icon"><img alt="total-clients-icon" src="./assets/images/vaccines-icon.svg"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="company-addtress-info">
+    <div class="row">
+        <div class="col-sm-12 col-md-12 col-lg-5">
+            <div class="table-information">
+                <table class="w-100 info-table">
+                    <tr>
+                        <th>Address : </th>
+                        <td>{{clientData?.address}}</td>
+                    </tr>
+                    <tr>
+                        <th>Office Phone : </th>
+                        <td><a href="tel:+919999999999">{{clientData?.officePhoneNo}}</a></td>
+                    </tr>
+                    <tr>
+                        <th>Office Email ID : </th>
+                        <td><a href="mailto:companyemailid@gmail.com">{{clientData?.email}}</a></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div class="col-sm-8 col-md-6 col-lg-4">
+            <div class="table-information">
+                <table class="w-100 info-table">
+                    <tr>
+                        <th>Contact Person : </th>
+                        <td>{{clientData?.contactPerson}}</td>
+                    </tr>
+                    <tr>
+                        <th>Designation : </th>
+                        <td>{{clientData?.designation?.name}}</td>
+                    </tr>
+                    <tr>
+                        <th>Contact Number : </th>
+                        <td><a href="tel:{{clientData?.cantactNo}}">{{clientData?.cantactNo}}</a></td>
+                    </tr>
+                    <tr>
+                        <th>Email ID : </th>
+                        <td><a href="mailto:{{clientData?.contactEmail}}">{{clientData?.contactEmail}}</a></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div class="col-sm-11 col-md-6 col-lg-3">
+            <div class="table-information">
+                <table class="w-100 info-table">
+                    <tr>
+                        <th>GSTIN : </th>
+                        <td>{{clientData?.GSTIN}}</td>
+                    </tr>
+                    <tr>
+                        <th>PAN : </th>
+                        <td>{{clientData?.PAN}}</td>
+                    </tr>
+                    <tr>
+                        <th>TAN : </th>
+                        <td>{{clientData?.TAN}}</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="d-flex justify-content-between">
+        <!-- <a target="_blank" [href]="DocUrl+clientData?.agreementDocument"><button class="btn btn-info">View
+                Agreement</button></a> -->
+        <a target="_blank" *ngIf="clientData?.licenseDocument" [href]="DocUrl+clientData?.licenseDocument"><button
+                class="btn btn-info">View Company
+                Licence</button></a>
+        <a target="_blank" *ngIf="clientData?.GSTDocument" [href]="DocUrl+clientData?.GSTDocument"><button
+                class="btn btn-info">View GST
+                Document</button></a>
+        <a target="_blank" *ngIf="clientData?.PANDocument" [href]="DocUrl+clientData?.PANDocument"><button
+                class="btn btn-info">View PAN
+                Document</button></a>
+        <a target="_blank" *ngIf="clientData?.TANDocument" [href]="DocUrl+clientData?.TANDocument"><button
+                class="btn btn-info">View TAN
+                Document</button></a>
+    </div>
+
+</div>
+
+<!-- <div class="mt-5 d-flex justify-content-between align-items-center flex-wrap">
+    <h3 class="m-0">Work Orders <span>( {{workOrderData?.length}} )</span></h3>
+    <div style="display: flex;">
+        <mat-form-field style="width: 200px" class="mr-5">
+            <mat-label>Search by Work Order Name / ID</mat-label>
+            <input (keyup)="SearchFilter(input.value)" matInput placeholder="Search..." #input>
+        </mat-form-field>
+
+        <button id="workorder-btn" class="btn btn-danger mt-3" [routerLink]="['/workorder/add']">
+            CLICK TO ADD NEW WORK ORDER
+        </button>
+    </div>
+</div> -->
+
+
+<div class="mt-5 d-flex justify-content-between align-items-center flex-wrap">
+    <div class="col-lg-6" style="margin-bottom: 10px;">
+        <h3 class="m-0">Work Orders <span>( {{workOrderData?.length}} )</span></h3>
+    </div>
+    <div class="col-lg-6" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;">
+        <mat-form-field style="width: 200px; margin-bottom: 10px;">
+            <mat-label>Search by Work Order Name / ID</mat-label>
+            <input (keyup)="SearchFilter(input.value)" matInput placeholder="Search..." #input>
+        </mat-form-field>
+
+        <button id="workorder-btn" class="btn btn-danger" [routerLink]="['/workorder/add']"
+            style="margin-bottom: 10px;">
+            CLICK TO ADD NEW WORK ORDER
+        </button>
+    </div>
+</div>
+
+<div class="example-container">
+    <div class="table-responsive">
+        <table mat-table [dataSource]="workOrderDataSource" matSort>
+
+            <ng-container matColumnDef="Sl No">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Sl.No</th>
+                <td mat-cell *matCellDef="let row; let i=index;" style="white-space: nowrap;">
+                    {{ pagination.pageIndex * pagination.pageSize + i + 1 }}
+                </td>
+            </ng-container>
+
+            <ng-container matColumnDef="Action">
+                <th mat-header-cell *matHeaderCellDef style="text-align: center !important;">Actions</th>
+                <td mat-cell *matCellDef="let row">
+                    <div class="actions">
+                        <a target="_blank" [href]="DocUrl+row.workOrderDocument"><i class="fas fa-download"
+                                tooltip="Download"></i></a>
+                        <i routerLink="/workorder/overview/{{row._id}}" class="fas fa-eye view" tooltip="View"></i>
+                        <i routerLink="/workorder/edit/{{row._id}}" class="fas fa-edit edit" tooltip="Edit"></i>
+                        <!-- <i (click)="deleteWorkOrder(row._id)" class="fas fa-trash delete" tooltip="Delete"></i> -->
+                    </div>
+                </td>
+            </ng-container>
+
+            <ng-container matColumnDef="ID">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>ID</th>
+                <td mat-cell *matCellDef="let row" style="white-space: nowrap;">{{ row.WorkOrderId }}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="Work Order Name">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Work Order Name</th>
+                <td mat-cell *matCellDef="let row" style="white-space: nowrap;">{{ row.name }}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="Start Date">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Start Date</th>
+                <td mat-cell *matCellDef="let row">{{ row.StartDate | date: 'dd-MMM-yyyy' }}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="Renewal Date">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Renewal Date</th>
+                <td mat-cell *matCellDef="let row">{{ row.RenewalDate | date: 'dd-MMM-yyyy' }}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="Total Jobs">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Total Jobs</th>
+                <td mat-cell *matCellDef="let row">{{ row.noOfRequirements }}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="Job Request Pending">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Job Request Pending</th>
+                <td mat-cell *matCellDef="let row">{{ row.noOfRequirements - row.hired || 0 }}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="Hired">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Hired</th>
+                <td mat-cell *matCellDef="let row">{{ row.hired || 0 }}</td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="workOrderColumn; sticky: true"></tr>
+            <tr mat-row *matRowDef="let row; columns: workOrderColumn;"></tr>
+
+            <!-- Row shown when there is no matching data. -->
+            <tr class="mat-row" *matNoDataRow>
+                <td class="mat-cell" colspan="9" style="text-align: center;">No data matching the filter</td>
+            </tr>
+        </table>
+    </div>
+    <mat-paginator #pagination [length]="ListTotal" [pageSizeOptions]="[10, 25, 50, 100]" id="tblstylPagination"
+        (page)="getServerData($event)">
+    </mat-paginator>
+
+</div>

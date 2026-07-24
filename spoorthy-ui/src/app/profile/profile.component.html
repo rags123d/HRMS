@@ -1,0 +1,26 @@
+<section class="profile-wrapper" >
+    <div class="profile-form-holder col-md-6 offset-md-3">
+      <h2 class="mt-5">My Profile</h2>
+        <form [formGroup]="ProfileForm" (ngSubmit)="SaveChanges()" id="profile-form" class="form">
+          <div class="form-group">
+            <label class="col-lbl">User Name</label>
+            <input type="text" class="form-control" formControlName="UserName" disabled>
+          </div>
+          <div class="form-group">
+            <label class="col-lbl">Email <span style="color: red;"> *</span></label>
+            <input type="text" class="form-control" placeholder="Email" formControlName="Email">
+            <div class="text-danger"  
+              *ngIf="(ProfileForm.controls['Email'].touched || ProfileForm.controls['Email'].dirty) && ProfileForm.controls['Email'].errors?.required">
+              Email is required
+            </div>
+            <div class="text-danger"
+              *ngIf="(ProfileForm.controls['Email'].touched || ProfileForm.controls['Email'].dirty) && ProfileForm.controls['Email'].errors?.pattern">
+              Email Not valid
+            </div>
+          </div>
+          <div class="form-group">
+            <button [disabled]="!ProfileForm.valid" type="submit" class="btn btn-primary">Save Changes</button>
+          </div>
+        </form>
+    </div>
+  </section>

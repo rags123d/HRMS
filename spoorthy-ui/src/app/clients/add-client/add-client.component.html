@@ -1,0 +1,339 @@
+<div class="add-vehicle-wrap">
+  <div class="row">
+    <form class="form" [formGroup]="clientForm">
+      <div class="col-lg-12">
+        <div class="row mb-3">
+          <h4>Client/Company Information</h4>
+          <div class="col-lg-12">
+            <div class="form-group">
+              <label class="required" for="name">Client Name</label>
+              <input type="text" class="form-control" id="name" aria-describedby="name"
+                placeholder="Enter Client/Company Name" formControlName="name">
+              <div class="text-danger"
+                *ngIf="(clientForm.controls['name'].touched || clientForm.controls['name'].dirty) && clientForm.controls['name'].errors?.required">
+                Client Name is required.
+              </div>
+              <div class="text-danger"
+                *ngIf="(clientForm.controls['name'].touched || clientForm.controls['name'].dirty) && clientForm.controls['name'].errors?.pattern">
+                Client Name is not valid.
+              </div>
+              <!-- <small class="error-txt" style="color: red !important;" id="" *ngIf="!contractorForm.controls.Name.valid && contractorForm.controls.Name.touched" class="form-text text-muted">Please enter valid Name</small> -->
+            </div>
+
+            <div class="form-group">
+              <label class="required" for="address">Office Address</label>
+              <input type="text" class="form-control" id="address" aria-describedby="address"
+                placeholder="Enter Office Address" formControlName="address">
+              <div class="text-danger"
+                *ngIf="(clientForm.controls['address'].touched || clientForm.controls['address'].dirty) && clientForm.controls['address'].errors?.required">
+                Office Address is required.
+              </div>
+              <div class="text-danger"
+                *ngIf="(clientForm.controls['address'].touched || clientForm.controls['address'].dirty) && clientForm.controls['address'].errors?.pattern">
+                Office Address is not valid.
+              </div>
+              <!-- <small class="error-txt" style="color: red !important;" id="" *ngIf="!contractorForm.controls.Name.valid && contractorForm.controls.Name.touched" class="form-text text-muted">Please enter valid Name</small> -->
+            </div>
+
+          </div>
+          <div class="col-lg-6">
+
+            <div class="form-group">
+              <label class="required" for="pinCode">Pincode</label>
+              <input type="text" class="form-control" id="pinCode" aria-describedby="pinCode"
+                placeholder="Enter Pincode" formControlName="pinCode" maxlength="6" minlength="6">
+              <div class="text-danger"
+                *ngIf="(clientForm.controls['pinCode'].touched || clientForm.controls['pinCode'].dirty) && clientForm.controls['pinCode'].errors?.required">
+                Pincode is required.
+              </div>
+              <div class="text-danger"
+                *ngIf="(clientForm.controls['pinCode'].touched || clientForm.controls['pinCode'].dirty) && clientForm.controls['pinCode'].errors?.pattern">
+                Pincode is not valid.
+              </div>
+              <!-- <small class="error-txt" style="color: red !important;" id="" *ngIf="!contractorForm.controls.Name.valid && contractorForm.controls.Name.touched" class="form-text text-muted">Please enter valid Name</small> -->
+            </div>
+
+            <div class="form-group">
+              <label for="PAN">PAN</label>
+              <input type="text" class="form-control" id="PAN" aria-describedby="PAN" placeholder="Enter PAN Number"
+                formControlName="PAN" minlength="10" maxlength="10">
+              <div class="text-danger"
+                *ngIf="(clientForm.controls['PAN'].touched || clientForm.controls['PAN'].dirty) && clientForm.controls['PAN'].errors?.pattern">
+                PAN is not valid.
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="TAN">TAN</label>
+              <input type="text" class="form-control" id="TAN" aria-describedby="TAN" placeholder="Enter TAN Number"
+                formControlName="TAN" minlength="10" maxlength="10">
+              <div class="text-danger"
+                *ngIf="(clientForm.controls['TAN'].touched || clientForm.controls['TAN'].dirty) && clientForm.controls['TAN'].errors?.pattern">
+                TAN is not valid.
+              </div>
+            </div>
+
+          </div>
+
+          <div class="col-lg-6">
+            <div class="form-group">
+              <label for="officePhoneNo">Office Landline Number</label>
+              <input type="text" class="form-control" id="officePhoneNo" aria-describedby="officePhoneNo" maxlength="11"
+                placeholder="Enter Office Landline Number" formControlName="officePhoneNo">
+              <div class="text-danger"
+                *ngIf="(clientForm.controls['officePhoneNo'].touched || clientForm.controls['officePhoneNo'].dirty) && clientForm.controls['officePhoneNo'].errors?.pattern">
+                Office Landline Number is not valid.
+              </div>
+              <!-- <small class="error-txt" style="color: red !important;" id="der" *ngIf="!contractorForm.controls.Mobile.valid && contractorForm.controls.Mobile.touched" class="form-text text-muted">Please enter valid mobile number</small> -->
+            </div>
+
+            <div class="form-group">
+              <label for="GSTIN">GSTIN</label>
+              <input type="text" class="form-control" id="GSTIN" aria-describedby="GSTIN" placeholder="Enter GSTIN"
+                formControlName="GSTIN" minlength="15" maxlength="15">
+              <div class="text-danger"
+                *ngIf="(clientForm.controls['GSTIN'].touched || clientForm.controls['GSTIN'].dirty) && clientForm.controls['GSTIN'].errors?.pattern">
+                GSTIN is not valid.
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="required" for="email">Company Email ID</label>
+              <input type="text" class="form-control" id="email" aria-describedby="email" placeholder="Enter Email ID"
+                formControlName="email">
+              <div class="text-danger"
+                *ngIf="(clientForm.controls['email'].touched || clientForm.controls['email'].dirty) && clientForm.controls['email'].errors?.required">
+                Company Email ID is required.
+              </div>
+              <div class="text-danger"
+                *ngIf="(clientForm.controls['email'].touched || clientForm.controls['email'].dirty) && clientForm.controls['email'].errors?.pattern">
+                Company Email ID is not valid.
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <h4>Contact Person Information</h4>
+          <div class="col-lg-6">
+            <div class="form-group">
+              <label class="required" for="contactPerson">Contact Person Name</label>
+              <input type="text" class="form-control" id="contactPerson" aria-describedby="contactPerson"
+                placeholder="Enter Contact Person Name" formControlName="contactPerson">
+              <div class="text-danger"
+                *ngIf="(clientForm.controls['contactPerson'].touched || clientForm.controls['contactPerson'].dirty) && clientForm.controls['contactPerson'].errors?.required">
+                Contact Person Name is required.
+              </div>
+              <div class="text-danger"
+                *ngIf="(clientForm.controls['contactPerson'].touched || clientForm.controls['contactPerson'].dirty) && clientForm.controls['contactPerson'].errors?.pattern">
+                Contact Person Name is not valid.
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="required" for="cantactNo">Contact Number</label>
+              <input type="text" class="form-control" id="cantactNo" maxlength="10" placeholder="Enter Contact Number"
+                formControlName="cantactNo">
+              <div class="text-danger"
+                *ngIf="(clientForm.controls['cantactNo'].touched || clientForm.controls['cantactNo'].dirty) && clientForm.controls['cantactNo'].errors?.required">
+                Contact number is required.
+              </div>
+              <div class="text-danger"
+                *ngIf="(clientForm.controls['cantactNo'].touched || clientForm.controls['cantactNo'].dirty) && clientForm.controls['cantactNo'].errors?.pattern">
+                Contact number is not valid.
+              </div>
+              <!-- <small class="error-txt" style="color: red !important;" id="der" *ngIf="!contractorForm.controls.ContactNumber.valid && contractorForm.controls.ContactNumber.touched" class="form-text text-muted">Please enter valid mobile number</small> -->
+            </div>
+
+          </div>
+
+          <div class="col-lg-6">
+            <div class="form-group">
+              <label class="required" for="designation">Designation</label>
+              <select id="designation" formControlName="designation" class="form-control">
+                <option value="" disabled selected style="color: red;">Select Designation</option>
+                <option *ngFor="let data of Designation" [value]="data._id">{{data.name}}</option>
+              </select>
+              <div class="text-danger"
+                *ngIf="(clientForm.controls['designation'].touched || clientForm.controls['designation'].dirty) && clientForm.controls['designation'].errors?.required">
+                Designation is required.
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="required" for="contactEmail">Email ID</label>
+              <input type="text" class="form-control" id="contactEmail" aria-describedby="contactEmail"
+                placeholder="Enter Email ID" formControlName="contactEmail">
+              <div class="text-danger"
+                *ngIf="(clientForm.controls['contactEmail'].touched || clientForm.controls['contactEmail'].dirty) && clientForm.controls['contactEmail'].errors?.required">
+                Email ID is required.
+              </div>
+              <div class="text-danger"
+                *ngIf="(clientForm.controls['contactEmail'].touched || clientForm.controls['contactEmail'].dirty) && clientForm.controls['contactEmail'].errors?.pattern">
+                Email ID is not valid.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <h4>Client Logo & Documents</h4>
+          <div class="col-lg-6">
+
+            <!-- <div class="form-group">
+              <label class="required" for="agreementDocument">Agreement Document</label>
+              <input type="file" class="d-none mb-1" id="agreementDocument" aria-describedby="agreementDocument">
+              <div class="pl-0 col-lg-12">
+                <button class="text-left btn btn-danger"
+                  onclick="document.getElementById('agreementDocument').click()"><i
+                    class="fas fa-upload pr-3"></i>UPLOAD FILE</button>
+                <label class="ml-2" id="agreementDocumentName" for="agreementDocument">Upload File</label>
+              </div>
+              <div class="text-danger"
+                *ngIf="clientForm.get('agreementDocument').errors!=null && clientForm.get('agreementDocument').errors['requiredFileType']">
+                Upload pdf files
+              </div>
+              (Comment it, if agr is required) <div id="agreementDocumentName" class="text-success" *ngIf="agreementDocumentChecker == false"></div>
+            </div> -->
+
+            <div class="form-group">
+              <label for="GSTDocument">GST Document</label>
+              <input type="file" class="d-none mb-1" id="GSTDocument" aria-describedby="GSTDocument">
+              <div class="pl-0 col-lg-12">
+                <button class="text-left btn btn-danger" onclick="document.getElementById('GSTDocument').click()"><i
+                    class="fas fa-upload pr-3"></i>UPLOAD FILE</button>
+                <label class="ml-2" id="GSTDocumentName" for="GSTDocument">Upload File</label>
+                <a [href]="(GSTDocumenturl ? GSTDocumenturl : '#') | safe" target="_blank" class="btn rounded">
+                  <i *ngIf="GSTDocumenturl" class="fas fa-eye view" tooltip="View"></i>
+                </a>
+              </div>
+              <div class="text-danger"
+                *ngIf="clientForm.get('GSTDocument').errors!=null && clientForm.get('GSTDocument').errors['requiredFileType']">
+                Upload pdf files
+              </div>
+              <!-- <div id="GSTDocumentName" class="text-success" *ngIf="GSTDocumentChecker == false"></div> -->
+            </div>
+
+            <!-- <div class="form-group">
+              <label for="PANDocument">PAN Document</label>
+              <input type="file" class="d-none mb-1" id="PANDocument" aria-describedby="PANDocument">
+              <div class="pl-0 col-lg-12">
+                <button class="text-left btn btn-danger" onclick="document.getElementById('PANDocument').click()"><i
+                    class="fas fa-upload pr-3"></i>UPLOAD FILE</button>
+                <label class="ml-2" id="PANDocumentName" for="PANDocument">Upload File</label>
+                <a [href]="(PANDocumenturl ? PANDocumenturl : '#') | safe" target="_blank" class="btn rounded">
+                  <i *ngIf="PANDocumenturl" class="fas fa-eye view" tooltip="View"></i>
+                </a>
+              </div>
+              <div class="text-danger"
+                *ngIf="clientForm.get('PANDocument').errors!=null && clientForm.get('PANDocument').errors['requiredFileType']">
+                Upload pdf files
+              </div>
+            </div> -->
+
+            <div class="form-group">
+              <label for="PANDocument">PAN Document</label>
+              <input type="file" class="d-none mb-1" id="PANDocument" aria-describedby="PANDocument">
+              <div class="pl-0 col-lg-12">
+                <button class="text-left btn btn-danger" onclick="document.getElementById('PANDocument').click()"><i
+                    class="fas fa-upload pr-3"></i>UPLOAD FILE</button>
+                <label class="ml-2" id="PANDocumentName" for="PANDocument">Upload File</label>
+                <a [href]="(PANDocumenturl ? PANDocumenturl : '#') | safe" target="_blank" class="btn rounded">
+                  <i *ngIf="PANDocumenturl" class="fas fa-eye view" tooltip="View"></i>
+                </a>
+              </div>
+              <div class="text-danger" *ngIf="clientForm.get('PANDocument').errors?.requiredFileType">
+                Upload pdf files
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="TANDocument">TAN Document</label>
+              <input type="file" class="d-none mb-1" id="TANDocument" aria-describedby="TANDocument">
+              <div class="pl-0 col-lg-12">
+                <button class="text-left btn btn-danger" onclick="document.getElementById('TANDocument').click()"><i
+                    class="fas fa-upload pr-3"></i>UPLOAD FILE</button>
+                <label class="ml-2" id="TANDocumentName" for="TANDocument">Upload File</label>
+                <a [href]="(TANDocumenturl ? TANDocumenturl : '#') | safe" target="_blank" class="btn rounded">
+                  <i *ngIf="TANDocumenturl" class="fas fa-eye view" tooltip="View"></i>
+                </a>
+              </div>
+              <div class="text-danger"
+                *ngIf="clientForm.get('TANDocument').errors!=null && clientForm.get('TANDocument').errors['requiredFileType']">
+                Upload pdf files
+              </div>
+              <!-- <div id="PANDocumentName" class="text-success" *ngIf="PANDocumentChecker == false"></div> -->
+            </div>
+
+          </div>
+
+          <div class="col-lg-6">
+
+            <!-- <div class="form-group">
+              <label for="licenseDocument">Company License</label>
+              <input type="file" class="d-none mb-1" id="licenseDocument" aria-describedby="licenseDocument">
+              <div class="pl-0 col-lg-12">
+                <button class="text-left btn btn-danger" onclick="document.getElementById('licenseDocument').click()"><i
+                    class="fas fa-upload pr-3"></i>UPLOAD FILE</button>
+                <label class="ml-2" id="licenseDocumentName" for="licenseDocument">Upload File</label>
+                <a [href]="(licenseDocumenturl ? licenseDocumenturl : '#') | safe" target="_blank" class="btn rounded">
+                  <i *ngIf="licenseDocumenturl" class="fas fa-eye view" tooltip="View"></i>
+                </a>
+              </div>
+              <div class="text-danger"
+                *ngIf="clientForm.get('licenseDocument').errors!=null && clientForm.get('licenseDocument').errors['requiredFileType']">
+                Upload pdf files
+              </div>
+            </div> -->
+
+
+            <div class="form-group">
+              <label for="licenseDocument">Company License</label>
+              <input type="file" class="d-none mb-1" id="licenseDocument" aria-describedby="licenseDocument">
+              <div class="pl-0 col-lg-12">
+                <button class="text-left btn btn-danger" onclick="document.getElementById('licenseDocument').click()"><i
+                    class="fas fa-upload pr-3"></i>UPLOAD FILE</button>
+                <label class="ml-2" id="licenseDocumentName" for="licenseDocument">Upload File</label>
+                <a [href]="(licenseDocumenturl ? licenseDocumenturl : '#') | safe" target="_blank" class="btn rounded">
+                  <i *ngIf="licenseDocumenturl" class="fas fa-eye view" tooltip="View"></i>
+                </a>
+              </div>
+              <div class="text-danger"
+                *ngIf="clientForm.get('licenseDocument').errors!=null && clientForm.get('licenseDocument').errors['requiredFileType']">
+                Upload pdf files
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="companyLogo">Company Logo</label>
+              <input type="file" class="d-none mb-1" id="companyLogo" aria-describedby="companyLogo">
+              <div class="pl-0 col-lg-12">
+                <button class="text-left btn btn-danger" onclick="document.getElementById('companyLogo').click()"><i
+                    class="fas fa-upload pr-3"></i>UPLOAD FILE</button>
+                <label class="ml-2" id="companyLogoName" for="companyLogo">Upload File</label>
+                <a [href]="(companyLogourl ? companyLogourl : '#') | safe" target="_blank" class="btn rounded">
+                  <i *ngIf="companyLogourl" class="fas fa-eye view" tooltip="View"></i>
+                </a>
+              </div>
+              <div class="text-danger"
+                *ngIf="clientForm.get('companyLogo').errors!=null && clientForm.get('companyLogo').errors['requiredFileType']">
+                Upload png or jpg files
+              </div>
+              <!-- <div id="companyLogoName" class="text-success" *ngIf="companyLogoChecker == false"></div> -->
+            </div>
+
+          </div>
+        </div>
+
+
+        <div class="row">
+          <div class="col-lg-12">
+            <button (click)="onClearForm()" class="btn btn-primary btn-main">Clear</button>
+            <button type="submit" class="btn btn-primary btn-main float-right m-0" (click)="onSubmit()">Submit</button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

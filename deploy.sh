@@ -1,7 +1,6 @@
 #!/bin/bash
 # SpoorthyHRMS Deployment Script
 # Usage: ./deploy.sh
-
 set -e
 
 echo "=========================================="
@@ -19,13 +18,19 @@ npm install --production
 
 # Restart API with PM2
 echo "🔄 Restarting API service..."
-pm2 restart spoorthy-api || pm2 start ecosystem.config.js
+pm2 restart spoorthyapi || pm2 start ecosystem.config.js
 
 # Build frontend
 echo "🔨 Building frontend..."
-cd ../spoorthi-ui 2>/dev/null || cd "../spoorthi ui"
-npm install
-ng build --prod --output-path=../spoorthyapi/public
+cd ../spoorthy-ui
+export NODE_OPTIONS=--openssl-legacy-provider
+npm install --legacy-peer-deps
+npx ng build --configuration production --output-path=dist/spoorthy
+
+# Deploy built frontend to the live served path
+echo "🚚 Deploying frontend to /var/www/spoorthy-hrms..."
+cp -r dist/spoorthy/* /var/www/spoorthy-hrms/
+chown -R www-data:www-data /var/www/spoorthy-hrms
 
 echo "✅ Deployment completed successfully!"
 echo "=========================================="

@@ -1,18 +1,15 @@
 module.exports = {
   apps: [{
-    name: 'spoorthy-api',
-    script: './index.js',
+    name: 'spoorthyapi',
+    script: 'index.js',
+    cwd: '/root/HRMS/spoorthyapi',
     instances: 1,
+    exec_mode: 'fork',
     autorestart: true,
     watch: false,
-    max_memory_restart: '1G',
+    max_memory_restart: '300M',
     env: {
-      NODE_ENV: 'production',
-      PORT: 8100
-    },
-    env_development: {
-      NODE_ENV: 'development',
-      PORT: 8100
+      NODE_ENV: 'production'
     }
   }]
 };

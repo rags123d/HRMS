@@ -1,5 +1,5 @@
 const PayscaleFixModel = require('../model/payscaleFixation');
-const PayscaleFixValidations = require('../validations/PayscaleFixValidations');
+const payscaleFixValidations = require('../validations/payscaleFixValidations');
 const GeneralUtils = require('../utils/generalUtils');
 
 exports.getPayscaleFixation = async function (req, res) {
@@ -30,8 +30,8 @@ exports.getPayscaleFixation = async function (req, res) {
 }
 
 exports.addPayscaleFixation = async function (req, res) {
-    const { error, value } = PayscaleFixValidations
-        .validate(PayscaleFixValidations.ValidationTypes.PAYSCALEFIX_UPDATE, req.body);
+    const { error, value } = payscaleFixValidations
+        .validate(payscaleFixValidations.ValidationTypes.PAYSCALEFIX_UPDATE, req.body);
     if (error) {
         return res
             .status(400)
@@ -80,8 +80,8 @@ exports.addPayscaleFixation = async function (req, res) {
 }
 
 exports.editPayscaleFixation = async function (req, res) {
-    const { error, value } = PayscaleFixValidations
-        .validate(PayscaleFixValidations.ValidationTypes.PAYSCALEFIX_EDIT, req.body);
+    const { error, value } = payscaleFixValidations
+        .validate(payscaleFixValidations.ValidationTypes.PAYSCALEFIX_EDIT, req.body);
 
     if (error) {
         return res
@@ -130,8 +130,8 @@ exports.editPayscaleFixation = async function (req, res) {
 }
 
 exports.deletePayscaleFixation = async function (req, res) {
-    const { error, value } = PayscaleFixValidations
-        .validate(PayscaleFixValidations.ValidationTypes.PAYSCALEFIX_ID, req.body);
+    const { error, value } = payscaleFixValidations
+        .validate(payscaleFixValidations.ValidationTypes.PAYSCALEFIX_ID, req.body);
 
     if (error) {
         return res

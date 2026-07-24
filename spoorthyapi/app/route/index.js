@@ -143,7 +143,7 @@ router.post('/setLocation', userController.setLocation);
 router.use(function (req, res, next) {
     var token = req.body.authorization || req.query.authorization || req.headers.authorization;
     if (token) {
-        jwt.verify(token, process.env.SCERET_KEY, function (err, decoded) {
+        jwt.verify(token, process.env.SECRET_KEY, function (err, decoded) {
             if (err) {
                 return res
                     .status(401)

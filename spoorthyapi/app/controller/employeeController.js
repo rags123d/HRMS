@@ -1675,7 +1675,7 @@ exports.addEditEmployee = async function (req, res) {
             }
             else {
                 var token = req.body.authorization || req.query.authorization || req.headers.authorization
-                jwt.verify(token, process.env.SCERET_KEY, async function (err, decoded) {
+                jwt.verify(token, process.env.SECRET_KEY, async function (err, decoded) {
                     if (err) {
                         return res
                             .status(401)

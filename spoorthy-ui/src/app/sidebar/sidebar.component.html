@@ -1,0 +1,285 @@
+<aside>
+  <!-- <div class="text-center mr-4"> -->
+  <div class="text-center" style="background: #ebebeb;">
+    <img src="./assets/img/UIimages/SpoorthyImages/Spoorthy.png" class="img-fluid logo" alt="">
+  </div>
+  <div class="user-info-dropdown-holder">
+    <div class="info">
+      <i class="fas fa-user-alt"></i>
+      <p style="color: white;">{{userName?.user}} <br> <span>
+          <!-- Customer Support -->
+        </span></p>
+    </div>
+    <i class="fas fa-sort-down"></i>
+    <ul class="settings">
+      <li [routerLink]="['/profile']" routerLinkActive="router-link-active">My Profile</li>
+      <hr>
+      <li (click)="onLogout()">Logout</li>
+    </ul>
+  </div>
+  <nav>
+    <h3>Spoorthy</h3>
+    <!-- <div malihu-scrollbar [scrollbarOptions]="scrollbarOptions" style="height: 67.5vh;"> -->
+    <ul>
+
+      <!-- <li [routerLink]="['openlinkForm']" routerLinkActive="active" *ngIf="userDetails.role != 'Field Officer'">
+        <i class="fas fa-map-signs"></i> 
+        <span>Openlink Form</span>
+      </li> -->
+
+      <li routerLinkActive="active" (click)="OpenlinkModel(linkModel)">
+        <i class="fa fa-share fa_custom" style="font-size:16px"></i>
+        <button class="emp-status">
+          <span style="color: #a7b1c2;">New Joinee Application</span>
+        </button>
+      </li>
+
+
+      <li [routerLink]="['/dashboard']" routerLinkActive="active" *ngIf="userDetails.role != 'Field Officer'">
+        <i class="fas fa-home"></i>
+        <span>Dashboard</span>
+      </li>
+      <li [routerLink]="['allclient/overview']" routerLinkActive="active" *ngIf="userDetails.role != 'Field Officer'">
+        <i class="fas fa-map-signs"></i>
+        <span>Clients</span>
+      </li>
+      <li [routerLink]="['workorder']" routerLinkActive="active" *ngIf="userDetails.role != 'Field Officer'">
+        <i class="fas fa-map-signs"></i>
+        <span>Work Orders</span>
+      </li>
+      <li [routerLink]="['allcandidate/overview']" routerLinkActive="active"
+        *ngIf="userDetails.role != 'Field Officer'">
+        <i class="fas fa-map-signs"></i>
+        <span>Candidates</span>
+      </li>
+      <li [routerLink]="['bills']" routerLinkActive="active" *ngIf="userDetails.role != 'Field Officer'">
+        <i class="fas fa-map-signs"></i>
+        <span>Bills</span>
+      </li>
+
+      <li routerLinkActive="active" class="menu-select-box" *ngIf="userDetails.role != 'Field Officer'">
+        <a href="javascript:void(0)" class="dark-big-item dropdown-btn">
+          <i class="fas fa-university hover-main"></i><span class="menu-icon">Reports</span>
+          <span class="icon"><img src="./assets/images/dropdown-arrow.svg"> </span>
+        </a>
+        <ul class="sub-menu">
+          <li [routerLink]="['Reports/client-wise-report']" routerLinkActive="active">
+            <a href="javascript:void(0)" class="dark-big-item">
+              <i class="metismenu-icon"></i><span class="menu-icon">Client-wise</span>
+            </a>
+          </li>
+          <li [routerLink]="['Reports/workorder-wise-report']" routerLinkActive="active">
+            <a href="javascript:void(0)" class="dark-big-item">
+              <i class="metismenu-icon"></i><span class="menu-icon">WorkOrder-wise</span>
+            </a>
+          </li>
+          <li [routerLink]="['Reports/unitbranch-wise-report']" routerLinkActive="active">
+            <a href="javascript:void(0)" class="dark-big-item">
+              <i class="metismenu-icon"></i><span class="menu-icon">UnitBranch-wise</span>
+            </a>
+          </li>
+          <li [routerLink]="['Reports/designation-wise-report']" routerLinkActive="active">
+            <a href="javascript:void(0)" class="dark-big-item">
+              <i class="metismenu-icon"></i><span class="menu-icon">Designation-wise</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+
+
+
+      <li routerLinkActive="active" class="menu-select-box" *ngIf="userDetails.role != 'Field Officer'">
+        <a href="javascript:void(0)" class="dark-big-item dropdown-btn">
+          <i class="fas fa-university hover-main"></i><span class="menu-icon">Master Data</span>
+          <span class="icon"><img src="./assets/images/dropdown-arrow.svg"> </span>
+        </a>
+        <ul class="sub-menu">
+          <!-- <li [routerLink]="['/master/year']" routerLinkActive="active">
+            <a href="javascript:void(0)" class="dark-big-item">
+              <i class="metismenu-icon"></i><span class="menu-icon">Year</span>
+            </a>
+          </li> -->
+          <li [routerLink]="['master/bulk-approval']" routerLinkActive="active"
+            *ngIf="userDetails.role == 'General Manager' || userDetails.role == 'Managing Director'">
+            <a href="javascript:void(0)" class="dark-big-item">
+              <i class="metismenu-icon"></i><span class="menu-icon">Bulk Approval</span>
+            </a>
+          </li>
+          <li [routerLink]="['master/designation']" routerLinkActive="active">
+            <a href="javascript:void(0)" class="dark-big-item">
+              <i class="metismenu-icon"></i><span class="menu-icon">Designation</span>
+            </a>
+          </li>
+          <li [routerLink]="['master/religion']" routerLinkActive="active">
+            <a href="javascript:void(0)" class="dark-big-item">
+              <i class="metismenu-icon"></i><span class="menu-icon">Religion</span>
+            </a>
+          </li>
+          <li [routerLink]="['master/relationship']" routerLinkActive="active">
+            <a href="javascript:void(0)" class="dark-big-item">
+              <i class="metismenu-icon"></i><span class="menu-icon">Relationship</span>
+            </a>
+          </li>
+          <li [routerLink]="['master/course']" routerLinkActive="active">
+            <a href="javascript:void(0)" class="dark-big-item">
+              <i class="metismenu-icon"></i><span class="menu-icon">Course</span>
+            </a>
+          </li>
+          <li [routerLink]="['master/language']" routerLinkActive="active">
+            <a href="javascript:void(0)" class="dark-big-item">
+              <i class="metismenu-icon"></i><span class="menu-icon">Language</span>
+            </a>
+          </li>
+          <li [routerLink]="['master/users']" routerLinkActive="active">
+            <a href="javascript:void(0)" class="dark-big-item">
+              <i class="metismenu-icon"></i><span class="menu-icon">Users</span>
+            </a>
+          </li>
+          <li [routerLink]="['master/payscale-data']" routerLinkActive="active">
+            <a href="javascript:void(0)" class="dark-big-item">
+              <i class="metismenu-icon"></i><span class="menu-icon">Pay-Scale-Data</span>
+            </a>
+          </li>
+          <li [routerLink]="['master/emp-Logs']" routerLinkActive="active">
+            <a href="javascript:void(0)" class="dark-big-item">
+              <i class="metismenu-icon"></i><span class="menu-icon">Employee Logs</span>
+            </a>
+          </li>
+          <!-- <li [routerLink]="['master/structureFields']" routerLinkActive="active">
+            <a href="javascript:void(0)" class="dark-big-item">
+              <i class="metismenu-icon"></i><span class="menu-icon">Salary Structure</span>
+            </a>
+          </li> -->
+          <!-- <li [routerLink]="['master/FomatBill']" routerLinkActive="active">
+            <a href="javascript:void(0)" class="dark-big-item">
+              <i class="metismenu-icon"></i><span class="menu-icon">Bill Format</span>
+            </a>
+          </li> -->
+          <li [routerLink]="['master/pay-slip']" routerLinkActive="active">
+            <a href="javascript:void(0)" class="dark-big-item">
+              <i class="metismenu-icon"></i><span class="menu-icon">Pay Slip</span>
+            </a>
+          </li>
+          <li [routerLink]="['master/bulk-add-cadidates']" routerLinkActive="active">
+            <a href="javascript:void(0)" class="dark-big-item">
+              <i class="metismenu-icon"></i><span class="menu-icon">Candidate Upload</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+    <!-- </div> -->
+  </nav>
+</aside>
+
+
+<!-- share link Modal-->
+<ng-template #linkModel>
+  <div class="global-create-modal-wrapper" style="width: 100%;">
+    <div class="modal-body">
+      <div class="row">
+        <div class="col-sm-12">
+          <div style=" float: right; width: fit-content;">
+            <button type="button" class="close close-btn" aria-label="Close"
+              style="margin-left: -10px; margin-top: -7px" (click)="modalRef.hide()">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div>
+            <h4><i class="fas fa-list" style="margin: 3px; margin-right: 8px;"></i>
+              Share Link Details</h4>
+            <hr style="margin-top: 4px; margin-bottom: 4px;">
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="form-holder col-sm-12" style="padding: 3px;">
+          <div class="card card-plain" style="padding: 0;">
+            <div class="card-body" style="padding-bottom: 5px;">
+              <form [formGroup]="shareForm" (ngSubmit)="shareLink()" style="width: 100%;">
+
+                <div class="row">
+
+                  <div class="col-lg-6">
+                    <label class="label-aa" for="Name"><i>Name</i></label>
+                    <!-- <div class="form-group" style="width: 100%; margin-top: 5px">
+                      <input matInput id="Name" [(ngModel)]="Name" (ngModelChange)="updateButton()"
+                        placeholder="Enter Name" class="form-control sources">
+                    </div> -->
+
+                    <div class="form-group" style="width: 100%; margin-top: 5px">
+                      <input matInput id="Name" formControlName="Name" placeholder="Enter Name"
+                        class="form-control sources" maxlength="50">
+
+                      <div class="form-err">
+                        <span
+                          *ngIf="shareForm.controls.Name.hasError('required') && (shareForm.controls.Name.dirty || shareForm.controls.Name.touched)">
+                          Name is <strong>Required</strong>
+                        </span>
+                      </div>
+                    </div>
+
+                  </div>
+
+                  <div class="col-lg-6">
+                    <label class="label-aa" for="PhoneNo"><i>Phone No</i></label>
+                    <!-- <div class="form-group" style="width: 100%; margin-top: 5px">
+                      <input matInput id="PhoneNo" [(ngModel)]="PhoneNo" (ngModelChange)="updateButton()"
+                        placeholder="Enter PhoneNo" class="form-control sources" maxlength="10">
+                    </div> -->
+
+
+                    <div class="form-group" style="width: 100%; margin-top: 5px">
+                      <input matInput id="PhoneNo" formControlName="PhoneNo" placeholder="Enter PhoneNo"
+                        class="form-control sources" maxlength="10">
+
+                      <div class="form-err">
+                        <span *ngIf="shareForm.get('PhoneNo').hasError('pattern')">
+                          <strong>Invalid</strong> Phone No
+                        </span>
+                        <span
+                          *ngIf="shareForm.controls.PhoneNo.hasError('required') && (shareForm.controls.PhoneNo.dirty || shareForm.controls.PhoneNo.touched)">
+                          Phone No is <strong>Required</strong>
+                        </span>
+                      </div>
+                    </div>
+
+                  </div>
+
+                </div>
+
+                <!-- <div class="row" [hidden]="!shareForm.valid">
+                  <div class="col-lg-12">
+                    <div class="form-group" style="width: 100%; margin-top: 5px">
+                      <div class="onboard-text">
+                        Welcome to Spoorthy Group. We're so excited to have you onboard, please
+                        <a href="#" (click)="generateUrl($event)">
+                          click here
+                        </a>
+                        to submit your details. Powered by Wizlite.
+                      </div>
+                    </div>
+                  </div>
+                </div> -->
+
+                <div class="row">
+                  <div class="col-lg">
+                    <hr style="margin-top: 2px; margin-bottom: 6px;">
+                    <div class="button-holder">
+                      <button type="button" (click)="modalRef.hide()" style="margin-right: 5px;"
+                        class="btn btn-danger">Cancel</button>
+                      <button type="submit" [disabled]="!shareForm.valid" style="margin-left: 5px;"
+                        class="btn btn-success">Share</button>
+                    </div>
+                  </div>
+                </div>
+
+              </form>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-template>

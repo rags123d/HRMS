@@ -1,0 +1,65 @@
+<div class="dashboard-screen" id="showSearch">
+    <div class="row bdy-box">
+        <div class="col-lg-4" style="align-self: center;">
+            <h2 class="font-weight-bolder">Designation wise Report</h2>
+        </div>
+
+        <div class="col-lg-8">
+            <div class="manage-buttons1">
+                <!-- <button (click)="export('Excel')" class="manage-button excel-button" type="submit"></button>
+                <button (click)="export('PDF')" class="manage-button pdf-button" type="submit"></button> -->
+                <!-- <button class="manage-button excel-button" type="submit"></button>
+                <button class="manage-button pdf-button" type="submit"></button> -->
+            </div>
+        </div>
+    </div>
+
+    <div class="project-list-view table-responsive">
+        <div class="main-content">
+
+            <div class="row">
+                <div class="col-md-12" style="padding: 0; padding-top: 5px;">
+                    <div class="card card-plain" style="padding: 0;">
+
+                        <div class="card-body">
+                            <table class="live-tracking-list-table" id="designationwiseTable" datatable
+                                [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">
+
+                                <thead>
+                                    <tr style="width: 100%;">
+                                        <th scope="col" style="width: 5%;">Action</th>
+                                        <th scope="col" style="width: 5%;">Sl. No.</th>
+                                        <th scope="col" style="width: 30%;">Designation (JOB/ROLE)</th>
+                                        <th scope="col" style="width: 15%;">TOTAL</th>
+                                        <th scope="col" style="width: 15%;">HIRED</th>
+                                        <th scope="col" style="width: 15%;">UNDER APPROVAL</th>
+                                        <th scope="col" style="width: 15%;">VACANCIES</th>
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+                                    <tr *ngFor="let item of allDesignation; let i=index" style="width: 100%;">
+                                        <td style="width: 5%;">
+                                            <i routerLink="/Reports/employee-report/designation-wise/{{item._id}}" class="fas fa-eye view"
+                                                tooltip="View">
+                                            </i>
+                                        </td>
+                                        <td style="width: 5%;">{{i+1}}</td>
+                                        <td style="width: 30%;">{{ item?.Designation ? item?.Designation : '-' }}</td>
+                                        <td style="width: 15%;">{{ item?.NoOfRequirements ? item?.NoOfRequirements : '0' }}</td>
+                                        <td style="width: 15%;">{{ item?.Hired ? item?.Hired : '0' }}</td>
+                                        <td style="width: 15%;">{{ item?.UnderApproval ? item?.UnderApproval : '0' }}</td>
+                                        <td style="width: 15%;">{{ (item?.NoOfRequirements ? item?.NoOfRequirements : '0') - 
+                                                                   (item?.Hired ? item?.Hired : '0') }}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

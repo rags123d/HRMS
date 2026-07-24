@@ -1,0 +1,211 @@
+aside {
+    width: 220px;
+    height: 100vh;
+    background: $primary-color;
+    font-family: 'Poppins', sans-serif !important;
+    @extend %disFlex;
+    flex-direction: column;
+    align-items: center;
+    padding: 15px 0;
+    z-index: 9;
+    overflow: hidden;
+    overflow-y: auto;
+    @include positioning(fixed, $left: 0, $top: 0);
+    @include transitions(all,0.3s,ease-in-out);
+    @include smdevice {
+        width: 60px;
+        @include transitions(all, 0.3s, ease-in-out);
+    }
+    img.logo {
+        // width: 100px;
+        width: 160px;
+        @include transitions(all,0.3s,ease-in-out);
+        @include smdevice {
+            // width: 50px;
+            width: 60px;
+            @include transitions(all, 0.3s, ease-in-out);
+        }
+    }
+    .user-info-dropdown-holder {
+        @extend %disFlex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        padding: 15px 0 10px;
+        // background: url(src/assets/img/user-bg.png);
+        background: url('../../img/user-bg.png');
+
+        position: relative;
+        cursor: pointer;
+        &:hover {
+            ul.settings {
+                @include transitions(all, 0.3s, ease-in-out);
+                transform: scaleY(1);
+                transform-origin: top;
+            }
+        }
+        ul.settings {
+            width: 160px;
+            @include positioning(absolute, $right: 20px, $top: 70px);
+            background-color: #fff;
+            border: 1px solid rgba(0,0,0,.15);
+            box-shadow: 0 6px 12px rgba(0,0,0,.175);
+            @include border-radius(2px);
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            @include transitions(all, 0.3s, ease-in-out);
+            z-index: 9;
+            transform: scaleY(0);
+            transform-origin: top;
+            @include smdevice {
+                right: -110px;
+            }
+            li {
+                padding: 10px;
+                color: darken($sidebar-agent-color-1, 15%);
+                font-size: fontSize(-2px);
+                cursor: pointer;
+            }
+            hr {
+                margin: 5px 0;
+            }
+        }
+        i {
+            color: $agent-color-1;
+            margin-right: 15px;
+            @include smdevice {
+                margin: 0;
+            }
+        }
+        .info {
+            @extend .user-info-dropdown-holder;
+            width: auto;
+            color: $agent-color-1;
+            padding-left: 15px;
+            @include smdevice {
+                padding-left: 10px;
+            }
+            img {
+                width: 40px;
+                @include border-radius(100%);
+            }
+            p {
+                margin: 0;
+                padding: 0 10px;
+                font-size: fontSize(-2px);
+                font-weight: fontWeight(300);
+                line-height: 17px;
+                @include smdevice {
+                    display: none;
+                }
+                span {
+                    font-size: fontSize(-4px);
+                   font-weight: fontWeight(-100);
+                   color: $sidebar-agent-color-1;
+                }
+            }
+        }
+    }
+    nav { 
+        width: 100%;
+        margin-top: 15px;
+        h3 {
+            font-size: fontSize(-2px);
+            color: $sidebar-agent-color-1;
+            text-transform: uppercase;
+            margin: 0 0 10px 0;
+            padding: 0 15px;
+            @include smdevice {
+                display: none;
+            }
+        }
+        ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            li {
+                color: $sidebar-agent-color-1;
+                text-transform: capitalize;
+                font-size: fontSize(-3px);
+                padding: 12px;
+                background: rgba(21, 35, 45, 0);
+                position: relative;
+                @include transitions(all, 0.3s, ease-in-out);
+                cursor: pointer;
+                border-bottom: 1px solid rgba(97, 95, 95,0.5);
+                @include smdevice {
+                    text-align: center;
+                }
+                span {
+                    @include smdevice {
+                        display: none;
+                    }
+                }
+                i {
+                    margin-right: 15px;
+                    @include smdevice {
+                        font-size: 16px;
+                        margin: 0;
+                    }
+                    &.dropdown-menu-indication {
+                        margin: 0;
+                        @include positioning(absolute, $right: 15px, $top: 50%);
+                        color: $agent-color-1;
+                        @include transitions(all, 0.3s, ease-in-out);
+                        transform: rotateZ(0deg) translate3d(0, -50%, 0);
+                    }
+                }
+                &.active {
+                    color: $agent-color-1;
+                    background: rgba(21, 35, 45, 1);
+                }
+                &:hover {
+                    @include transitions(all, 0.3s, ease-in-out);
+                    background: rgba(21, 35, 45, 1);
+                    i {
+                        &.dropdown-menu-indication {
+                            transform: rotateZ(90deg);
+                            @include transitions(all, 0.3s, ease-in-out);
+                        }
+                    }
+                    // ul {
+                    //     height: fit-content !important;
+                    //     @include scale(1,1,1);
+                    //     @include transitions(all, 0.3s, ease-in-out);
+                    //     transform-origin: top;
+                    // }
+                }
+                ul.active {
+                    height: fit-content !important;
+                    @include scale(1,1,1);
+                    @include transitions(all, 0.3s, ease-in-out);
+                    transform-origin: top;
+                    li {
+                        opacity: 1;
+                        padding: 10px 25px;
+                        width: 200px;
+                        &.active {
+                            color: $agent-color-1;
+                            background: rgb(47, 55, 61);
+                        }
+                    }
+                }
+                ul {
+                    height: 0 !important;
+                    padding: 0;
+                    margin: 0;
+                    background: darken($primary-color, 10%);
+                    // @include positioning(absolute, $right: -200px, $top: 0);
+                    @include scale(1,0,1);
+                    @include transitions(all, 0.3s, ease-in-out);
+                    transform-origin: top;
+                    li {
+                        opacity: 0.2;
+                        padding: 0px; 
+                    }
+                }
+            }
+        }
+    }
+}

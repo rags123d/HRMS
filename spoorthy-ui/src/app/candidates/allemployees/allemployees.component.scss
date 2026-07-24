@@ -1,0 +1,153 @@
+@import '../../../assets/sass/helpers/mixins';
+
+.btn-generate {
+    font-size: 12px !important;
+    padding: 5px;
+    width: 100px;
+}
+
+.general-report-btn {
+    background: #c82333;
+    border-radius: 5px;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 15px;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    color: #FFFFFF;
+    padding: 12px 10px;
+    width: 100%;
+}
+
+.general-report-box {
+    width: 100%;
+    max-width: 200px;
+    text-align: center;
+}
+
+@media (max-width:1350px) {
+    .general-report-box {
+        margin-bottom: 10px;
+    }
+}
+
+
+@media (max-width:575px) {
+    .general-report-btn {
+        width: 100%;
+        max-width: 100%;
+    }
+}
+
+.alignments {
+    background: linear-gradient(180deg, #fffdfd 0, #f6f7f8 100%);
+    border: 2px solid #a0cbe4;
+    box-sizing: border-box;
+    box-shadow: 0 4px 4px rgb(0 0 0 / 25%);
+    padding: 10px;
+}
+
+.title-header {
+    margin-bottom: 0px;
+    border-bottom: 0.1px solid #5822113b;
+    border-top: 0.1px solid #5822113b;
+    border-right: 4px solid #f75c5c;
+    border-left: 4px solid #f75c5c;
+    border-radius: 20px;
+    padding: 5px 15px;
+}
+
+
+
+table {
+    // display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+    // background-color: rgb(246, 246, 253);
+    margin-top: 5px;
+    padding: 0;
+    box-shadow: 1px 1px 2px 1.5px rgba(167, 174, 180, 0.425);
+
+    thead {
+        width: 100%;
+        background: transparent;
+        color: #181522;
+
+        tr {
+            th {
+                font-size: 12px;
+                font-weight: 500;
+                padding: 8px !important;
+                border-top: 0 !important;
+            }
+        }
+    }
+
+    tbody {
+        width: 100%;
+
+        &.v-align {
+            tr {
+                td {
+                    vertical-align: middle;
+                }
+            }
+        }
+
+        tr {
+            td {
+                text-transform: capitalize;
+                font-size: 12px;
+                padding: 6px 10px !important;
+
+                .actions i {
+                    cursor: pointer;
+                }
+            }
+        }
+    }
+}
+
+.avoid-table {
+    box-shadow: none;
+}
+
+.avoid-table tr td {
+    text-transform: capitalize;
+    padding: 1px 1px !important;
+}
+
+.ad-timelite tr td h4 {
+    text-align: left;
+    font-size: 14px;
+    color: #090a0a;
+    margin: 0;
+    // line-height: 10px;
+}
+
+.ad-timelite tr td p {
+    text-align: left;
+    font-weight: 500 !important;
+    color: #090a0a;
+    margin: 0 0 2px;
+    // line-height: 16px;
+    font-size: 14px;
+}
+
+.subtitle {
+    text-align: left !important;
+    font-size: 9.5px !important;
+    color: #858789 !important;
+    margin: 0 !important;
+    line-height: 10px !important;
+}
+
+.subtitle-head {
+    text-align: left !important;
+    font-weight: 500!important;
+    color: #090a0a !important;
+    margin: 0 0 2px !important;
+    line-height: 16px !important;
+}

@@ -1,0 +1,75 @@
+// :host ::ng-deep .mCSB_inside > .mCSB_container{ margin-right: 3px; }
+
+@mixin positioning ($position, $top: null, $right: null, $bottom: null, $left: null) {
+    position: $position;
+    top: $top;
+    right: $right;
+    bottom: $bottom;
+    left: $left;
+}
+
+.dark-big-item {
+    color: #a7b1c2;
+
+    .icon {
+        float: right;
+    }
+}
+
+ul.sub-menu.active {
+    margin-top: 15px;
+}
+
+.emp-status {
+    background: transparent;
+    border: none;
+    padding: 0px;
+}
+
+aside nav ul li.active {
+    span {
+        color: #fff !important;
+    }
+}
+
+.form-control.sources {
+    border: 1px solid #ced4da;
+    padding: 10px;
+    height: 40px;
+}
+
+.onboard-text {
+    border: 1px solid #ced4da;
+    padding: 10px;
+}
+
+
+label.label-aa {
+    font-family: Roboto;
+    color: #1C3663;
+    font-size: 13px;
+    font-weight: 400;
+}
+
+.col-lg-6 {
+    &.label-aa {
+        position: relative;
+
+        input {
+            padding-right: 25px !important;
+        }
+
+        &:after {
+            content: "*";
+            color: red;
+            @include positioning(absolute, $top: 5px, $right: 10px);
+        }
+    }
+}
+
+.col-lg-6 {
+    label.label-aa:after {
+        content: "*";
+        color: red;
+    }
+}

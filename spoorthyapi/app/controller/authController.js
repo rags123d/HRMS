@@ -114,7 +114,7 @@ exports.verifyOtp = function (req, res) {
                                         role: result.role.name,
                                         userName: result.userName,
                                     },
-                                }, process.env.SCERET_KEY, {
+                                }, process.env.SECRET_KEY, {
                                     expiresIn: process.env.TOKEN_EXPIRY
                                 });
                                 const refreshToken = jwt.sign({
@@ -183,7 +183,7 @@ exports.refreshTokenMobile = function (req, res, next) {
                                             role: result.role.name,
                                             userName: result.userName,
                                         },
-                                    }, process.env.SCERET_KEY, {
+                                    }, process.env.SECRET_KEY, {
                                         expiresIn: process.env.TOKEN_EXPIRY
                                     });
                                     return res.
@@ -264,7 +264,7 @@ exports.login = async function (req, res) {
                 userName: user.userName,
                 role: user.role.name
             },
-        }, process.env.SCERET_KEY, { expiresIn: process.env.TOKEN_EXPIRY });
+        }, process.env.SECRET_KEY, { expiresIn: process.env.TOKEN_EXPIRY });
 
         const refreshToken = jwt.sign({
             user: {
@@ -367,7 +367,7 @@ exports.refreshTokenWeb = function (req, res, next) {
                                         userName: result.userName,
                                         role: result.role.name
                                     },
-                                }, process.env.SCERET_KEY, {
+                                }, process.env.SECRET_KEY, {
                                     expiresIn: process.env.TOKEN_EXPIRY
                                 });
                                 return res.

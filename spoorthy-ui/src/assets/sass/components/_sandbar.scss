@@ -1,0 +1,22 @@
+.map-holder {
+    background: $agent-color-1;
+    -webkit-box-shadow: 0px 2px 11px 0px rgba(0,0,0,0.18);
+    -moz-box-shadow: 0px 2px 11px 0px rgba(0,0,0,0.18);
+    box-shadow: 0px 2px 11px 0px rgba(0,0,0,0.18);
+    .map-header {
+        background: $primary-color;
+        border-top-left-radius: 5px;
+        border-top-right-radius: 5px;
+        padding: 12px;
+        h3 {
+            font-size: fontSize(0);
+            text-transform: capitalize;
+            margin: 0;
+            font-weight: fontWeight(300);
+            color: $agent-color-1;
+        }
+    }
+    agm-map {
+        height: 70vh;
+    }
+}
