@@ -98,16 +98,16 @@
             </div>
 
             <div class="form-group">
-              <label class="required" for="email">Company Email ID</label>
+              <label class="required" for="email">Organization Email ID</label>
               <input type="text" class="form-control" id="email" aria-describedby="email" placeholder="Enter Email ID"
                 formControlName="email">
               <div class="text-danger"
                 *ngIf="(clientForm.controls['email'].touched || clientForm.controls['email'].dirty) && clientForm.controls['email'].errors?.required">
-                Company Email ID is required.
+                Organization Email IDis required.
               </div>
               <div class="text-danger"
                 *ngIf="(clientForm.controls['email'].touched || clientForm.controls['email'].dirty) && clientForm.controls['email'].errors?.pattern">
-                Company Email ID is not valid.
+                Organization Email ID is not valid.
               </div>
             </div>
 
