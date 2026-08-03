@@ -17,7 +17,6 @@
                 *ngIf="(clientForm.controls['name'].touched || clientForm.controls['name'].dirty) && clientForm.controls['name'].errors?.pattern">
                 Client Name is not valid.
               </div>
-              <!-- <small class="error-txt" style="color: red !important;" id="" *ngIf="!contractorForm.controls.Name.valid && contractorForm.controls.Name.touched" class="form-text text-muted">Please enter valid Name</small> -->
             </div>
 
             <div class="form-group">
@@ -32,7 +31,6 @@
                 *ngIf="(clientForm.controls['address'].touched || clientForm.controls['address'].dirty) && clientForm.controls['address'].errors?.pattern">
                 Office Address is not valid.
               </div>
-              <!-- <small class="error-txt" style="color: red !important;" id="" *ngIf="!contractorForm.controls.Name.valid && contractorForm.controls.Name.touched" class="form-text text-muted">Please enter valid Name</small> -->
             </div>
 
           </div>
@@ -50,7 +48,6 @@
                 *ngIf="(clientForm.controls['pinCode'].touched || clientForm.controls['pinCode'].dirty) && clientForm.controls['pinCode'].errors?.pattern">
                 Pincode is not valid.
               </div>
-              <!-- <small class="error-txt" style="color: red !important;" id="" *ngIf="!contractorForm.controls.Name.valid && contractorForm.controls.Name.touched" class="form-text text-muted">Please enter valid Name</small> -->
             </div>
 
             <div class="form-group">
@@ -78,13 +75,12 @@
           <div class="col-lg-6">
             <div class="form-group">
               <label for="officePhoneNo">Office Landline Number</label>
-              <input type="text" class="form-control" id="officePhoneNo" aria-describedby="officePhoneNo" maxlength="11"
-                placeholder="Enter Office Landline Number" formControlName="officePhoneNo">
+              <input type="text" class="form-control" id="officePhoneNo" aria-describedby="officePhoneNo" maxlength="15"
+                placeholder="Enter Office Landline Number (e.g., 080-23456789)" formControlName="officePhoneNo">
               <div class="text-danger"
                 *ngIf="(clientForm.controls['officePhoneNo'].touched || clientForm.controls['officePhoneNo'].dirty) && clientForm.controls['officePhoneNo'].errors?.pattern">
-                Office Landline Number is not valid.
+                Enter valid landline number (e.g., 080-23456789 or 08172-231616).
               </div>
-              <!-- <small class="error-txt" style="color: red !important;" id="der" *ngIf="!contractorForm.controls.Mobile.valid && contractorForm.controls.Mobile.touched" class="form-text text-muted">Please enter valid mobile number</small> -->
             </div>
 
             <div class="form-group">
@@ -133,17 +129,18 @@
 
             <div class="form-group">
               <label class="required" for="cantactNo">Contact Number</label>
-              <input type="text" class="form-control" id="cantactNo" maxlength="10" placeholder="Enter Contact Number"
+              <!-- ✨ UPDATED: maxlength changed to 15, placeholder updated -->
+              <input type="text" class="form-control" id="cantactNo" maxlength="15" placeholder="e.g., 9876543210 or 08172-231616"
                 formControlName="cantactNo">
               <div class="text-danger"
                 *ngIf="(clientForm.controls['cantactNo'].touched || clientForm.controls['cantactNo'].dirty) && clientForm.controls['cantactNo'].errors?.required">
                 Contact number is required.
               </div>
+              <!-- ✨ UPDATED: Error message tells user both formats -->
               <div class="text-danger"
                 *ngIf="(clientForm.controls['cantactNo'].touched || clientForm.controls['cantactNo'].dirty) && clientForm.controls['cantactNo'].errors?.pattern">
-                Contact number is not valid.
+                Enter valid mobile (9876543210) or landline (08172-231616).
               </div>
-              <!-- <small class="error-txt" style="color: red !important;" id="der" *ngIf="!contractorForm.controls.ContactNumber.valid && contractorForm.controls.ContactNumber.touched" class="form-text text-muted">Please enter valid mobile number</small> -->
             </div>
 
           </div>
@@ -181,22 +178,6 @@
           <h4>Client Logo & Documents</h4>
           <div class="col-lg-6">
 
-            <!-- <div class="form-group">
-              <label class="required" for="agreementDocument">Agreement Document</label>
-              <input type="file" class="d-none mb-1" id="agreementDocument" aria-describedby="agreementDocument">
-              <div class="pl-0 col-lg-12">
-                <button class="text-left btn btn-danger"
-                  onclick="document.getElementById('agreementDocument').click()"><i
-                    class="fas fa-upload pr-3"></i>UPLOAD FILE</button>
-                <label class="ml-2" id="agreementDocumentName" for="agreementDocument">Upload File</label>
-              </div>
-              <div class="text-danger"
-                *ngIf="clientForm.get('agreementDocument').errors!=null && clientForm.get('agreementDocument').errors['requiredFileType']">
-                Upload pdf files
-              </div>
-              (Comment it, if agr is required) <div id="agreementDocumentName" class="text-success" *ngIf="agreementDocumentChecker == false"></div>
-            </div> -->
-
             <div class="form-group">
               <label for="GSTDocument">GST Document</label>
               <input type="file" class="d-none mb-1" id="GSTDocument" aria-describedby="GSTDocument">
@@ -212,25 +193,7 @@
                 *ngIf="clientForm.get('GSTDocument').errors!=null && clientForm.get('GSTDocument').errors['requiredFileType']">
                 Upload pdf files
               </div>
-              <!-- <div id="GSTDocumentName" class="text-success" *ngIf="GSTDocumentChecker == false"></div> -->
             </div>
-
-            <!-- <div class="form-group">
-              <label for="PANDocument">PAN Document</label>
-              <input type="file" class="d-none mb-1" id="PANDocument" aria-describedby="PANDocument">
-              <div class="pl-0 col-lg-12">
-                <button class="text-left btn btn-danger" onclick="document.getElementById('PANDocument').click()"><i
-                    class="fas fa-upload pr-3"></i>UPLOAD FILE</button>
-                <label class="ml-2" id="PANDocumentName" for="PANDocument">Upload File</label>
-                <a [href]="(PANDocumenturl ? PANDocumenturl : '#') | safe" target="_blank" class="btn rounded">
-                  <i *ngIf="PANDocumenturl" class="fas fa-eye view" tooltip="View"></i>
-                </a>
-              </div>
-              <div class="text-danger"
-                *ngIf="clientForm.get('PANDocument').errors!=null && clientForm.get('PANDocument').errors['requiredFileType']">
-                Upload pdf files
-              </div>
-            </div> -->
 
             <div class="form-group">
               <label for="PANDocument">PAN Document</label>
@@ -263,30 +226,11 @@
                 *ngIf="clientForm.get('TANDocument').errors!=null && clientForm.get('TANDocument').errors['requiredFileType']">
                 Upload pdf files
               </div>
-              <!-- <div id="PANDocumentName" class="text-success" *ngIf="PANDocumentChecker == false"></div> -->
             </div>
 
           </div>
 
           <div class="col-lg-6">
-
-            <!-- <div class="form-group">
-              <label for="licenseDocument">Company License</label>
-              <input type="file" class="d-none mb-1" id="licenseDocument" aria-describedby="licenseDocument">
-              <div class="pl-0 col-lg-12">
-                <button class="text-left btn btn-danger" onclick="document.getElementById('licenseDocument').click()"><i
-                    class="fas fa-upload pr-3"></i>UPLOAD FILE</button>
-                <label class="ml-2" id="licenseDocumentName" for="licenseDocument">Upload File</label>
-                <a [href]="(licenseDocumenturl ? licenseDocumenturl : '#') | safe" target="_blank" class="btn rounded">
-                  <i *ngIf="licenseDocumenturl" class="fas fa-eye view" tooltip="View"></i>
-                </a>
-              </div>
-              <div class="text-danger"
-                *ngIf="clientForm.get('licenseDocument').errors!=null && clientForm.get('licenseDocument').errors['requiredFileType']">
-                Upload pdf files
-              </div>
-            </div> -->
-
 
             <div class="form-group">
               <label for="licenseDocument">Company License</label>
@@ -320,7 +264,6 @@
                 *ngIf="clientForm.get('companyLogo').errors!=null && clientForm.get('companyLogo').errors['requiredFileType']">
                 Upload png or jpg files
               </div>
-              <!-- <div id="companyLogoName" class="text-success" *ngIf="companyLogoChecker == false"></div> -->
             </div>
 
           </div>
