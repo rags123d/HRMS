@@ -106,7 +106,7 @@ export class AddWorkorderComponent implements OnInit {
     this.getDesignation()
 
     this.workOrderForm = new FormGroup({
-      'name': new FormControl(null, [Validators.required, Validators.pattern('^[a-zA-Z -_]*$'), Validators.maxLength(100)]),
+      'name': new FormControl(null, [Validators.required, Validators.maxLength(100)]),
       'noOfRequirements': new FormControl(null, [Validators.required, Validators.pattern('^[0-9]*$')]),
       'workOrderDocument': new FormControl(null, [Validators.required, requiredFileType(['pdf'])]),
       "agreementDocument": new FormControl(null, [Validators.required, requiredFileType(['pdf'])]),
@@ -116,29 +116,14 @@ export class AddWorkorderComponent implements OnInit {
       'RenewalDate': new FormControl(null, [Validators.required]),
       'depositAmount': new FormControl(null, [Validators.required, Validators.pattern('^[0-9]*$')]),
       'eprocReference': new FormControl(null, [Validators.required, Validators.maxLength(50)]),
-      'spoorthyReference': new FormControl(null, [Validators.required, Validators.maxLength(50)]),
-      'workOrderNumber': new FormControl(null, [Validators.required, Validators.maxLength(50)]),
+'spoorthyReference': new FormControl(null, [Validators.required, Validators.maxLength(50)]),
+      'workOrderNumber': new FormControl(null, [Validators.required, Validators.maxLength(255)]),
       'bankGuaranteeNumber': new FormControl(null, [Validators.required, Validators.maxLength(50)]),
       'eprocDate': new FormControl(null, [Validators.required]),
       'bankGuaranteeDate': new FormControl(null, [Validators.required]),
     })
 
-    this.workOrderForm.get('name')?.valueChanges.subscribe(value => {
-      if (!this.workOrderPrefix) {
-        return;
-      }
-
-      if (!value || !value.startsWith(this.workOrderPrefix)) {
-        const cleanedValue = value
-          ? value.replace(this.workOrderPrefix, '')
-          : '';
-
-        this.workOrderForm.controls.name.setValue(
-          this.workOrderPrefix + cleanedValue,
-          { emitEvent: false }
-        );
-      }
-    });
+   
 
     this.jobRoleForm = new FormGroup({
       'role': new FormControl('', [Validators.required]),
@@ -331,7 +316,7 @@ export class AddWorkorderComponent implements OnInit {
     } else {
       this.formCounter++
       this.jobRoleTest.push({
-        '_id': this.formCounter,
+      '_id': this.formCounter,
         'role': this.jobRoleForm.controls.role.value,
         'noOfManpower': this.jobRoleForm.controls.noOfManpower.value,
         'branchName': this.jobRoleForm.controls.branchName.value,
