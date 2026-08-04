@@ -60,7 +60,7 @@ export class WorkorderOverviewComponent implements OnInit {
   billSource = new MatTableDataSource();
   billColumn: string[] = ['Sl No', 'Action', 'Invoice No.', 'Bill Month & Year', 'Gross Amount', 'Amount Received', 'Status Of Payment', 'Bill Generated On', 'Due Date On', 'Last Paid On',];
 
-workOrderColumn: string[] = ['Sl No', 'Action', 'ID', 'Work Order Name', 'Work order Date', 'Start Date', 'Renewal Date', 'Total Jobs', 'Job Request Pending', 'Hired',];
+  workOrderColumn: string[] = ['Sl No', 'Action', 'ID', 'Work Order Name', 'Start Date', 'Renewal Date', 'Total Jobs', 'Job Request Pending', 'Hired',];
   workOrderDataSource = new MatTableDataSource()
   workOrderData: any;
 
