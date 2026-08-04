@@ -23,8 +23,10 @@ const WorkOrderSchema = new Schema({
     workOrderRoles: [{ type: Schema.Types.ObjectId, ref: 'WorkOrderRole' }],
     WorkOrderId: Number,
     isDeleted: { type: Boolean, default: false },
-    eprocDate: Date,
-    bankGuaranteeDate: Date,
+  eprocDate: Date,
+  bankGuaranteeDate: Date,
+  bankGuaranteeValidFrom: Date,
+  bankGuaranteeValidTo: Date,
 }, {
     timestamps: true
 });
