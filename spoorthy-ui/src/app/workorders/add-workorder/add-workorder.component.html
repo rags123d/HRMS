@@ -142,7 +142,7 @@
 
           <div class="col-lg-4">
             <div class="form-group">
-              <label class="required" for="bankGuaranteeDate">Bank Guarantee Date</label>
+              <label class="required" for="bankGuaranteeDate">Bank Guarantee/FDR/DD Date</label>
               <input type="date" class="form-control" id="bankGuaranteeDate" aria-describedby="bankGuaranteeDate"
                 formControlName="bankGuaranteeDate">
               <div class="text-danger"
@@ -154,16 +154,16 @@
 
           <div class="col-lg-4">
             <div class="form-group">
-              <label class="required" for="bankGuaranteeNumber">Bank Guarantee Number</label>
+              <label class="required" for="bankGuaranteeNumber">Bank Guarantee/FDR/DD Number</label>
               <input type="text" class="form-control" id="bankGuaranteeNumber" aria-describedby="bankGuaranteeNumber"
-                placeholder="Enter Bank Guarantee Number" formControlName="bankGuaranteeNumber">
+                placeholder="Enter Bank Guarantee/FDR/DD Number" formControlName="bankGuaranteeNumber">
               <div class="text-danger"
                 *ngIf="(workOrderForm.controls['bankGuaranteeNumber'].touched || workOrderForm.controls['bankGuaranteeNumber'].dirty) && workOrderForm.controls['bankGuaranteeNumber'].errors?.required">
-                Bank Guarantee Number is required.
+                Bank Guarantee/FDR/DD Number is required.
               </div>
               <div class="text-danger"
                 *ngIf="(workOrderForm.controls['bankGuaranteeNumber'].touched || workOrderForm.controls['bankGuaranteeNumber'].dirty) && workOrderForm.controls['bankGuaranteeNumber'].errors?.pattern">
-                Bank Guarantee Number is not valid.
+                Bank Guarantee/FDR/DD Number is not valid.
               </div>
             </div>
           </div>
