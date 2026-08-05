@@ -51,11 +51,9 @@ export class AddWorkorderComponent implements OnInit {
   agreementDocumenturl: any = undefined;
   bankGuaranteeDocumenturl: any = undefined;
 
-  formSubmitted: boolean = false;
+formSubmitted: boolean = false;
   formEdit: boolean = false;
   selectedJobRole: any;
-
-  workOrderPrefix = '';
 
   constructor(
     private addWorkOrderService: AddWorkorderService,
@@ -362,20 +360,7 @@ export class AddWorkorderComponent implements OnInit {
           if (res['success'] == true) {
             this.showLoaderService.stop()
             this.Client = res['data']
-            this.workOrderForm.controls.client.setValue(this.clientId)
-
-            const selectedClient = this.Client.find(
-              (c: any) => c._id === this.clientId
-            );
-
-            if (selectedClient && selectedClient.name) {
-              this.workOrderPrefix = this.generateClientPrefix(selectedClient.name);
-
-              if (!this.workOrderForm.controls.name.value) {
-                this.workOrderForm.controls.name.setValue(this.workOrderPrefix);
-              }
-            }
-
+this.workOrderForm.controls.client.setValue(this.clientId)
           }
         },
         error => {
@@ -440,19 +425,6 @@ export class AddWorkorderComponent implements OnInit {
       salary: dataObject['salary'],
     });
 
-  }
-
-
-  generateClientPrefix(clientName: string): string {
-    if (!clientName) {
-      return '';
-    }
-
-    return clientName
-      .trim()
-      .split(/\s+/)
-      .map(word => word.charAt(0).toUpperCase())
-      .join('') + '-';
   }
 
 
