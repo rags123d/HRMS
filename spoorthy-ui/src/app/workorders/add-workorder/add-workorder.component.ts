@@ -119,8 +119,10 @@ export class AddWorkorderComponent implements OnInit {
       'spoorthyReference': new FormControl(null, [Validators.required, Validators.maxLength(50)]),
       'workOrderNumber': new FormControl(null, [Validators.required, Validators.maxLength(50)]),
       'bankGuaranteeNumber': new FormControl(null, [Validators.required, Validators.maxLength(50)]),
-      'eprocDate': new FormControl(null, [Validators.required]),
+'eprocDate': new FormControl(null, [Validators.required]),
       'bankGuaranteeDate': new FormControl(null, [Validators.required]),
+      'bankGuaranteeValidFrom': new FormControl(null, [Validators.required]),
+      'bankGuaranteeValidTo': new FormControl(null, [Validators.required]),
     })
 
     this.workOrderForm.get('name')?.valueChanges.subscribe(value => {
@@ -182,8 +184,10 @@ export class AddWorkorderComponent implements OnInit {
     formData.append('spoorthyReference', this.workOrderForm.get('spoorthyReference').value)
     formData.append('workOrderNumber', this.workOrderForm.get('workOrderNumber').value)
     formData.append('bankGuaranteeNumber', this.workOrderForm.get('bankGuaranteeNumber').value)
-    formData.append('eprocDate', this.workOrderForm.get('eprocDate').value)
+formData.append('eprocDate', this.workOrderForm.get('eprocDate').value)
     formData.append('bankGuaranteeDate', this.workOrderForm.get('bankGuaranteeDate').value)
+    formData.append('bankGuaranteeValidFrom', this.workOrderForm.get('bankGuaranteeValidFrom').value)
+    formData.append('bankGuaranteeValidTo', this.workOrderForm.get('bankGuaranteeValidTo').value)
 
     this.jobRoleTest.forEach((obj: any) => {
       if (obj.isEdit == true) {
@@ -243,8 +247,14 @@ export class AddWorkorderComponent implements OnInit {
             var eprocDate = data[0].eprocDate ? data[0].eprocDate.split('T')[0] : ""
             this.workOrderForm.controls.eprocDate.setValue(eprocDate)
 
-            var bankGuaranteeDate = data[0].bankGuaranteeDate ? data[0].bankGuaranteeDate.split('T')[0] : ""
+var bankGuaranteeDate = data[0].bankGuaranteeDate ? data[0].bankGuaranteeDate.split('T')[0] : ""
             this.workOrderForm.controls.bankGuaranteeDate.setValue(bankGuaranteeDate)
+
+            var bankGuaranteeValidFrom = data[0].bankGuaranteeValidFrom ? data[0].bankGuaranteeValidFrom.split('T')[0] : ""
+            this.workOrderForm.controls.bankGuaranteeValidFrom.setValue(bankGuaranteeValidFrom)
+
+            var bankGuaranteeValidTo = data[0].bankGuaranteeValidTo ? data[0].bankGuaranteeValidTo.split('T')[0] : ""
+            this.workOrderForm.controls.bankGuaranteeValidTo.setValue(bankGuaranteeValidTo)
 
             var workOrderDocumentsp = data[0].workOrderDocument.split('-');
             this.getBlobFromUrl(this.DocUrl + data[0].workOrderDocument, workOrderDocumentsp[workOrderDocumentsp.length - 1], "workOrderDocument");

@@ -18,6 +18,8 @@ const workOrderRegisterSchema = Joi.object({
     workOrderRoles: Joi.string().required(),
     eprocDate: Joi.date().required(),
     bankGuaranteeDate: Joi.date().required(),
+    bankGuaranteeValidFrom: Joi.date().required(),
+    bankGuaranteeValidTo: Joi.date().required(),
 })
 
 const workorderIdSchema = Joi.object({
