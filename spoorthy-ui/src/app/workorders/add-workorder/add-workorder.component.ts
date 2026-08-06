@@ -51,7 +51,7 @@ export class AddWorkorderComponent implements OnInit {
   agreementDocumenturl: any = undefined;
   bankGuaranteeDocumenturl: any = undefined;
 
-  formSubmitted: boolean = false;
+formSubmitted: boolean = false;
   formEdit: boolean = false;
   selectedJobRole: any;
 
@@ -117,10 +117,11 @@ export class AddWorkorderComponent implements OnInit {
       'spoorthyReference': new FormControl(null, [Validators.required, Validators.maxLength(50)]),
       'workOrderNumber': new FormControl(null, [Validators.required, Validators.maxLength(50)]),
       'bankGuaranteeNumber': new FormControl(null, [Validators.required, Validators.maxLength(50)]),
-      'workOrderDate': new FormControl(null, [Validators.required]),
       'eprocDate': new FormControl(null, [Validators.required]),
       'bankGuaranteeDate': new FormControl(null, [Validators.required]),
     })
+
+   
 
     this.jobRoleForm = new FormGroup({
       'role': new FormControl('', [Validators.required]),
@@ -166,7 +167,6 @@ export class AddWorkorderComponent implements OnInit {
     formData.append('bankGuaranteeNumber', this.workOrderForm.get('bankGuaranteeNumber').value)
     formData.append('eprocDate', this.workOrderForm.get('eprocDate').value)
     formData.append('bankGuaranteeDate', this.workOrderForm.get('bankGuaranteeDate').value)
-    formData.append('workOrderDate', this.workOrderForm.get('workOrderDate').value)
 
     this.jobRoleTest.forEach((obj: any) => {
       if (obj.isEdit == true) {
@@ -210,10 +210,6 @@ export class AddWorkorderComponent implements OnInit {
             this.workOrderForm.controls.name.setValue(data[0].name)
             this.workOrderForm.controls.noOfRequirements.setValue(data[0].noOfRequirements)
             this.workOrderForm.controls.client.setValue(data[0].client._id)
-
-            // Populate Work Order Date
-            var workOrderDate = data[0].workOrderDate ? data[0].workOrderDate.split('T')[0] : ""
-            this.workOrderForm.controls.workOrderDate.setValue(workOrderDate)
 
             var startDate = data[0].StartDate ? data[0].StartDate.split('T')[0] : ""
             this.workOrderForm.controls.StartDate.setValue(startDate)
@@ -364,7 +360,7 @@ export class AddWorkorderComponent implements OnInit {
           if (res['success'] == true) {
             this.showLoaderService.stop()
             this.Client = res['data']
-            this.workOrderForm.controls.client.setValue(this.clientId)
+this.workOrderForm.controls.client.setValue(this.clientId)
           }
         },
         error => {
@@ -373,6 +369,8 @@ export class AddWorkorderComponent implements OnInit {
         }
       )
   }
+
+
 
   getDesignation() {
     this.showLoaderService.start()
@@ -428,5 +426,6 @@ export class AddWorkorderComponent implements OnInit {
     });
 
   }
+
 
 }
