@@ -4,7 +4,6 @@
       <div class="col-lg-12">
         <div class="row mb-3">
           <h4>Workorder Details</h4>
-          
           <div class="col-lg-6">
             <div class="form-group">
               <label class="required" for="client">Client Name</label>
@@ -32,7 +31,18 @@
                 *ngIf="(workOrderForm.controls['name'].touched || workOrderForm.controls['name'].dirty) && workOrderForm.controls['name'].errors?.pattern">
                 Work Order Name is not valid.
               </div>
+              <!-- <small class="error-txt" style="color: red !important;" id="" *ngIf="!contractorForm.controls.Name.valid && contractorForm.controls.Name.touched" class="form-text text-muted">Pl[...]
             </div>
+            <!-- <div class="form-group">
+              <label class="required" for="workOrderDate">Date</label>
+              <input type="date" class="form-control" id="workOrderDate" aria-describedby="workOrderDate"
+                placeholder="Enter Office Number" formControlName="workOrderDate">
+              <div class="text-danger"
+                *ngIf="(workOrderForm.controls['workOrderDate'].touched || workOrderForm.controls['workOrderDate'].dirty) && workOrderForm.controls['workOrderDate'].errors?.required">
+                Date is required.
+              </div>
+            </div> -->
+
           </div>
 
           <!-- WORK ORDER DATE FIELD -->
@@ -61,6 +71,7 @@
                 *ngIf="(workOrderForm.controls['noOfRequirements'].touched || workOrderForm.controls['noOfRequirements'].dirty) && workOrderForm.controls['noOfRequirements'].errors?.pattern">
                 Total Number Of Employees is not valid.
               </div>
+              <!-- <small class="error-txt" style="color: red !important;" id="" *ngIf="!contractorForm.controls.Name.valid && contractorForm.controls.Name.touched" class="form-text text-muted">Pl[...]
             </div>
           </div>
 
@@ -79,6 +90,7 @@
               </div>
             </div>
           </div>
+
 
           <div class="col-lg-4">
             <div class="form-group">
@@ -140,9 +152,10 @@
             </div>
           </div>
 
+
           <div class="col-lg-4">
             <div class="form-group">
-              <label class="required" for="bankGuaranteeDate">Bank Guarantee Date</label>
+              <label class="required" for="bankGuaranteeDate">Bank Guarantee/FDR/DD Date</label>
               <input type="date" class="form-control" id="bankGuaranteeDate" aria-describedby="bankGuaranteeDate"
                 formControlName="bankGuaranteeDate">
               <div class="text-danger"
@@ -154,19 +167,22 @@
 
           <div class="col-lg-4">
             <div class="form-group">
-              <label class="required" for="bankGuaranteeNumber">Bank Guarantee Number</label>
+              <label class="required" for="bankGuaranteeNumber">Bank Guarantee/FDR/DD Number</label>
               <input type="text" class="form-control" id="bankGuaranteeNumber" aria-describedby="bankGuaranteeNumber"
-                placeholder="Enter Bank Guarantee Number" formControlName="bankGuaranteeNumber">
+                placeholder="Enter Bank Guarantee/FDR/DD Number" formControlName="bankGuaranteeNumber">
               <div class="text-danger"
                 *ngIf="(workOrderForm.controls['bankGuaranteeNumber'].touched || workOrderForm.controls['bankGuaranteeNumber'].dirty) && workOrderForm.controls['bankGuaranteeNumber'].errors?.required">
-                Bank Guarantee Number is required.
+                Bank Guarantee/FDR/DD Number is required.
               </div>
               <div class="text-danger"
                 *ngIf="(workOrderForm.controls['bankGuaranteeNumber'].touched || workOrderForm.controls['bankGuaranteeNumber'].dirty) && workOrderForm.controls['bankGuaranteeNumber'].errors?.pattern">
-                Bank Guarantee Number is not valid.
+                Bank Guarantee/FDR/DD Number is not valid.
               </div>
             </div>
           </div>
+
+
+          <!-- <div class="d-flex justify-content-between"> -->
 
           <div class="col-lg-4">
             <div class="form-group">
@@ -192,14 +208,17 @@
             </div>
           </div>
 
+          <!-- </div> -->
+
+          <!-- </div> -->
+
           <div class="col-lg-4">
             <div class="form-group">
               <label class="required" for="workOrderDocument">Upload Work Order</label>
-              <input type="file" class="d-none mb-1" id="workOrderDocument" aria-describedby="workOrderDocument"
-                accept=".pdf">
+              <input type="file" class="d-none mb-1" id="workOrderDocument" aria-describedby="workOrderDocument">
               <div class="pl-0 col-lg-12">
                 <div>
-                  <button type="button" class="text-left btn btn-danger"
+                  <button class="text-left btn btn-danger"
                     onclick="document.getElementById('workOrderDocument').click()">
                     <i class="fas fa-upload pr-3"></i>UPLOAD FILE
                   </button>
@@ -216,17 +235,17 @@
                 *ngIf="workOrderForm.get('workOrderDocument').errors!=null && workOrderForm.get('workOrderDocument').errors['requiredFileType']">
                 Upload pdf files
               </div>
+              <!-- <div id="workOrderDocumentName" class="text-success" *ngIf="workOrderDocumentChecker == false"></div> -->
             </div>
           </div>
 
           <div class="col-lg-4">
             <div class="form-group">
               <label class="required" for="agreementDocument">Agreement Document</label>
-              <input type="file" class="d-none mb-1" id="agreementDocument" aria-describedby="agreementDocument"
-                accept=".pdf">
+              <input type="file" class="d-none mb-1" id="agreementDocument" aria-describedby="agreementDocument">
               <div class="pl-0 col-lg-12">
                 <div>
-                  <button type="button" class="text-left btn btn-danger"
+                  <button class="text-left btn btn-danger"
                     onclick="document.getElementById('agreementDocument').click()">
                     <i class="fas fa-upload pr-3"></i>UPLOAD FILE
                   </button>
@@ -243,22 +262,25 @@
                 *ngIf="workOrderForm.get('agreementDocument').errors!=null && workOrderForm.get('agreementDocument').errors['requiredFileType']">
                 Upload pdf files
               </div>
+              <!-- (Comment it, if agr is required) <div id="agreementDocumentName" class="text-success"
+                *ngIf="agreementDocumentChecker == false"></div> -->
             </div>
           </div>
 
           <div class="col-lg-4">
             <div class="form-group">
               <label class="required" for="bankGuaranteeDocument">Bank Guarantee Document</label>
-              <input type="file" class="d-none mb-1" id="bankGuaranteeDocument" aria-describedby="bankGuaranteeDocument"
-                accept=".pdf">
+              <input type="file" class="d-none mb-1" id="bankGuaranteeDocument"
+                aria-describedby="bankGuaranteeDocument">
               <div class="pl-0 col-lg-12">
                 <div>
-                  <button type="button" class="text-left btn btn-danger"
+                  <button class="text-left btn btn-danger"
                     onclick="document.getElementById('bankGuaranteeDocument').click()"><i
                       class="fas fa-upload pr-3"></i>UPLOAD FILE</button>
                 </div>
                 <div>
-                  <label id="bankGuaranteeDocumentName" for="bankGuaranteeDocument"> <br> Upload File</label>
+                  <label id="bankGuaranteeDocumentName" for="bankGuaranteeDocument"> <br> Upload
+                    File</label>
                   <a [href]="(bankGuaranteeDocumenturl ? bankGuaranteeDocumenturl : '#') | safe" target="_blank"
                     class="btn rounded" style="padding: 0px; padding-left: 5px;">
                     <i *ngIf="bankGuaranteeDocumenturl" class="fas fa-eye view" tooltip="View"></i>
@@ -317,18 +339,19 @@
                 <tr mat-header-row *matHeaderRowDef="jobRoleSourceColumn; sticky: true"></tr>
                 <tr mat-row *matRowDef="let row; columns: jobRoleSourceColumn;"></tr>
 
+                <!-- Row shown when there is no matching data. -->
                 <tr class="mat-row" *matNoDataRow>
                   <td class="mat-cell" colspan="9" style="text-align: center;">No data matching the filter</td>
                 </tr>
               </table>
             </div>
-            <button type="button" (click)="ModelOpen('JobRoleModel')" class="btn btn-danger mt-3">CLICK TO ADD JOB/ROLE</button>
+            <button (click)="ModelOpen('JobRoleModel')" class="btn btn-danger mt-3">CLICK TO ADD JOB/ROLE</button>
           </div>
         </div>
 
         <div class="row">
           <div class="col-lg-12">
-            <button type="button" (click)="onClearForm()" class="btn btn-primary btn-main">Clear</button>
+            <button (click)="onClearForm()" class="btn btn-primary btn-main">Clear</button>
             <button type="submit" class="btn btn-primary btn-main float-right m-0" (click)="onSubmit()">Submit</button>
           </div>
         </div>
