@@ -31,18 +31,7 @@
                 *ngIf="(workOrderForm.controls['name'].touched || workOrderForm.controls['name'].dirty) && workOrderForm.controls['name'].errors?.pattern">
                 Work Order Name is not valid.
               </div>
-              <!-- <small class="error-txt" style="color: red !important;" id="" *ngIf="!contractorForm.controls.Name.valid && contractorForm.controls.Name.touched" class="form-text text-muted">Please enter valid Name</small> -->
             </div>
-            <!-- <div class="form-group">
-              <label class="required" for="workOrderDate">Date</label>
-              <input type="date" class="form-control" id="workOrderDate" aria-describedby="workOrderDate"
-                placeholder="Enter Office Number" formControlName="workOrderDate">
-              <div class="text-danger"
-                *ngIf="(workOrderForm.controls['workOrderDate'].touched || workOrderForm.controls['workOrderDate'].dirty) && workOrderForm.controls['workOrderDate'].errors?.required">
-                Date is required.
-              </div>
-            </div> -->
-
           </div>
 
           <div class="col-lg-6">
@@ -58,7 +47,6 @@
                 *ngIf="(workOrderForm.controls['noOfRequirements'].touched || workOrderForm.controls['noOfRequirements'].dirty) && workOrderForm.controls['noOfRequirements'].errors?.pattern">
                 Total Number Of Employees is not valid.
               </div>
-              <!-- <small class="error-txt" style="color: red !important;" id="" *ngIf="!contractorForm.controls.Name.valid && contractorForm.controls.Name.touched" class="form-text text-muted">Please enter valid Name</small> -->
             </div>
           </div>
 
@@ -78,7 +66,6 @@
             </div>
           </div>
 
-
           <div class="col-lg-4">
             <div class="form-group">
               <label class="required" for="eprocDate">E-Proc Date</label>
@@ -86,7 +73,7 @@
                 formControlName="eprocDate">
               <div class="text-danger"
                 *ngIf="(workOrderForm.controls['eprocDate'].touched || workOrderForm.controls['eprocDate'].dirty) && workOrderForm.controls['eprocDate'].errors?.required">
-                Contract Start Date is required.
+                E-Proc Date is required.
               </div>
             </div>
           </div>
@@ -139,7 +126,6 @@
             </div>
           </div>
 
-
           <div class="col-lg-4">
             <div class="form-group">
               <label class="required" for="bankGuaranteeDate">Bank Guarantee/FDR/DD Date</label>
@@ -147,7 +133,7 @@
                 formControlName="bankGuaranteeDate">
               <div class="text-danger"
                 *ngIf="(workOrderForm.controls['bankGuaranteeDate'].touched || workOrderForm.controls['bankGuaranteeDate'].dirty) && workOrderForm.controls['bankGuaranteeDate'].errors?.required">
-                Contract Start Date is required.
+                Bank Guarantee Date is required.
               </div>
             </div>
           </div>
@@ -168,8 +154,29 @@
             </div>
           </div>
 
+          <div class="col-lg-4">
+            <div class="form-group">
+              <label class="required" for="bankGuaranteeValidFrom">Bank Guarantee/FDR/DD Valid From</label>
+              <input type="date" class="form-control" id="bankGuaranteeValidFrom" aria-describedby="bankGuaranteeValidFrom"
+                formControlName="bankGuaranteeValidFrom">
+              <div class="text-danger"
+                *ngIf="(workOrderForm.controls['bankGuaranteeValidFrom'].touched || workOrderForm.controls['bankGuaranteeValidFrom'].dirty) && workOrderForm.controls['bankGuaranteeValidFrom'].errors?.required">
+                Bank Guarantee Valid From Date is required.
+              </div>
+            </div>
+          </div>
 
-          <!-- <div class="d-flex justify-content-between"> -->
+          <div class="col-lg-4">
+            <div class="form-group">
+              <label class="required" for="bankGuaranteeValidTo">Bank Guarantee/FDR/DD Valid To</label>
+              <input type="date" class="form-control" id="bankGuaranteeValidTo" aria-describedby="bankGuaranteeValidTo"
+                formControlName="bankGuaranteeValidTo">
+              <div class="text-danger"
+                *ngIf="(workOrderForm.controls['bankGuaranteeValidTo'].touched || workOrderForm.controls['bankGuaranteeValidTo'].dirty) && workOrderForm.controls['bankGuaranteeValidTo'].errors?.required">
+                Bank Guarantee Valid To Date is required.
+              </div>
+            </div>
+          </div>
 
           <div class="col-lg-4">
             <div class="form-group">
@@ -185,6 +192,18 @@
 
           <div class="col-lg-4">
             <div class="form-group">
+              <label class="required" for="ContractEndDate">Contract End Date</label>
+              <input type="date" class="form-control" id="ContractEndDate" aria-describedby="ContractEndDate"
+                formControlName="ContractEndDate">
+              <div class="text-danger"
+                *ngIf="(workOrderForm.controls['ContractEndDate'].touched || workOrderForm.controls['ContractEndDate'].dirty) && workOrderForm.controls['ContractEndDate'].errors?.required">
+                Contract End Date is required.
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4">
+            <div class="form-group">
               <label class="required" for="RenewalDate">Contract Renewal Date</label>
               <input type="date" class="form-control" id="RenewalDate" aria-describedby="RenewalDate"
                 formControlName="RenewalDate">
@@ -194,10 +213,6 @@
               </div>
             </div>
           </div>
-
-          <!-- </div> -->
-
-          <!-- </div> -->
 
           <div class="col-lg-4">
             <div class="form-group">
@@ -222,7 +237,6 @@
                 *ngIf="workOrderForm.get('workOrderDocument').errors!=null && workOrderForm.get('workOrderDocument').errors['requiredFileType']">
                 Upload pdf files
               </div>
-              <!-- <div id="workOrderDocumentName" class="text-success" *ngIf="workOrderDocumentChecker == false"></div> -->
             </div>
           </div>
 
@@ -249,8 +263,6 @@
                 *ngIf="workOrderForm.get('agreementDocument').errors!=null && workOrderForm.get('agreementDocument').errors['requiredFileType']">
                 Upload pdf files
               </div>
-              <!-- (Comment it, if agr is required) <div id="agreementDocumentName" class="text-success"
-                *ngIf="agreementDocumentChecker == false"></div> -->
             </div>
           </div>
 
@@ -326,7 +338,6 @@
                 <tr mat-header-row *matHeaderRowDef="jobRoleSourceColumn; sticky: true"></tr>
                 <tr mat-row *matRowDef="let row; columns: jobRoleSourceColumn;"></tr>
 
-                <!-- Row shown when there is no matching data. -->
                 <tr class="mat-row" *matNoDataRow>
                   <td class="mat-cell" colspan="9" style="text-align: center;">No data matching the filter</td>
                 </tr>
