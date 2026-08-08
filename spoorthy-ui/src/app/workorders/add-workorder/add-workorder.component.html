@@ -31,6 +31,7 @@
                 *ngIf="(workOrderForm.controls['name'].touched || workOrderForm.controls['name'].dirty) && workOrderForm.controls['name'].errors?.pattern">
                 Work Order Name is not valid.
               </div>
+
             </div>
           </div>
 
@@ -47,6 +48,7 @@
                 *ngIf="(workOrderForm.controls['noOfRequirements'].touched || workOrderForm.controls['noOfRequirements'].dirty) && workOrderForm.controls['noOfRequirements'].errors?.pattern">
                 Total Number Of Employees is not valid.
               </div>
+
             </div>
           </div>
 
@@ -97,7 +99,7 @@
           <div class="col-lg-4">
             <div class="form-group">
               <label class="required" for="spoorthyReference">Spoorthy Reference Number</label>
-              <input type="text" class="form-control" id="spoorthyReference" aria-describedby="spoorthyReference"
+              <input type="text" class="form-control" id="spoorthyReference" aria-describedb y="spoorthyReference"
                 placeholder="Enter Spoorthy Reference Number" formControlName="spoorthyReference">
               <div class="text-danger"
                 *ngIf="(workOrderForm.controls['spoorthyReference'].touched || workOrderForm.controls['spoorthyReference'].dirty) && workOrderForm.controls['spoorthyReference'].errors?.required">
@@ -144,11 +146,11 @@
               <input type="text" class="form-control" id="bankGuaranteeNumber" aria-describedby="bankGuaranteeNumber"
                 placeholder="Enter Bank Guarantee/FDR/DD Number" formControlName="bankGuaranteeNumber">
               <div class="text-danger"
-                *ngIf="(workOrderForm.controls['bankGuaranteeNumber'].touched || workOrderForm.controls['bankGuaranteeNumber'].dirty) && workOrderForm.controls['bankGuaranteeNumber'].errors?.required">
+                *ngIf="(workOrderForm.controls['bankGuaranteeNumber'].touched || workOrderForm.controls['bankGuaranteeNumber'].dirty) && workOrderForm.controls['bankGuaranteeNumber'].errors?.requ[...]
                 Bank Guarantee/FDR/DD Number is required.
               </div>
               <div class="text-danger"
-                *ngIf="(workOrderForm.controls['bankGuaranteeNumber'].touched || workOrderForm.controls['bankGuaranteeNumber'].dirty) && workOrderForm.controls['bankGuaranteeNumber'].errors?.pattern">
+                *ngIf="(workOrderForm.controls['bankGuaranteeNumber'].touched || workOrderForm.controls['bankGuaranteeNumber'].dirty) && workOrderForm.controls['bankGuaranteeNumber'].errors?.patt[...]
                 Bank Guarantee/FDR/DD Number is not valid.
               </div>
             </div>
