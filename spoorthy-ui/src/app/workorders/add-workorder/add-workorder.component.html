@@ -159,11 +159,11 @@
               <input type="text" class="form-control" id="bankGuaranteeNumber" aria-describedby="bankGuaranteeNumber"
                 placeholder="Enter Bank Guarantee/FDR/DD Number" formControlName="bankGuaranteeNumber">
               <div class="text-danger"
-                *ngIf="(workOrderForm.controls['bankGuaranteeNumber'].touched || workOrderForm.controls['bankGuaranteeNumber'].dirty) && workOrderForm.controls['bankGuaranteeNumber'].errors?.requ[...]
+*ngIf="(workOrderForm.controls['bankGuaranteeNumber'].touched || workOrderForm.controls['bankGuaranteeNumber'].dirty) && workOrderForm.controls['bankGuaranteeNumber'].errors?.required">
                 Bank Guarantee/FDR/DD Number is required.
               </div>
               <div class="text-danger"
-                *ngIf="(workOrderForm.controls['bankGuaranteeNumber'].touched || workOrderForm.controls['bankGuaranteeNumber'].dirty) && workOrderForm.controls['bankGuaranteeNumber'].errors?.patt[...]
+*ngIf="(workOrderForm.controls['bankGuaranteeNumber'].touched || workOrderForm.controls['bankGuaranteeNumber'].dirty) && workOrderForm.controls['bankGuaranteeNumber'].errors?.pattern">
                 Bank Guarantee/FDR/DD Number is not valid.
               </div>
             </div>
