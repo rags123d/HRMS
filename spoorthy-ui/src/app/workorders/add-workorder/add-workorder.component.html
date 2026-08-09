@@ -171,6 +171,30 @@
 
           <div class="col-lg-4">
             <div class="form-group">
+              <label class="required" for="bankGuaranteeValidFrom">Bank Guarantee/FDR/DD Valid From</label>
+              <input type="date" class="form-control" id="bankGuaranteeValidFrom" aria-describedby="bankGuaranteeValidFrom"
+                formControlName="bankGuaranteeValidFrom">
+              <div class="text-danger"
+                *ngIf="(workOrderForm.controls['bankGuaranteeValidFrom'].touched || workOrderForm.controls['bankGuaranteeValidFrom'].dirty) && workOrderForm.controls['bankGuaranteeValidFrom'].errors?.required">
+                Bank Guarantee Valid From Date is required.
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4">
+            <div class="form-group">
+              <label class="required" for="bankGuaranteeValidTo">Bank Guarantee/FDR/DD Valid To</label>
+              <input type="date" class="form-control" id="bankGuaranteeValidTo" aria-describedby="bankGuaranteeValidTo"
+                formControlName="bankGuaranteeValidTo">
+              <div class="text-danger"
+                *ngIf="(workOrderForm.controls['bankGuaranteeValidTo'].touched || workOrderForm.controls['bankGuaranteeValidTo'].dirty) && workOrderForm.controls['bankGuaranteeValidTo'].errors?.required">
+                Bank Guarantee Valid To Date is required.
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4">
+            <div class="form-group">
               <label class="required" for="StartDate">Contract Start Date</label>
               <input type="date" class="form-control" id="StartDate" aria-describedby="StartDate"
                 formControlName="StartDate">
