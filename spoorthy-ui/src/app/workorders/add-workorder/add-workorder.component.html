@@ -35,19 +35,6 @@
             </div>
           </div>
 
-          <!-- WORK ORDER DATE FIELD -->
-          <div class="col-lg-6">
-            <div class="form-group">
-              <label class="required" for="workOrderDate">Work Order Date</label>
-              <input type="date" class="form-control" id="workOrderDate" aria-describedby="workOrderDate"
-                formControlName="workOrderDate">
-              <div class="text-danger"
-                *ngIf="(workOrderForm.controls['workOrderDate'].touched || workOrderForm.controls['workOrderDate'].dirty) && workOrderForm.controls['workOrderDate'].errors?.required">
-                Date is required.
-              </div>
-            </div>
-          </div>
-
           <div class="col-lg-6">
             <div class="form-group">
               <label class="required" for="noOfRequirements">Total Manpower Required By The Client</label>
