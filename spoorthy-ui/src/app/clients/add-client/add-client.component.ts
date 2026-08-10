@@ -18,7 +18,7 @@ export class AddClientComponent implements OnInit {
   public DocUrl = environment.baseUrl2
   public url = this.route.snapshot.params.id
 
-  
+
   public agreementDocument: any;
   public GSTDocument: any;
   public PANDocument: any;
@@ -57,35 +57,35 @@ export class AddClientComponent implements OnInit {
         //   var element = document.getElementById("agreementDocumentName") as any;
         //   element.innerHTML = file.name
         //   this.clientForm.controls.agreementDocument.setValue(file)
-        // } else 
+        // } else
         if (Elem.id == 'licenseDocument' && file) {
           var element = document.getElementById("licenseDocumentName") as any;
           element.innerHTML = file.name
           let objUrl = URL.createObjectURL(file);
           this.licenseDocumenturl = objUrl;
           this.clientForm.controls.licenseDocument.setValue(file)
-        } 
+        }
         else if (Elem.id == 'GSTDocument' && file) {
           var element = document.getElementById("GSTDocumentName") as any;
           element.innerHTML = file.name
           let objUrl = URL.createObjectURL(file);
           this.GSTDocumenturl = objUrl;
           this.clientForm.controls.GSTDocument.setValue(file)
-        } 
+        }
         else if (Elem.id == 'PANDocument' && file) {
           var element = document.getElementById("PANDocumentName") as any;
           element.innerHTML = file.name
           let objUrl = URL.createObjectURL(file);
           this.PANDocumenturl = objUrl;
           this.clientForm.controls.PANDocument.setValue(file)
-        } 
+        }
         else if (Elem.id == 'companyLogo' && file) {
           var element = document.getElementById("companyLogoName") as any;
           element.innerHTML = file.name
           let objUrl = URL.createObjectURL(file);
           this.companyLogourl = objUrl;
           this.clientForm.controls.companyLogo.setValue(file)
-        } 
+        }
         else if (Elem.id == 'TANDocument' && file) {
           var element = document.getElementById("TANDocumentName") as any;
           element.innerHTML = file.name
@@ -117,7 +117,7 @@ export class AddClientComponent implements OnInit {
       "pinCode": new FormControl(null, [Validators.required, Validators.pattern('^[0-9]*$')]),
       "contactEmail": new FormControl(null, [Validators.required, Validators.pattern("^[a-zA-Z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$")]),
 
-      "companyLogo": new FormControl(null, [requiredFileType(['png', 'jpg', 'jpeg'])]),
+      "companyLogo": new FormControl(null, [requiredFileType(['jpeg', 'jpg', 'png'])]),
       // "agreementDocument": new FormControl(null, [Validators.required, requiredFileType(['pdf'])]),
       "licenseDocument": new FormControl(null, [requiredFileType(['pdf'])]),
       "GSTDocument": new FormControl(null, [requiredFileType(['pdf'])]),
