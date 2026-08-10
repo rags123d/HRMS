@@ -227,13 +227,13 @@ export class OpenlinkFormComponent implements OnInit {
       'PassbookDocument': new FormControl(null, [Validators.required, requiredFileType(['pdf'])]),
       'QualificationDocument': new FormControl(null, [requiredFileType(['pdf'])]),
 
-      'Language': new FormControl(null, [Validators.required]),
+      'Language': new FormControl(null),
       'Speak': new FormControl(false),
       'Write': new FormControl(false),
       'Read': new FormControl(false),
 
       'Langauges': this.fb.array([this.fb.group({
-        Language: ['', [Validators.required]],
+        Language: [''],
         Speak: [false],
         Write: [false],
         Read: [false]
@@ -322,7 +322,7 @@ export class OpenlinkFormComponent implements OnInit {
     }
 
     this.GetLanguages.push(this.fb.group({
-      Language: ['', [Validators.required]],
+      Language: [''],
       Speak: [false],
       Write: [false],
       Read: [false]
@@ -370,7 +370,7 @@ export class OpenlinkFormComponent implements OnInit {
 
     if (this.GetLanguages.controls.length == 0) {
       this.GetLanguages.push(this.fb.group({
-        Language: ['', [Validators.required]],
+        Language: [''],
         Speak: [false],
         Write: [false],
         Read: [false]
@@ -573,7 +573,7 @@ export class OpenlinkFormComponent implements OnInit {
 
   populateLanguage(val, i) {
     this.GetLanguages.push(this.fb.group({
-      Language: [val.Language._id, [Validators.required]],
+      Language: [val.Language._id],
       Speak: [val.Speak],
       Write: [val.Read],
       Read: [val.Write]
