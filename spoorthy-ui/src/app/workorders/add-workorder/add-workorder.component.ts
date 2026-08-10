@@ -125,22 +125,7 @@ export class AddWorkorderComponent implements OnInit {
       'bankGuaranteeValidTo': new FormControl(null, [Validators.required]),
     })
 
-    this.workOrderForm.get('name')?.valueChanges.subscribe(value => {
-      if (!this.workOrderPrefix) {
-        return;
-      }
 
-      if (!value || !value.startsWith(this.workOrderPrefix)) {
-        const cleanedValue = value
-          ? value.replace(this.workOrderPrefix, '')
-          : '';
-
-        this.workOrderForm.controls.name.setValue(
-          this.workOrderPrefix + cleanedValue,
-          { emitEvent: false }
-        );
-      }
-    });
 
     this.jobRoleForm = new FormGroup({
       'role': new FormControl('', [Validators.required]),
@@ -473,11 +458,11 @@ var bankGuaranteeDate = data[0].bankGuaranteeDate ? data[0].bankGuaranteeDate.sp
       return '';
     }
 
-return clientName
+    return clientName
       .trim()
       .split(/\s+/)
       .map(word => word.charAt(0).toUpperCase())
-      .join('');
+      .join('') + '-';
   }
 
 
