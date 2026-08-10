@@ -473,11 +473,11 @@ var bankGuaranteeDate = data[0].bankGuaranteeDate ? data[0].bankGuaranteeDate.sp
       return '';
     }
 
-    return clientName
+return clientName
       .trim()
       .split(/\s+/)
       .map(word => word.charAt(0).toUpperCase())
-      .join('') + '-';
+      .join('');
   }
 
 
