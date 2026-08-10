@@ -250,8 +250,8 @@
             </div>
 
             <div class="form-group">
-              <label for="companyLogo">Company Logo(Format .jpg, .png and .jpeg)</label>
-              <input type="file" class="d-none mb-1" id="companyLogo" aria-describedby="companyLogo" accept=".jpeg, .jpg, .png, image/jpeg, image/jpg, image/png">
+              <label for="companyLogo">Company Logo</label>
+              <input type="file" class="d-none mb-1" id="companyLogo" aria-describedby="companyLogo">
               <div class="pl-0 col-lg-12">
                 <button class="text-left btn btn-danger" onclick="document.getElementById('companyLogo').click()"><i
                     class="fas fa-upload pr-3"></i>UPLOAD FILE</button>
@@ -262,7 +262,7 @@
               </div>
               <div class="text-danger"
                 *ngIf="clientForm.get('companyLogo').errors!=null && clientForm.get('companyLogo').errors['requiredFileType']">
-                Upload jpg, png and jpeg files
+                Upload png or jpg files
               </div>
             </div>
 
