@@ -286,13 +286,13 @@ export class AddEmployeeComponent implements OnInit {
       'ESIAmount': new FormControl(null),
       'ProfessionalTax': new FormControl(null),
 
-      'Language': new FormControl(null, [Validators.required]),
+      'Language': new FormControl(null),
       'Speak': new FormControl(false),
       'Write': new FormControl(false),
       'Read': new FormControl(false),
 
       'Langauges': this.fb.array([this.fb.group({
-        Language: ['', [Validators.required]],
+        Language: [''],
         Speak: [false],
         Write: [false],
         Read: [false]
@@ -521,7 +521,7 @@ export class AddEmployeeComponent implements OnInit {
     }
 
     this.GetLanguages.push(this.fb.group({
-      Language: ['', [Validators.required]],
+      Language: [''],
       Speak: [false],
       Write: [false],
       Read: [false]
@@ -569,7 +569,7 @@ export class AddEmployeeComponent implements OnInit {
 
     if (this.GetLanguages.controls.length == 0) {
       this.GetLanguages.push(this.fb.group({
-        Language: ['', [Validators.required]],
+        Language: [''],
         Speak: [false],
         Write: [false],
         Read: [false]
@@ -1206,7 +1206,7 @@ export class AddEmployeeComponent implements OnInit {
 
   populateLanguage(val, i) {
     this.GetLanguages.push(this.fb.group({
-      Language: [val.Language._id, [Validators.required]],
+      Language: [val.Language._id],
       Speak: [val.Speak],
       Write: [val.Read],
       Read: [val.Write]
@@ -1331,7 +1331,7 @@ export class AddEmployeeComponent implements OnInit {
   //     element.Relationship = relationship && (relationship != undefined) ? relationship.name : "";
   //   });
   //   return displayTable
-  // }  
+  // }
 
   displayFamilyTable(data: any) {
     var displayTable: any = data.map(a => ({ ...a }));
@@ -1385,7 +1385,7 @@ export class AddEmployeeComponent implements OnInit {
   //     element.Course = course && (course != undefined) ? course.name : "";
   //   });
   //   return displayTable
-  // }  
+  // }
 
   displayEducationalTable(data: any) {
     var displayTable: any = data.map(a => ({ ...a }));

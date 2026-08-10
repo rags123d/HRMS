@@ -656,7 +656,7 @@
               <div class="rowAppend row">
                 <div class="col-lg-5">
                   <div class="form-group">
-                    <label class="required" for="Language">Language</label>
+                    <label for="Language">Language</label>
                     <select formControlName="Language" class="form-control language">
                       <option value="" disabled selected style="color: red;">SELECT LANGUAGE</option>
                       <ng-container *ngFor="let data of Language">
@@ -664,29 +664,25 @@
                         <option *ngIf="data.display == true" [value]="data._id">{{data.name}}</option>
                       </ng-container>
                     </select>
-                    <div class="text-danger"
-                      *ngIf="(item.controls['Language'].touched || item.controls['Language'].dirty) && item.controls['Language'].errors?.required">
-                      Language is required.
-                    </div>
                   </div>
                 </div>
                 <div class="col-lg-2">
                   <div class="text-center form-group">
-                    <label class="required" for="Speak">Speak</label>
+                    <label for="Speak">Speak</label>
                     <input type="checkbox" class="form-control" aria-describedby="Speak" formControlName="Speak"
                       (blur)="BindLanguage()">
                   </div>
                 </div>
                 <div class="col-lg-2">
                   <div class="text-center form-group">
-                    <label class="required" for="Read">Read</label>
+                    <label for="Read">Read</label>
                     <input type="checkbox" class="form-control" aria-describedby="Read" formControlName="Read"
                       (blur)="BindLanguage()">
                   </div>
                 </div>
                 <div class="col-lg-2">
                   <div class="text-center form-group">
-                    <label class="required" for="Write">Write</label>
+                    <label for="Write">Write</label>
                     <input type="checkbox" class="form-control" aria-describedby="Write" formControlName="Write"
                       (blur)="BindLanguage()">
                   </div>
@@ -699,7 +695,7 @@
               </div>
             </div>
             <div class="text-center">
-              <button [disabled]="!GetLanguages.valid" (click)="addLanguage()" class="btn btn-danger mt-3">CLICK TO
+              <button (click)="addLanguage()" class="btn btn-danger mt-3">CLICK TO
                 ADD LANGUAGE</button>
             </div>
           </form>
@@ -842,7 +838,7 @@
                 <!-- <a target="_blank" class="btn rounded">
                   <i *ngIf="AadharDocumenturl" class="fas fa-eye view" tooltip="View">
                   </i>
-                  
+
                   <iframe [src]="(AadharDocumenturl ? AadharDocumenturl : '#') | safe" frameborder="0" scrolling="yes"
                   width="100%" height="100%"> </iframe>
                 </a> -->
