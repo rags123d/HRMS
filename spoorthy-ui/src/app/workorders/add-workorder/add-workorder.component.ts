@@ -107,19 +107,21 @@ export class AddWorkorderComponent implements OnInit {
 
     this.workOrderForm = new FormGroup({
       'name': new FormControl(null, [Validators.required, Validators.pattern('^[a-zA-Z -_]*$'), Validators.maxLength(100)]),
+      'workOrderDate': new FormControl(null, [Validators.required]),
       'noOfRequirements': new FormControl(null, [Validators.required, Validators.pattern('^[0-9]*$')]),
       'workOrderDocument': new FormControl(null, [Validators.required, requiredFileType(['pdf'])]),
       "agreementDocument": new FormControl(null, [Validators.required, requiredFileType(['pdf'])]),
       "bankGuaranteeDocument": new FormControl(null, [Validators.required, requiredFileType(['pdf'])]),
       'client': new FormControl('', [Validators.required]),
       'StartDate': new FormControl(null, [Validators.required]),
+      'ContractEndDate': new FormControl(null, [Validators.required]),
       'RenewalDate': new FormControl(null, [Validators.required]),
       'depositAmount': new FormControl(null, [Validators.required, Validators.pattern('^[0-9]*$')]),
       'eprocReference': new FormControl(null, [Validators.required, Validators.maxLength(50)]),
       'spoorthyReference': new FormControl(null, [Validators.required, Validators.maxLength(50)]),
       'workOrderNumber': new FormControl(null, [Validators.required, Validators.maxLength(50)]),
       'bankGuaranteeNumber': new FormControl(null, [Validators.required, Validators.maxLength(50)]),
-'eprocDate': new FormControl(null, [Validators.required]),
+      'eprocDate': new FormControl(null, [Validators.required]),
       'bankGuaranteeDate': new FormControl(null, [Validators.required]),
       'bankGuaranteeValidFrom': new FormControl(null, [Validators.required]),
       'bankGuaranteeValidTo': new FormControl(null, [Validators.required]),
@@ -172,19 +174,21 @@ export class AddWorkorderComponent implements OnInit {
     }
 
     formData.append('name', this.workOrderForm.get('name').value)
+    formData.append('workOrderDate', this.workOrderForm.get('workOrderDate').value)
     formData.append('noOfRequirements', this.workOrderForm.get('noOfRequirements').value)
     formData.append('workOrderDocument', this.workOrderForm.get('workOrderDocument').value)
     formData.append('agreementDocument', this.workOrderForm.get('agreementDocument').value)
     formData.append('bankGuaranteeDocument', this.workOrderForm.get('bankGuaranteeDocument').value)
     formData.append('client', this.workOrderForm.get('client').value)
     formData.append('StartDate', this.workOrderForm.get('StartDate').value)
+    formData.append('ContractEndDate', this.workOrderForm.get('ContractEndDate').value)
     formData.append('RenewalDate', this.workOrderForm.get('RenewalDate').value)
     formData.append('depositAmount', this.workOrderForm.get('depositAmount').value)
     formData.append('eprocReference', this.workOrderForm.get('eprocReference').value)
     formData.append('spoorthyReference', this.workOrderForm.get('spoorthyReference').value)
     formData.append('workOrderNumber', this.workOrderForm.get('workOrderNumber').value)
     formData.append('bankGuaranteeNumber', this.workOrderForm.get('bankGuaranteeNumber').value)
-formData.append('eprocDate', this.workOrderForm.get('eprocDate').value)
+    formData.append('eprocDate', this.workOrderForm.get('eprocDate').value)
     formData.append('bankGuaranteeDate', this.workOrderForm.get('bankGuaranteeDate').value)
     formData.append('bankGuaranteeValidFrom', this.workOrderForm.get('bankGuaranteeValidFrom').value)
     formData.append('bankGuaranteeValidTo', this.workOrderForm.get('bankGuaranteeValidTo').value)
@@ -229,11 +233,18 @@ formData.append('eprocDate', this.workOrderForm.get('eprocDate').value)
             })
 
             this.workOrderForm.controls.name.setValue(data[0].name)
+            
+            var workOrderDate = data[0].workOrderDate ? data[0].workOrderDate.split('T')[0] : "";
+            this.workOrderForm.controls.workOrderDate.setValue(workOrderDate)
+
             this.workOrderForm.controls.noOfRequirements.setValue(data[0].noOfRequirements)
             this.workOrderForm.controls.client.setValue(data[0].client._id)
 
             var startDate = data[0].StartDate ? data[0].StartDate.split('T')[0] : ""
             this.workOrderForm.controls.StartDate.setValue(startDate)
+
+            var contractEndDate = data[0].ContractEndDate ? data[0].ContractEndDate.split('T')[0] : ""
+            this.workOrderForm.controls.ContractEndDate.setValue(contractEndDate)
 
             var renewalDate = data[0].RenewalDate ? data[0].RenewalDate.split('T')[0] : ""
             this.workOrderForm.controls.RenewalDate.setValue(renewalDate)
@@ -247,7 +258,7 @@ formData.append('eprocDate', this.workOrderForm.get('eprocDate').value)
             var eprocDate = data[0].eprocDate ? data[0].eprocDate.split('T')[0] : ""
             this.workOrderForm.controls.eprocDate.setValue(eprocDate)
 
-var bankGuaranteeDate = data[0].bankGuaranteeDate ? data[0].bankGuaranteeDate.split('T')[0] : ""
+            var bankGuaranteeDate = data[0].bankGuaranteeDate ? data[0].bankGuaranteeDate.split('T')[0] : ""
             this.workOrderForm.controls.bankGuaranteeDate.setValue(bankGuaranteeDate)
 
             var bankGuaranteeValidFrom = data[0].bankGuaranteeValidFrom ? data[0].bankGuaranteeValidFrom.split('T')[0] : ""
@@ -410,8 +421,6 @@ var bankGuaranteeDate = data[0].bankGuaranteeDate ? data[0].bankGuaranteeDate.sp
       )
   }
 
-
-
   getDesignation() {
     this.showLoaderService.start()
     this.addWorkOrderService.getDesignation()
@@ -467,7 +476,6 @@ var bankGuaranteeDate = data[0].bankGuaranteeDate ? data[0].bankGuaranteeDate.sp
 
   }
 
-
   generateClientPrefix(clientName: string): string {
     if (!clientName) {
       return '';
@@ -479,6 +487,5 @@ return clientName
       .map(word => word.charAt(0).toUpperCase())
       .join('');
   }
-
 
 }
