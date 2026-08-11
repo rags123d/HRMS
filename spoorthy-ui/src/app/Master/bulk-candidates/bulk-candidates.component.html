@@ -77,7 +77,7 @@
                                 <thead>
                                     <tr>
                                         <th colspan="1" style="border-right: 0.5px solid black;"></th>
-                                        <th colspan="21" style="border-right: 0.5px solid black;">employeeForm</th>
+                                        <th colspan="23" style="border-right: 0.5px solid black;">employeeForm</th>
                                         <th colspan="4" style="border-right: 0.5px solid black;">languagesForm</th>
                                         <th colspan="5" style="border-right: 0.5px solid black;">familyForm</th>
                                         <th colspan="5" style="border-right: 0.5px solid black;">
@@ -105,9 +105,11 @@
                                         <th scope="col">Aadhar No</th>
                                         <th scope="col">PAN</th>
                                         <th scope="col">Present Address</th>
+                                        <th scope="col">Present Address District</th>
                                         <th scope="col">Present Address Pincode</th>
                                         <th scope="col">Present Address Phone</th>
                                         <th scope="col">Permanent Address</th>
+                                        <th scope="col">Permanent Address District</th>
                                         <th scope="col">Permanent Address Pincode</th>
                                         <th scope="col">Permanent Address Phone</th>
                                         <th scope="col">Identification1</th>
@@ -248,6 +250,14 @@
                                             </div>
                                         </td>
                                         <td>
+                                            <div class="form-group" style="width: 140px; margin: auto;">
+                                                <input matInput id="emp_PresentAddressDistrict"
+                                                    [(ngModel)]="item.EmpPresentAddressDistrict"
+                                                    placeholder="Enter Present Address District" class="form-control"
+                                                    required>
+                                            </div>
+                                        </td>
+                                        <td>
                                             <div class="form-group" style="width: 80px; margin: auto;">
                                                 <input matInput id="emp_PresentAddressPincode"
                                                     [(ngModel)]="item.EmpPresentAddressPincode"
@@ -266,6 +276,14 @@
                                                 <input matInput id="emp_PermanentAddress"
                                                     [(ngModel)]="item.EmpPermanentAddress"
                                                     placeholder="Enter Permanent Address" class="form-control">
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="form-group" style="width: 140px; margin: auto;">
+                                                <input matInput id="emp_PermanentAddressDistrict"
+                                                    [(ngModel)]="item.EmpPermanentAddressDistrict"
+                                                    placeholder="Enter Permanent Address District" class="form-control"
+                                                    required>
                                             </div>
                                         </td>
                                         <td>

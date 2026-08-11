@@ -20,9 +20,11 @@ const EmployeeSchema = new Schema({
   PAN: String,
 
   PresentAddress: String,
+  PresentAddressDistrict: String,
   PresentAddressPincode: String,
   PresentAddressPhone: String,
   PermanentAddress: String,
+  PermanentAddressDistrict: String,
   PermanentAddressPincode: String,
   PermanentAddressPhone: String,
 

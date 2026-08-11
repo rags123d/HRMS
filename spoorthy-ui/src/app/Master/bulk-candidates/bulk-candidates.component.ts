@@ -141,6 +141,11 @@ export class BulkCandidatesComponent implements OnInit {
 
   onSubmitBulkCandidateDetails() {
     let url = `/addBulkEmployee`;
+    if (!this.candidatesList || this.candidatesList.some(item => !item.EmpPresentAddressDistrict || !item.EmpPermanentAddressDistrict)) {
+      this.toastr.error('Present Address District and Permanent Address District are required.');
+      return;
+    }
+
     this.showLoaderService.start()
     // this.addEmployeeService.addBulkEmployee()
     this.commonService.onCommonPost(this.candidatesList, url)
@@ -200,9 +205,11 @@ export class BulkCandidatesComponent implements OnInit {
         EmpAadharNo: item.emp_AadharNo ? item.emp_AadharNo : '',
         EmpPAN: item.emp_PAN ? item.emp_PAN : '',
         EmpPresentAddress: item.emp_PresentAddress ? item.emp_PresentAddress : '',
+        EmpPresentAddressDistrict: item.emp_PresentAddressDistrict ? item.emp_PresentAddressDistrict : '',
         EmpPresentAddressPincode: item.emp_PresentAddressPincode ? item.emp_PresentAddressPincode : '',
         EmpPresentAddressPhone: item.emp_PresentAddressPhone ? item.emp_PresentAddressPhone : '',
         EmpPermanentAddress: item.emp_PermanentAddress ? item.emp_PermanentAddress : '',
+        EmpPermanentAddressDistrict: item.emp_PermanentAddressDistrict ? item.emp_PermanentAddressDistrict : '',
         EmpPermanentAddressPincode: item.emp_PermanentAddressPincode ? item.emp_PermanentAddressPincode : '',
         EmpPermanentAddressPhone: item.emp_PermanentAddressPhone ? item.emp_PermanentAddressPhone : '',
         EmpIdentification1: item.emp_Identification1 ? item.emp_Identification1 : '',
@@ -295,9 +302,11 @@ export class CandidateDetails {
   EmpAadharNo: String;
   EmpPAN: String;
   EmpPresentAddress: String;
+  EmpPresentAddressDistrict: String;
   EmpPresentAddressPincode: String;
   EmpPresentAddressPhone: String;
   EmpPermanentAddress: String;
+  EmpPermanentAddressDistrict: String;
   EmpPermanentAddressPincode: String;
   EmpPermanentAddressPhone: String;
   EmpIdentification1: String;
