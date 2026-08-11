@@ -109,11 +109,15 @@
 
             <div class="form-group">
               <label class="required" for="DateOfBirth">Date of Birth</label>
-              <input type="date" class="form-control" [max]="todaydate" id="DateOfBirth" aria-describedby="DateOfBirth"
+              <input type="date" class="form-control" [max]="maxDateOfBirth" id="DateOfBirth" aria-describedby="DateOfBirth"
                 formControlName="DateOfBirth" (change)="orgValueChange($event)">
               <div class="text-danger"
                 *ngIf="(employeeForm.controls['DateOfBirth'].touched || employeeForm.controls['DateOfBirth'].dirty) && employeeForm.controls['DateOfBirth'].errors?.required">
                 Date of Birth is required.
+              </div>
+              <div class="text-danger"
+                *ngIf="(employeeForm.controls['DateOfBirth'].touched || employeeForm.controls['DateOfBirth'].dirty) && employeeForm.controls['DateOfBirth'].errors?.minimumAge">
+                Employee age should be 18 years or above.
               </div>
             </div>
 

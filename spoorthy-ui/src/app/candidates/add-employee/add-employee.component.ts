@@ -1,5 +1,5 @@
 import { Component, HostListener, OnInit } from '@angular/core';
-import { FormGroup, FormControl, Validators, FormBuilder, FormArray } from '@angular/forms';
+import { FormGroup, FormControl, Validators, FormBuilder, FormArray, AbstractControl, ValidationErrors } from '@angular/forms';
 
 import { MatTableDataSource } from '@angular/material/table';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
@@ -86,6 +86,7 @@ export class AddEmployeeComponent implements OnInit {
 
   public languageList = [];
   public todaydate = new Date();
+  public maxDateOfBirth = this.getDateStringForAge(18);
 
   AadharDocumenturl: any = undefined;
   CandidatePhotourl: any = undefined;
@@ -223,7 +224,7 @@ export class AddEmployeeComponent implements OnInit {
     this.employeeForm = new FormGroup({
       'FullName': new FormControl(null, [Validators.required, Validators.pattern('^[a-zA-Z ]*$'), Validators.maxLength(100)]),
       'Age': new FormControl(null, [Validators.required, Validators.pattern('^[0-9]*$'), Validators.maxLength(3)]),
-      'DateOfBirth': new FormControl(null, [Validators.required]),
+      'DateOfBirth': new FormControl(null, [Validators.required, this.minimumAgeValidator(18)]),
       'PlaceOfBirth': new FormControl(null, [Validators.required, Validators.pattern('^[a-zA-Z]*$'), Validators.maxLength(100)]),
       'MotherTongue': new FormControl(null, [Validators.required, Validators.pattern('^[a-zA-Z]*$'), Validators.maxLength(100)]),
       'Gender': new FormControl('', [Validators.required]),
@@ -1781,16 +1782,47 @@ export class AddEmployeeComponent implements OnInit {
   orgValueChange(event) {
     if (event.target.value) {
       let dob = new Date(event.target.value);
-      let today = new Date();
-
-      if (today > dob) {
-        let age = today.getFullYear() - dob.getFullYear();
-        if (today.getMonth() < dob.getMonth()) {
-          age = age - 1;
-        }
+      if (new Date() > dob) {
+        let age = this.calculateAge(dob);
         this.employeeForm.controls['Age'].patchValue(age)
       }
     }
+  }
+
+  private minimumAgeValidator(minAge: number) {
+    return (control: AbstractControl): ValidationErrors | null => {
+      if (!control.value) {
+        return null;
+      }
+
+      const dob = new Date(control.value);
+      if (isNaN(dob.getTime())) {
+        return { minimumAge: true };
+      }
+
+      return this.calculateAge(dob) >= minAge ? null : { minimumAge: true };
+    };
+  }
+
+  private calculateAge(dob: Date): number {
+    const today = new Date();
+    let age = today.getFullYear() - dob.getFullYear();
+    const monthDiff = today.getMonth() - dob.getMonth();
+
+    if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < dob.getDate())) {
+      age = age - 1;
+    }
+
+    return age;
+  }
+
+  private getDateStringForAge(age: number): string {
+    const today = new Date();
+    const date = new Date(today.getFullYear() - age, today.getMonth(), today.getDate());
+    const month = ('0' + (date.getMonth() + 1)).slice(-2);
+    const day = ('0' + date.getDate()).slice(-2);
+
+    return `${date.getFullYear()}-${month}-${day}`;
   }
 
   orgValueExp(event) {
