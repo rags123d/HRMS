@@ -220,6 +220,12 @@
             </div>
 
             <div class="form-group">
+              <label for="PresentAddressCity">City</label>
+              <input type="text" class="form-control" id="PresentAddressCity" aria-describedby="PresentAddressCity"
+                placeholder="Enter City" formControlName="PresentAddressCity">
+            </div>
+
+            <div class="form-group">
               <label class="required" for="PresentAddressPincode">Present Address Pincode</label>
               <input type="text" class="form-control" id="PresentAddressPincode"
                 aria-describedby="PresentAddressPincode" placeholder="Enter Pincode" maxlength="6"
@@ -267,6 +273,12 @@
                 *ngIf="(employeeForm.controls['PermanentAddress'].touched || employeeForm.controls['PermanentAddress'].dirty) && employeeForm.controls['PermanentAddress'].errors?.required">
                 Permanent Address is required.
               </div>
+            </div>
+
+            <div class="form-group">
+              <label for="PermanentAddressCity">City</label>
+              <input type="text" class="form-control" id="PermanentAddressCity" aria-describedby="PermanentAddressCity"
+                placeholder="Enter City" formControlName="PermanentAddressCity">
             </div>
 
             <div class="form-group">

@@ -107,7 +107,6 @@ export class AddWorkorderComponent implements OnInit {
 
     this.workOrderForm = new FormGroup({
       'name': new FormControl(null, [Validators.required, Validators.pattern('^[a-zA-Z -_]*$'), Validators.maxLength(100)]),
-      'workOrderDate': new FormControl(null, [Validators.required]),
       'noOfRequirements': new FormControl(null, [Validators.required, Validators.pattern('^[0-9]*$')]),
       'workOrderDocument': new FormControl(null, [Validators.required, requiredFileType(['pdf'])]),
       "agreementDocument": new FormControl(null, [Validators.required, requiredFileType(['pdf'])]),
@@ -174,7 +173,6 @@ export class AddWorkorderComponent implements OnInit {
     }
 
     formData.append('name', this.workOrderForm.get('name').value)
-    formData.append('workOrderDate', this.workOrderForm.get('workOrderDate').value)
     formData.append('noOfRequirements', this.workOrderForm.get('noOfRequirements').value)
     formData.append('workOrderDocument', this.workOrderForm.get('workOrderDocument').value)
     formData.append('agreementDocument', this.workOrderForm.get('agreementDocument').value)
@@ -233,10 +231,6 @@ export class AddWorkorderComponent implements OnInit {
             })
 
             this.workOrderForm.controls.name.setValue(data[0].name)
-            
-            var workOrderDate = data[0].workOrderDate ? data[0].workOrderDate.split('T')[0] : "";
-            this.workOrderForm.controls.workOrderDate.setValue(workOrderDate)
-
             this.workOrderForm.controls.noOfRequirements.setValue(data[0].noOfRequirements)
             this.workOrderForm.controls.client.setValue(data[0].client._id)
 
