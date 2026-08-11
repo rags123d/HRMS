@@ -121,7 +121,7 @@ export class AddClientComponent implements OnInit {
       // "agreementDocument": new FormControl(null, [Validators.required, requiredFileType(['pdf'])]),
       "licenseDocument": new FormControl(null, [requiredFileType(['pdf'])]),
       "GSTDocument": new FormControl(null, [requiredFileType(['pdf'])]),
-      "PANDocument": new FormControl(null, [requiredFileType(['pdf'])]),
+      "PANDocument": new FormControl(null, [Validators.required, requiredFileType(['pdf'])]),
       "TANDocument": new FormControl(null, [requiredFileType(['pdf'])]),
     });
 
@@ -284,6 +284,12 @@ export class AddClientComponent implements OnInit {
 
 
   onSubmit() {
+    if (this.clientForm.invalid) {
+      this.clientForm.markAllAsTouched();
+      this.toastr.error("Please fill all required fields.");
+      return;
+    }
+
     const formData = new FormData();
 
     if (this.url && this.url != -1)

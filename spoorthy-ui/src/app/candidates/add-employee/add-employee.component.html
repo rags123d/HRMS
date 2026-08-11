@@ -855,7 +855,7 @@
             </div>
 
             <div class="form-group">
-              <label for="PANDocument">PAN Document</label>
+              <label class="required" for="PANDocument">PAN Document</label>
               <input type="file" class="d-none mb-1" id="PANDocument" aria-describedby="PANDocument">
               <div class="pl-0 col-lg-12">
                 <button class="text-left btn btn-danger" onclick="document.getElementById('PANDocument').click()"><i
@@ -865,13 +865,12 @@
                   <i *ngIf="PANDocumenturl" class="fas fa-eye view" tooltip="View"></i>
                 </a>
               </div>
+              <div class="text-danger" *ngIf="employeeForm.get('PANDocument').errors?.required">
+                PAN Document is required.
+              </div>
               <div class="text-danger" *ngIf="employeeForm.get('PANDocument').errors?.requiredFileType">
                 Upload pdf files
               </div>
-              <!-- <div class="text-danger"
-                *ngIf="employeeForm.get('PANDocument').errors!=null && employeeForm.get('PANDocument').errors['requiredFileType']">
-                Upload pdf files
-              </div> -->
             </div>
 
             <div class="form-group">

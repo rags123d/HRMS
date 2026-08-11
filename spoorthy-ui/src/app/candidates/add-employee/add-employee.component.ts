@@ -251,7 +251,7 @@ export class AddEmployeeComponent implements OnInit {
       'CandidatePhoto': new FormControl(null, [Validators.required, requiredFileType(['jpg', 'png', 'jpeg'])]),
       'AadharDocument': new FormControl(null, [Validators.required, requiredFileType(['pdf'])]),
       'ResumeDocument': new FormControl(null, [requiredFileType(['pdf'])]),
-      'PANDocument': new FormControl(null, [requiredFileType(['pdf'])]),
+      'PANDocument': new FormControl(null, [Validators.required, requiredFileType(['pdf'])]),
       'IDProofDocument': new FormControl(null, [requiredFileType(['pdf'])]),
       'PassbookDocument': new FormControl(null, [Validators.required, requiredFileType(['pdf'])]),
       'QualificationDocument': new FormControl(null, [requiredFileType(['pdf'])]),
@@ -601,6 +601,12 @@ export class AddEmployeeComponent implements OnInit {
   }
 
   onSubmit() {
+    if (this.employeeForm.invalid) {
+      this.employeeForm.markAllAsTouched();
+      this.toastr.error("Please fill all required fields.");
+      return;
+    }
+
     const formData = new FormData();
     if (this.url && this.url != -1)
       formData.append("id", this.url);
