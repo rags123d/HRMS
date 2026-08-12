@@ -1135,7 +1135,8 @@ exports.addEditEmployee = async function (req, res) {
             if (req.body.WorkExperienceType == "EXPERIENCED" && req.body.WorkExperience) {
                 req.body.WorkExperience = JSON.parse(req.body.WorkExperience);
                 if (Array.isArray(req.body.WorkExperience) && req.body.WorkExperience.length > 0) {
-                    for (const WorkExperience of req.body.WorkExperience) {
+                    for (let i = 0; i < req.body.WorkExperience.length; i++) {
+                        const WorkExperience = req.body.WorkExperience[i];
                         const WorkExperienceData = {
                             Designation: WorkExperience.Designation,
                             CompanyName: WorkExperience.CompanyName,
@@ -1148,6 +1149,17 @@ exports.addEditEmployee = async function (req, res) {
                             SupervisorMobile: WorkExperience.SupervisorMobile,
                             SupervisorEmail: WorkExperience.SupervisorEmail,
                         }
+
+                        // Handle WorkExperienceLetter file upload
+                        if (req.files && req.files[`WorkExperienceLetter_${i}`]) {
+                            const file = req.files[`WorkExperienceLetter_${i}`][0];
+                            if (!fs.existsSync('./public/uploads/candidate/' + value.id + '/WorkExperience')) {
+                                fs.mkdirSync('./public/uploads/candidate/' + value.id + '/WorkExperience', { recursive: true });
+                            }
+                            move('./public/uploads/candidate/' + file.filename, './public/uploads/candidate/' + value.id + '/WorkExperience/' + file.filename);
+                            WorkExperienceData.WorkExperienceLetter = 'uploads/candidate/' + value.id + '/WorkExperience/' + file.filename;
+                        }
+
                         if (WorkExperience.id) {
                             WorkExperienceIds.push(WorkExperience.id)
                             await WorkExperienceModel.updateOne({ _id: WorkExperience.id }, { $set: WorkExperienceData })

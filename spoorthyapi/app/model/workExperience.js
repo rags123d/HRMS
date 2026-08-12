@@ -13,6 +13,7 @@ const WorkExperienceSchema = new Schema({
     SupervisorName : String,
     SupervisorMobile : Number,
     SupervisorEmail : String,
+    WorkExperienceLetter : String,
     WorkExperienceType : String,
     ESIBasedOn : String,
 
