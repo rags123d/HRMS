@@ -220,6 +220,17 @@
             </div>
 
             <div class="form-group">
+              <label class="required" for="PresentAddressLandmark">Present Address Landmark</label>
+              <input type="text" class="form-control" id="PresentAddressLandmark"
+                aria-describedby="PresentAddressLandmark" placeholder="Enter Landmark"
+                formControlName="PresentAddressLandmark">
+              <div class="text-danger"
+                *ngIf="(employeeForm.controls['PresentAddressLandmark'].touched || employeeForm.controls['PresentAddressLandmark'].dirty) && employeeForm.controls['PresentAddressLandmark'].errors?.required">
+                Present Address Landmark is required.
+              </div>
+            </div>
+
+            <div class="form-group">
               <label class="required" for="PresentAddressPincode">Present Address Pincode</label>
               <input type="text" class="form-control" id="PresentAddressPincode"
                 aria-describedby="PresentAddressPincode" placeholder="Enter Pincode" maxlength="6"
@@ -266,6 +277,17 @@
               <div class="text-danger"
                 *ngIf="(employeeForm.controls['PermanentAddress'].touched || employeeForm.controls['PermanentAddress'].dirty) && employeeForm.controls['PermanentAddress'].errors?.required">
                 Permanent Address is required.
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="required" for="PermanentAddressLandmark">Permanent Address Landmark</label>
+              <input type="text" class="form-control" id="PermanentAddressLandmark"
+                aria-describedby="PermanentAddressLandmark" placeholder="Enter Landmark"
+                formControlName="PermanentAddressLandmark">
+              <div class="text-danger"
+                *ngIf="(employeeForm.controls['PermanentAddressLandmark'].touched || employeeForm.controls['PermanentAddressLandmark'].dirty) && employeeForm.controls['PermanentAddressLandmark'].errors?.required">
+                Permanent Address Landmark is required.
               </div>
             </div>
 
