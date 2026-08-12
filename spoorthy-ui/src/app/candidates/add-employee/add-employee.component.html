@@ -220,6 +220,21 @@
             </div>
 
             <div class="form-group">
+              <label class="required" for="PresentAddressState">Present Address State</label>
+              <input type="text" class="form-control" id="PresentAddressState"
+                aria-describedby="PresentAddressState" placeholder="Enter State" maxlength="50"
+                formControlName="PresentAddressState">
+              <div class="text-danger"
+                *ngIf="(employeeForm.controls['PresentAddressState'].touched || employeeForm.controls['PresentAddressState'].dirty) && employeeForm.controls['PresentAddressState'].errors?.required">
+                Present Address State is required.
+              </div>
+              <div class="text-danger"
+                *ngIf="(employeeForm.controls['PresentAddressState'].touched || employeeForm.controls['PresentAddressState'].dirty) && employeeForm.controls['PresentAddressState'].errors?.pattern">
+                Present Address State is not valid.
+              </div>
+            </div>
+
+            <div class="form-group">
               <label class="required" for="PresentAddressPincode">Present Address Pincode</label>
               <input type="text" class="form-control" id="PresentAddressPincode"
                 aria-describedby="PresentAddressPincode" placeholder="Enter Pincode" maxlength="6"
@@ -266,6 +281,21 @@
               <div class="text-danger"
                 *ngIf="(employeeForm.controls['PermanentAddress'].touched || employeeForm.controls['PermanentAddress'].dirty) && employeeForm.controls['PermanentAddress'].errors?.required">
                 Permanent Address is required.
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="required" for="PermanentAddressState">Permanent Address State</label>
+              <input type="text" class="form-control" id="PermanentAddressState"
+                aria-describedby="PermanentAddressState" placeholder="Enter State" maxlength="50"
+                formControlName="PermanentAddressState">
+              <div class="text-danger"
+                *ngIf="(employeeForm.controls['PermanentAddressState'].touched || employeeForm.controls['PermanentAddressState'].dirty) && employeeForm.controls['PermanentAddressState'].errors?.required">
+                Permanent Address State is required.
+              </div>
+              <div class="text-danger"
+                *ngIf="(employeeForm.controls['PermanentAddressState'].touched || employeeForm.controls['PermanentAddressState'].dirty) && employeeForm.controls['PermanentAddressState'].errors?.pattern">
+                Permanent Address State is not valid.
               </div>
             </div>
 
