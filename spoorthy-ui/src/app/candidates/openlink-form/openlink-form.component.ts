@@ -208,9 +208,11 @@ export class OpenlinkFormComponent implements OnInit {
       'SpouseName': new FormControl(null, [Validators.required, Validators.pattern('^[a-zA-Z ]*$'), Validators.maxLength(100)]),
 
       'PresentAddress': new FormControl(null, [Validators.required, Validators.maxLength(250)]),
+      'PresentAddressDistrict': new FormControl(null, [Validators.required]),
       'PresentAddressPincode': new FormControl(null, [Validators.required, Validators.pattern('^[0-9]*$'), Validators.maxLength(6)]),
       'PresentAddressPhone': new FormControl(null, [Validators.required, Validators.pattern('^[0-9]*$'), Validators.maxLength(10)]),
       'PermanentAddress': new FormControl(null, [Validators.required, Validators.maxLength(250)]),
+      'PermanentAddressDistrict': new FormControl(null, [Validators.required]),
       'PermanentAddressPincode': new FormControl(null, [Validators.required, Validators.pattern('^[0-9]*$'), Validators.maxLength(6)]),
       'PermanentAddressPhone': new FormControl(null, [Validators.required, Validators.pattern('^[0-9]*$'), Validators.maxLength(10)]),
 
@@ -440,9 +442,11 @@ export class OpenlinkFormComponent implements OnInit {
     }
 
     formData.append('PresentAddress', formobj.PresentAddress)
+    formData.append('PresentAddressDistrict', formobj.PresentAddressDistrict)
     formData.append('PresentAddressPincode', formobj.PresentAddressPincode)
     formData.append('PresentAddressPhone', formobj.PresentAddressPhone)
     formData.append('PermanentAddress', formobj.PermanentAddress)
+    formData.append('PermanentAddressDistrict', formobj.PermanentAddressDistrict)
     formData.append('PermanentAddressPincode', formobj.PermanentAddressPincode)
     formData.append('PermanentAddressPhone', formobj.PermanentAddressPhone)
 
@@ -1000,11 +1004,13 @@ export class OpenlinkFormComponent implements OnInit {
 
     if (this.selectedAddress == true) {
       this.employeeForm.controls.PermanentAddress.setValue(this.employeeForm.value.PresentAddress)
+      this.employeeForm.controls.PermanentAddressDistrict.setValue(this.employeeForm.value.PresentAddressDistrict)
       this.employeeForm.controls.PermanentAddressPincode.setValue(this.employeeForm.value.PresentAddressPincode)
       this.employeeForm.controls.PermanentAddressPhone.setValue(this.URLphoneNo)
     }
     else {
       this.employeeForm.controls.PermanentAddress.setValue('')
+      this.employeeForm.controls.PermanentAddressDistrict.setValue('')
       this.employeeForm.controls.PermanentAddressPincode.setValue('')
       this.employeeForm.controls.PermanentAddressPhone.setValue('')
     }

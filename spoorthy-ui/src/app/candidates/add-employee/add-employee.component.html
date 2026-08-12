@@ -220,6 +220,17 @@
             </div>
 
             <div class="form-group">
+              <label class="required" for="PresentAddressDistrict">District</label>
+              <input type="text" class="form-control" id="PresentAddressDistrict"
+                aria-describedby="PresentAddressDistrict" placeholder="Enter District"
+                formControlName="PresentAddressDistrict">
+              <div class="text-danger"
+                *ngIf="(employeeForm.controls['PresentAddressDistrict'].touched || employeeForm.controls['PresentAddressDistrict'].dirty) && employeeForm.controls['PresentAddressDistrict'].errors?.required">
+                Present Address District is required.
+              </div>
+            </div>
+
+            <div class="form-group">
               <label class="required" for="PresentAddressPincode">Present Address Pincode</label>
               <input type="text" class="form-control" id="PresentAddressPincode"
                 aria-describedby="PresentAddressPincode" placeholder="Enter Pincode" maxlength="6"
@@ -266,6 +277,17 @@
               <div class="text-danger"
                 *ngIf="(employeeForm.controls['PermanentAddress'].touched || employeeForm.controls['PermanentAddress'].dirty) && employeeForm.controls['PermanentAddress'].errors?.required">
                 Permanent Address is required.
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="required" for="PermanentAddressDistrict">District</label>
+              <input type="text" class="form-control" id="PermanentAddressDistrict"
+                aria-describedby="PermanentAddressDistrict" placeholder="Enter District"
+                formControlName="PermanentAddressDistrict">
+              <div class="text-danger"
+                *ngIf="(employeeForm.controls['PermanentAddressDistrict'].touched || employeeForm.controls['PermanentAddressDistrict'].dirty) && employeeForm.controls['PermanentAddressDistrict'].errors?.required">
+                Permanent Address District is required.
               </div>
             </div>
 

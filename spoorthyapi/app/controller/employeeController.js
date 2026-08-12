@@ -1243,9 +1243,11 @@ exports.addEditEmployee = async function (req, res) {
                 MotherTongue: value.MotherTongue,
                 BloodGroup: value.BloodGroup,
                 PresentAddress: value.PresentAddress,
+                PresentAddressDistrict: value.PresentAddressDistrict,
                 PresentAddressPincode: value.PresentAddressPincode,
                 PresentAddressPhone: value.PresentAddressPhone,
                 PermanentAddress: value.PermanentAddress,
+                PermanentAddressDistrict: value.PermanentAddressDistrict,
                 PermanentAddressPincode: value.PermanentAddressPincode,
                 PermanentAddressPhone: value.PermanentAddressPhone,
                 Identification1: value.Identification1,
@@ -1975,6 +1977,12 @@ function move(oldPath, newPath) {
 
 exports.addBulkEmployee = async function (req, res) {
     try {
+        if (!Array.isArray(req.body) || req.body.some(sdata => !sdata.EmpPresentAddressDistrict || !sdata.EmpPermanentAddressDistrict)) {
+            return res
+                .status(400)
+                .send({ success: false, message: 'Present Address District and Permanent Address District are required.' });
+        }
+
         req.body.forEach(async sdata => {
 
             const FamilyDetailIds = await FamilyDetailModel({
@@ -2040,9 +2048,11 @@ exports.addBulkEmployee = async function (req, res) {
                 MotherTongue: sdata.EmpMotherTongue,
                 BloodGroup: await BloodGroupModel.findOne({ name: sdata.EmpBloodGroup }),
                 PresentAddress: sdata.EmpPresentAddress,
+                PresentAddressDistrict: sdata.EmpPresentAddressDistrict,
                 PresentAddressPincode: sdata.EmpPresentAddressPincode,
                 PresentAddressPhone: sdata.EmpPresentAddressPhone,
                 PermanentAddress: sdata.EmpPermanentAddress,
+                PermanentAddressDistrict: sdata.EmpPermanentAddressDistrict,
                 PermanentAddressPincode: sdata.EmpPermanentAddressPincode,
                 PermanentAddressPhone: sdata.EmpPermanentAddressPhone,
                 Identification1: sdata.EmpIdentification1,
@@ -2406,9 +2416,11 @@ exports.addEmployee = async function (req, res) {
                 MotherTongue: value.MotherTongue,
                 BloodGroup: value.BloodGroup,
                 PresentAddress: value.PresentAddress,
+                PresentAddressDistrict: value.PresentAddressDistrict,
                 PresentAddressPincode: value.PresentAddressPincode,
                 PresentAddressPhone: value.PresentAddressPhone,
                 PermanentAddress: value.PermanentAddress,
+                PermanentAddressDistrict: value.PermanentAddressDistrict,
                 PermanentAddressPincode: value.PermanentAddressPincode,
                 PermanentAddressPhone: value.PermanentAddressPhone,
                 Identification1: value.Identification1,
