@@ -377,7 +377,7 @@ export class AddEmployeeComponent implements OnInit {
     })
 
     this.workExperienceForm = new FormGroup({
-      'Designation': new FormControl(null, [Validators.required, Validators.pattern('^[a-zA-Z ]*$')]),
+     'Designation': new FormControl(null, [Validators.required]),
       'CompanyName': new FormControl(null, [Validators.required, Validators.pattern('^[a-zA-Z ]*$')]),
       'From': new FormControl(null, [Validators.required]),
       // 'From': new FormControl('', [Validators.required]),
