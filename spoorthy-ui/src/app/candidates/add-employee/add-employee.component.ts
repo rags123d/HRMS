@@ -286,13 +286,13 @@ export class AddEmployeeComponent implements OnInit {
       'ESIAmount': new FormControl(null),
       'ProfessionalTax': new FormControl(null),
 
-      'Language': new FormControl(null, [Validators.required]),
+      'Language': new FormControl(null),
       'Speak': new FormControl(false),
       'Write': new FormControl(false),
       'Read': new FormControl(false),
 
       'Langauges': this.fb.array([this.fb.group({
-        Language: ['', [Validators.required]],
+        Language: [''],
         Speak: [false],
         Write: [false],
         Read: [false]
