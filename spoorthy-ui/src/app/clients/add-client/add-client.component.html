@@ -138,7 +138,7 @@
               </div>
               <!-- ✨ UPDATED: Error message tells user both formats -->
               <div class="text-danger"
-                *ngIf="(clientForm.controls['cantactNo'].touched || clientForm.controls['contactNo'].dirty) && clientForm.controls['contactNo'].errors?.pattern">
+                *ngIf="(clientForm.controls['cantactNo'].touched || clientForm.controls['cantactNo'].dirty) && clientForm.controls['cantactNo'].errors?.pattern">
                 Enter valid mobile (9876543210) or landline (08172-231616).
               </div>
             </div>
