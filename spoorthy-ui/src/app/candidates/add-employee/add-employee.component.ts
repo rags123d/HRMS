@@ -95,6 +95,7 @@ export class AddEmployeeComponent implements OnInit {
   IDProofDocumenturl: any = undefined;
   PassbookDocumenturl: any = undefined;
   QualificationDocumenturl: any = undefined;
+  WorkExperienceLetterurl: any = undefined;
 
   salaryData: any;
   selectedValue: string[] = [];
@@ -190,6 +191,13 @@ export class AddEmployeeComponent implements OnInit {
           let objUrl = URL.createObjectURL(file);
           this.QualificationDocumenturl = objUrl;
           this.employeeForm.controls.QualificationDocument.setValue(file)
+        }
+        else if (Elem.id == 'WorkExperienceLetter') {
+          var element = document.getElementById("WorkExperienceLetterName") as any;
+          element.innerHTML = file.name
+          let objUrl = URL.createObjectURL(file);
+          this.WorkExperienceLetterurl = objUrl;
+          this.workExperienceForm.controls.WorkExperienceLetter.setValue(file)
         }
       }
     }
@@ -381,6 +389,7 @@ export class AddEmployeeComponent implements OnInit {
       'SupervisorName': new FormControl(null, [Validators.pattern('^[a-zA-Z ]*$')]),
       'SupervisorMobile': new FormControl(null, [Validators.pattern("^((\\+91-?)|0)?[0-9]{10}$"), Validators.minLength(10), Validators.maxLength(10)]),
       'SupervisorEmail': new FormControl(null, [Validators.pattern('^[a-zA-Z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$')]),
+      'WorkExperienceLetter': new FormControl(null, [Validators.required, requiredFileType(['pdf'])]),
     })
 
     this.referencesForm = new FormGroup({
@@ -958,6 +967,14 @@ export class AddEmployeeComponent implements OnInit {
       }
     })
 
+    // Extract WorkExperienceLetter files and append to formData
+    sendWork.forEach((obj: any, index: number) => {
+      if (obj.WorkExperienceLetter && obj.WorkExperienceLetter instanceof File) {
+        formData.append(`WorkExperienceLetter_${index}`, obj.WorkExperienceLetter)
+        delete obj.WorkExperienceLetter
+      }
+    })
+
     formData.append('FamilyDetail', JSON.stringify(sendFamily))
     formData.append('EducationalQualification', JSON.stringify(sendEducation))
     formData.append('WorkExperience', JSON.stringify(sendWork))
@@ -1420,6 +1437,7 @@ export class AddEmployeeComponent implements OnInit {
       'SupervisorName': this.workExperienceForm.controls.SupervisorName.value,
       'SupervisorMobile': this.workExperienceForm.controls.SupervisorMobile.value,
       'SupervisorEmail': this.workExperienceForm.controls.SupervisorEmail.value,
+      'WorkExperienceLetter': this.workExperienceForm.controls.WorkExperienceLetter.value,
       'isEdit': true
     })
     this.ModelClose('ExperienceModel')
