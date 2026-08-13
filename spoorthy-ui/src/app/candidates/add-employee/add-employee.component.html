@@ -1777,6 +1777,27 @@
             </div>
           </div>
 
+          <div class="form-group">
+            <label for="WorkExperienceLetter">Work Experience Letter</label>
+            <input type="file" class="d-none mb-1" id="WorkExperienceLetter" aria-describedby="WorkExperienceLetter"
+              accept="application/pdf">
+            <div class="pl-0 col-lg-12">
+              <button class="text-left btn btn-danger"
+                onclick="document.getElementById('WorkExperienceLetter').click()">
+                <i class="fas fa-upload pr-3"></i>UPLOAD FILE
+              </button>
+              <label class="ml-2" id="WorkExperienceLetterName" for="WorkExperienceLetter">Upload File</label>
+              <a [href]="(WorkExperienceLetterurl ? WorkExperienceLetterurl : '#') | safe" target="_blank"
+                class="btn rounded">
+                <i *ngIf="WorkExperienceLetterurl" class="fas fa-eye view" tooltip="View"></i>
+              </a>
+            </div>
+            <div class="text-danger"
+              *ngIf="workExperienceForm.get('WorkExperienceLetter').errors?.requiredFileType">
+              Upload pdf files
+            </div>
+          </div>
+
         </div>
         <div class="modal-footer">
           <button (click)="addExperienceData()" [disabled]="!workExperienceForm.valid" type="button"
