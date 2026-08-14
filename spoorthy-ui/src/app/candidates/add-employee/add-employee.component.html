@@ -522,13 +522,89 @@
 
           <div class="col-lg-6">
             <div class="form-group">
-              <label for="PFAccount">PF Account No.</label>
+              <label class="required" for="PFAccount">PF Account No.</label>
               <input type="text" class="form-control" id="PFAccount" aria-describedby="PFAccount"
                 placeholder="Enter PF Account Number" formControlName="PFAccount" maxlength="22">
+              <div class="text-danger"
+                *ngIf="(employeeForm.controls['PFAccount'].touched || employeeForm.controls['PFAccount'].dirty) && employeeForm.controls['PFAccount'].errors?.required">
+                PF Account Number is required.
+              </div>
               <div class="text-danger"
                 *ngIf="(employeeForm.controls['PFAccount'].touched || employeeForm.controls['PFAccount'].dirty) && employeeForm.controls['PFAccount'].errors?.pattern">
                 PF Account Number is not valid. (ex : KAUDP12345670AB9876543 "NOTE : 0AB => these can be 0-9 || A-Z
                 only 3 inputs")
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-6">
+            <div class="form-group">
+              <label class="required" for="PFMemberId">PF Member ID</label>
+              <input type="text" class="form-control" id="PFMemberId" aria-describedby="PFMemberId"
+                placeholder="Enter PF Member ID" formControlName="PFMemberId" maxlength="20">
+              <div class="text-danger"
+                *ngIf="(employeeForm.controls['PFMemberId'].touched || employeeForm.controls['PFMemberId'].dirty) && employeeForm.controls['PFMemberId'].errors?.required">
+                PF Member ID is required.
+              </div>
+              <div class="text-danger"
+                *ngIf="(employeeForm.controls['PFMemberId'].touched || employeeForm.controls['PFMemberId'].dirty) && employeeForm.controls['PFMemberId'].errors?.pattern">
+                PF Member ID is not valid.
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-6">
+            <div class="form-group">
+              <label class="required" for="PFJoiningDate">PF Joining Date</label>
+              <input type="date" class="form-control" id="PFJoiningDate" aria-describedby="PFJoiningDate"
+                formControlName="PFJoiningDate">
+              <div class="text-danger"
+                *ngIf="(employeeForm.controls['PFJoiningDate'].touched || employeeForm.controls['PFJoiningDate'].dirty) && employeeForm.controls['PFJoiningDate'].errors?.required">
+                PF Joining Date is required.
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-6">
+            <div class="form-group">
+              <label for="PFExitDate">PF Exit Date</label>
+              <input type="date" class="form-control" id="PFExitDate" aria-describedby="PFExitDate"
+                formControlName="PFExitDate">
+              <div class="text-danger"
+                *ngIf="(employeeForm.controls['PFExitDate'].touched || employeeForm.controls['PFExitDate'].dirty) && employeeForm.controls['PFExitDate'].errors?.pattern">
+                PF Exit Date is not valid.
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-6">
+            <div class="form-group">
+              <label class="required" for="PensionEPSNumber">Pension/EPS Number</label>
+              <input type="text" class="form-control" id="PensionEPSNumber" aria-describedby="PensionEPSNumber"
+                placeholder="Enter Pension/EPS Number" formControlName="PensionEPSNumber" maxlength="20">
+              <div class="text-danger"
+                *ngIf="(employeeForm.controls['PensionEPSNumber'].touched || employeeForm.controls['PensionEPSNumber'].dirty) && employeeForm.controls['PensionEPSNumber'].errors?.required">
+                Pension/EPS Number is required.
+              </div>
+              <div class="text-danger"
+                *ngIf="(employeeForm.controls['PensionEPSNumber'].touched || employeeForm.controls['PensionEPSNumber'].dirty) && employeeForm.controls['PensionEPSNumber'].errors?.pattern">
+                Pension/EPS Number is not valid.
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-6">
+            <div class="form-group">
+              <label class="required" for="PFNominatedetails">PF Nominee Details</label>
+              <input type="text" class="form-control" id="PFNominatedetails" aria-describedby="PFNominatedetails"
+                placeholder="Enter PF Nominee Details" formControlName="PFNominatedetails" maxlength="100">
+              <div class="text-danger"
+                *ngIf="(employeeForm.controls['PFNominatedetails'].touched || employeeForm.controls['PFNominatedetails'].dirty) && employeeForm.controls['PFNominatedetails'].errors?.required">
+                PF Nominee Details is required.
+              </div>
+              <div class="text-danger"
+                *ngIf="(employeeForm.controls['PFNominatedetails'].touched || employeeForm.controls['PFNominatedetails'].dirty) && employeeForm.controls['PFNominatedetails'].errors?.pattern">
+                PF Nominee Details is not valid.
               </div>
             </div>
           </div>
@@ -581,6 +657,8 @@
               </div>
             </div>
           </div>
+
+
         </div>
 
         <!-- Bank Details Table -->
