@@ -70,7 +70,7 @@
             <div class="form-group">
               <label class="required" for="MotherTongue">Mother Tongue</label>
               <input type="text" class="form-control" id="MotherTongue" aria-describedby="MotherTongue"
-                placeholder="Enter Monther Tongue" formControlName="MotherTongue">
+                placeholder="Enter Mother Tongue" formControlName="MotherTongue">
               <div class="text-danger"
                 *ngIf="(employeeForm.controls['MotherTongue'].touched || employeeForm.controls['MotherTongue'].dirty) && employeeForm.controls['MotherTongue'].errors?.required">
                 Mother Tongue is required.
@@ -109,11 +109,15 @@
 
             <div class="form-group">
               <label class="required" for="DateOfBirth">Date of Birth</label>
-              <input type="date" class="form-control" [max]="todaydate" id="DateOfBirth" aria-describedby="DateOfBirth"
+              <input type="date" class="form-control" [max]="maxDateOfBirth" id="DateOfBirth" aria-describedby="DateOfBirth"
                 formControlName="DateOfBirth" (change)="orgValueChange($event)">
               <div class="text-danger"
                 *ngIf="(employeeForm.controls['DateOfBirth'].touched || employeeForm.controls['DateOfBirth'].dirty) && employeeForm.controls['DateOfBirth'].errors?.required">
                 Date of Birth is required.
+              </div>
+              <div class="text-danger"
+                *ngIf="(employeeForm.controls['DateOfBirth'].touched || employeeForm.controls['DateOfBirth'].dirty) && employeeForm.controls['DateOfBirth'].errors?.minimumAge">
+                Employee age should be 18 years or above.
               </div>
             </div>
 
@@ -548,13 +552,89 @@
 
           <div class="col-lg-6">
             <div class="form-group">
-              <label for="PFAccount">PF Account No.</label>
+              <label class="required" for="PFAccount">PF Account No.</label>
               <input type="text" class="form-control" id="PFAccount" aria-describedby="PFAccount"
                 placeholder="Enter PF Account Number" formControlName="PFAccount" maxlength="22">
+              <div class="text-danger"
+                *ngIf="(employeeForm.controls['PFAccount'].touched || employeeForm.controls['PFAccount'].dirty) && employeeForm.controls['PFAccount'].errors?.required">
+                PF Account Number is required.
+              </div>
               <div class="text-danger"
                 *ngIf="(employeeForm.controls['PFAccount'].touched || employeeForm.controls['PFAccount'].dirty) && employeeForm.controls['PFAccount'].errors?.pattern">
                 PF Account Number is not valid. (ex : KAUDP12345670AB9876543 "NOTE : 0AB => these can be 0-9 || A-Z
                 only 3 inputs")
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-6">
+            <div class="form-group">
+              <label class="required" for="PFMemberId">PF Member ID</label>
+              <input type="text" class="form-control" id="PFMemberId" aria-describedby="PFMemberId"
+                placeholder="Enter PF Member ID" formControlName="PFMemberId" maxlength="20">
+              <div class="text-danger"
+                *ngIf="(employeeForm.controls['PFMemberId'].touched || employeeForm.controls['PFMemberId'].dirty) && employeeForm.controls['PFMemberId'].errors?.required">
+                PF Member ID is required.
+              </div>
+              <div class="text-danger"
+                *ngIf="(employeeForm.controls['PFMemberId'].touched || employeeForm.controls['PFMemberId'].dirty) && employeeForm.controls['PFMemberId'].errors?.pattern">
+                PF Member ID is not valid.
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-6">
+            <div class="form-group">
+              <label class="required" for="PFJoiningDate">PF Joining Date</label>
+              <input type="date" class="form-control" id="PFJoiningDate" aria-describedby="PFJoiningDate"
+                formControlName="PFJoiningDate">
+              <div class="text-danger"
+                *ngIf="(employeeForm.controls['PFJoiningDate'].touched || employeeForm.controls['PFJoiningDate'].dirty) && employeeForm.controls['PFJoiningDate'].errors?.required">
+                PF Joining Date is required.
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-6">
+            <div class="form-group">
+              <label for="PFExitDate">PF Exit Date</label>
+              <input type="date" class="form-control" id="PFExitDate" aria-describedby="PFExitDate"
+                formControlName="PFExitDate">
+              <div class="text-danger"
+                *ngIf="(employeeForm.controls['PFExitDate'].touched || employeeForm.controls['PFExitDate'].dirty) && employeeForm.controls['PFExitDate'].errors?.pattern">
+                PF Exit Date is not valid.
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-6">
+            <div class="form-group">
+              <label class="required" for="PensionEPSNumber">Pension/EPS Number</label>
+              <input type="text" class="form-control" id="PensionEPSNumber" aria-describedby="PensionEPSNumber"
+                placeholder="Enter Pension/EPS Number" formControlName="PensionEPSNumber" maxlength="20">
+              <div class="text-danger"
+                *ngIf="(employeeForm.controls['PensionEPSNumber'].touched || employeeForm.controls['PensionEPSNumber'].dirty) && employeeForm.controls['PensionEPSNumber'].errors?.required">
+                Pension/EPS Number is required.
+              </div>
+              <div class="text-danger"
+                *ngIf="(employeeForm.controls['PensionEPSNumber'].touched || employeeForm.controls['PensionEPSNumber'].dirty) && employeeForm.controls['PensionEPSNumber'].errors?.pattern">
+                Pension/EPS Number is not valid.
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-6">
+            <div class="form-group">
+              <label class="required" for="PFNominatedetails">PF Nominee Details</label>
+              <input type="text" class="form-control" id="PFNominatedetails" aria-describedby="PFNominatedetails"
+                placeholder="Enter PF Nominee Details" formControlName="PFNominatedetails" maxlength="100">
+              <div class="text-danger"
+                *ngIf="(employeeForm.controls['PFNominatedetails'].touched || employeeForm.controls['PFNominatedetails'].dirty) && employeeForm.controls['PFNominatedetails'].errors?.required">
+                PF Nominee Details is required.
+              </div>
+              <div class="text-danger"
+                *ngIf="(employeeForm.controls['PFNominatedetails'].touched || employeeForm.controls['PFNominatedetails'].dirty) && employeeForm.controls['PFNominatedetails'].errors?.pattern">
+                PF Nominee Details is not valid.
               </div>
             </div>
           </div>
@@ -607,6 +687,8 @@
               </div>
             </div>
           </div>
+
+
         </div>
 
         <!-- Bank Details Table -->
@@ -678,7 +760,7 @@
           </div>
         </div>
 
-        <!-- Language Table -->
+         <!-- Language Table -->
         <div class="row mb-3">
           <h4>8. Language Known</h4>
           <form class="form">
@@ -686,7 +768,7 @@
               <div class="rowAppend row">
                 <div class="col-lg-5">
                   <div class="form-group">
-                    <label class="required" for="Language">Language</label>
+                    <label for="Language">Language</label>
                     <select formControlName="Language" class="form-control language">
                       <option value="" disabled selected style="color: red;">SELECT LANGUAGE</option>
                       <ng-container *ngFor="let data of Language">
@@ -694,29 +776,25 @@
                         <option *ngIf="data.display == true" [value]="data._id">{{data.name}}</option>
                       </ng-container>
                     </select>
-                    <div class="text-danger"
-                      *ngIf="(item.controls['Language'].touched || item.controls['Language'].dirty) && item.controls['Language'].errors?.required">
-                      Language is required.
-                    </div>
                   </div>
                 </div>
                 <div class="col-lg-2">
                   <div class="text-center form-group">
-                    <label class="required" for="Speak">Speak</label>
+                    <label for="Speak">Speak</label>
                     <input type="checkbox" class="form-control" aria-describedby="Speak" formControlName="Speak"
                       (blur)="BindLanguage()">
                   </div>
                 </div>
                 <div class="col-lg-2">
                   <div class="text-center form-group">
-                    <label class="required" for="Read">Read</label>
+                    <label for="Read">Read</label>
                     <input type="checkbox" class="form-control" aria-describedby="Read" formControlName="Read"
                       (blur)="BindLanguage()">
                   </div>
                 </div>
                 <div class="col-lg-2">
                   <div class="text-center form-group">
-                    <label class="required" for="Write">Write</label>
+                    <label for="Write">Write</label>
                     <input type="checkbox" class="form-control" aria-describedby="Write" formControlName="Write"
                       (blur)="BindLanguage()">
                   </div>
@@ -729,12 +807,11 @@
               </div>
             </div>
             <div class="text-center">
-              <button [disabled]="!GetLanguages.valid" (click)="addLanguage()" class="btn btn-danger mt-3">CLICK TO
+              <button (click)="addLanguage()" class="btn btn-danger mt-3">CLICK TO
                 ADD LANGUAGE</button>
             </div>
           </form>
         </div>
-
         <!-- Reference Table -->
         <div class="row mb-3" *ngIf="(currentlyChecked === 'EXPERIENCED')">
           <h4>7. References</h4>
@@ -885,7 +962,7 @@
             </div>
 
             <div class="form-group">
-              <label for="PANDocument">PAN Document</label>
+              <label class="required" for="PANDocument">PAN Document</label>
               <input type="file" class="d-none mb-1" id="PANDocument" aria-describedby="PANDocument">
               <div class="pl-0 col-lg-12">
                 <button class="text-left btn btn-danger" onclick="document.getElementById('PANDocument').click()"><i
@@ -895,13 +972,12 @@
                   <i *ngIf="PANDocumenturl" class="fas fa-eye view" tooltip="View"></i>
                 </a>
               </div>
+              <div class="text-danger" *ngIf="employeeForm.get('PANDocument').errors?.required">
+                PAN Document is required.
+              </div>
               <div class="text-danger" *ngIf="employeeForm.get('PANDocument').errors?.requiredFileType">
                 Upload pdf files
               </div>
-              <!-- <div class="text-danger"
-                *ngIf="employeeForm.get('PANDocument').errors!=null && employeeForm.get('PANDocument').errors['requiredFileType']">
-                Upload pdf files
-              </div> -->
             </div>
 
             <div class="form-group">
@@ -1621,7 +1697,7 @@
           </button>
         </div>
         <div class="modal-body" style="height: 60vh; overflow-y: auto;">
-          <!-- <div class="form-group">
+           <div class="form-group">
             <label class="required" for="Designation">Designation</label>
             <select id="Designation" formControlName="Designation" class="form-control">
               <option value="" style="color: red;">Select Designation</option>
@@ -1809,6 +1885,27 @@
             <div class="text-danger"
               *ngIf="(workExperienceForm.controls['ReasonForLeaving'].touched || workExperienceForm.controls['ReasonForLeaving'].dirty) && workExperienceForm.controls['ReasonForLeaving'].errors?.pattern">
               Reason for Leaving is not valid.
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="WorkExperienceLetter">Work Experience Letter</label>
+            <input type="file" class="d-none mb-1" id="WorkExperienceLetter" aria-describedby="WorkExperienceLetter"
+              accept="application/pdf">
+            <div class="pl-0 col-lg-12">
+              <button class="text-left btn btn-danger"
+                onclick="document.getElementById('WorkExperienceLetter').click()">
+                <i class="fas fa-upload pr-3"></i>UPLOAD FILE
+              </button>
+              <label class="ml-2" id="WorkExperienceLetterName" for="WorkExperienceLetter">Upload File</label>
+              <a [href]="(WorkExperienceLetterurl ? WorkExperienceLetterurl : '#') | safe" target="_blank"
+                class="btn rounded">
+                <i *ngIf="WorkExperienceLetterurl" class="fas fa-eye view" tooltip="View"></i>
+              </a>
+            </div>
+            <div class="text-danger"
+              *ngIf="workExperienceForm.get('WorkExperienceLetter').errors?.requiredFileType">
+              Upload pdf files
             </div>
           </div>
 
