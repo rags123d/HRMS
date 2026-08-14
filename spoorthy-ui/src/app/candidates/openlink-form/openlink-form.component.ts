@@ -202,7 +202,7 @@ export class OpenlinkFormComponent implements OnInit {
       'Religion': new FormControl('', [Validators.required]),
       'BloodGroup': new FormControl(''),
       'AadharNo': new FormControl(null, [Validators.required, Validators.pattern('^[0-9]*$'), Validators.maxLength(12)]),
-      'PAN': new FormControl(null, [Validators.pattern('^[A-Z0-9]*$'), Validators.maxLength(10)]),
+      'PAN': new FormControl(null, [Validators.required, Validators.pattern('^[A-Z0-9]*$'), Validators.maxLength(10)]),
       'ParentName': new FormControl(null, [Validators.required, Validators.pattern('^[a-zA-Z ]*$'), Validators.maxLength(100)]),
       'EmailId': new FormControl(null, [Validators.pattern('^[a-zA-Z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$')]),
       'SpouseName': new FormControl(null, [Validators.required, Validators.pattern('^[a-zA-Z ]*$'), Validators.maxLength(100)]),
@@ -222,7 +222,7 @@ export class OpenlinkFormComponent implements OnInit {
       'CandidatePhoto': new FormControl(null, [Validators.required, requiredFileType(['jpg', 'png', 'jpeg'])]),
       'AadharDocument': new FormControl(null, [Validators.required, requiredFileType(['pdf'])]),
       'ResumeDocument': new FormControl(null, [requiredFileType(['pdf'])]),
-      'PANDocument': new FormControl(null, [requiredFileType(['pdf'])]),
+      'PANDocument': new FormControl(null, [Validators.required, requiredFileType(['pdf'])]),
       'IDProofDocument': new FormControl(null, [requiredFileType(['pdf'])]),
       'PassbookDocument': new FormControl(null, [Validators.required, requiredFileType(['pdf'])]),
       'QualificationDocument': new FormControl(null, [requiredFileType(['pdf'])]),
@@ -402,6 +402,12 @@ export class OpenlinkFormComponent implements OnInit {
   }
 
   onSubmit() {
+    if (this.employeeForm.invalid) {
+      this.employeeForm.markAllAsTouched();
+      this.toastr.error("Please fill all required fields.");
+      return;
+    }
+
     const formData = new FormData();
 
     var formobj = this.employeeForm.value;

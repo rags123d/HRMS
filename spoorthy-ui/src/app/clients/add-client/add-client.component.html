@@ -75,7 +75,7 @@
           <div class="col-lg-6">
             <div class="form-group">
               <label for="officePhoneNo">Office Landline Number</label>
-              <input type="text" class="form-control" id="officePhoneNo" aria-describedby="officePhoneNo" maxlength="15"
+              <input type="text" class="form-control" id="officePhoneNo" aria-describedby="officePhoneNo" maxlength="20"
                 placeholder="Enter Office Landline Number (e.g., 080-23456789)" formControlName="officePhoneNo">
               <div class="text-danger"
                 *ngIf="(clientForm.controls['officePhoneNo'].touched || clientForm.controls['officePhoneNo'].dirty) && clientForm.controls['officePhoneNo'].errors?.pattern">
@@ -130,7 +130,7 @@
             <div class="form-group">
               <label class="required" for="cantactNo">Contact Number</label>
               <!-- ✨ UPDATED: maxlength changed to 15, placeholder updated -->
-              <input type="text" class="form-control" id="cantactNo" maxlength="15" placeholder="e.g., 9876543210 or 08172-231616"
+              <input type="text" class="form-control" id="cantactNo" maxlength="20" placeholder="e.g., 9876543210 or 08172-231616"
                 formControlName="cantactNo">
               <div class="text-danger"
                 *ngIf="(clientForm.controls['cantactNo'].touched || clientForm.controls['cantactNo'].dirty) && clientForm.controls['cantactNo'].errors?.required">
@@ -196,7 +196,7 @@
             </div>
 
             <div class="form-group">
-              <label for="PANDocument">PAN Document</label>
+              <label class="required" for="PANDocument">PAN Document</label>
               <input type="file" class="d-none mb-1" id="PANDocument" aria-describedby="PANDocument">
               <div class="pl-0 col-lg-12">
                 <button class="text-left btn btn-danger" onclick="document.getElementById('PANDocument').click()"><i
@@ -205,6 +205,9 @@
                 <a [href]="(PANDocumenturl ? PANDocumenturl : '#') | safe" target="_blank" class="btn rounded">
                   <i *ngIf="PANDocumenturl" class="fas fa-eye view" tooltip="View"></i>
                 </a>
+              </div>
+              <div class="text-danger" *ngIf="clientForm.get('PANDocument').errors?.required">
+                PAN Document is required.
               </div>
               <div class="text-danger" *ngIf="clientForm.get('PANDocument').errors?.requiredFileType">
                 Upload pdf files
@@ -249,9 +252,9 @@
               </div>
             </div>
 
-            <div class="form-group">
-              <label for="companyLogo">Company Logo</label>
-              <input type="file" class="d-none mb-1" id="companyLogo" aria-describedby="companyLogo">
+           <div class="form-group">
+              <label for="companyLogo">Company Logo(Format .jpg, .png and .jpeg)</label>
+              <input type="file" class="d-none mb-1" id="companyLogo" aria-describedby="companyLogo" accept=".jpeg, .jpg, .png, image/jpeg, image/jpg, image/png">
               <div class="pl-0 col-lg-12">
                 <button class="text-left btn btn-danger" onclick="document.getElementById('companyLogo').click()"><i
                     class="fas fa-upload pr-3"></i>UPLOAD FILE</button>
@@ -262,7 +265,7 @@
               </div>
               <div class="text-danger"
                 *ngIf="clientForm.get('companyLogo').errors!=null && clientForm.get('companyLogo').errors['requiredFileType']">
-                Upload png or jpg files
+                Upload jpg, png and jpeg files
               </div>
             </div>
 

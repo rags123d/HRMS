@@ -1,5 +1,5 @@
 import { Component, HostListener, OnInit } from '@angular/core';
-import { FormGroup, FormControl, Validators, FormBuilder, FormArray } from '@angular/forms';
+import { FormGroup, FormControl, Validators, FormBuilder, FormArray, AbstractControl, ValidationErrors } from '@angular/forms';
 
 import { MatTableDataSource } from '@angular/material/table';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
@@ -86,6 +86,7 @@ export class AddEmployeeComponent implements OnInit {
 
   public languageList = [];
   public todaydate = new Date();
+  public maxDateOfBirth = this.getDateStringForAge(18);
 
   AadharDocumenturl: any = undefined;
   CandidatePhotourl: any = undefined;
@@ -95,6 +96,7 @@ export class AddEmployeeComponent implements OnInit {
   IDProofDocumenturl: any = undefined;
   PassbookDocumenturl: any = undefined;
   QualificationDocumenturl: any = undefined;
+  WorkExperienceLetterurl: any = undefined;
 
   salaryData: any;
   selectedValue: string[] = [];
@@ -191,6 +193,13 @@ export class AddEmployeeComponent implements OnInit {
           this.QualificationDocumenturl = objUrl;
           this.employeeForm.controls.QualificationDocument.setValue(file)
         }
+        else if (Elem.id == 'WorkExperienceLetter') {
+          var element = document.getElementById("WorkExperienceLetterName") as any;
+          element.innerHTML = file.name
+          let objUrl = URL.createObjectURL(file);
+          this.WorkExperienceLetterurl = objUrl;
+          this.workExperienceForm.controls.WorkExperienceLetter.setValue(file)
+        }
       }
     }
   }
@@ -223,7 +232,7 @@ export class AddEmployeeComponent implements OnInit {
     this.employeeForm = new FormGroup({
       'FullName': new FormControl(null, [Validators.required, Validators.pattern('^[a-zA-Z ]*$'), Validators.maxLength(100)]),
       'Age': new FormControl(null, [Validators.required, Validators.pattern('^[0-9]*$'), Validators.maxLength(3)]),
-      'DateOfBirth': new FormControl(null, [Validators.required]),
+      'DateOfBirth': new FormControl(null, [Validators.required, this.minimumAgeValidator(18)]),
       'PlaceOfBirth': new FormControl(null, [Validators.required, Validators.pattern('^[a-zA-Z]*$'), Validators.maxLength(100)]),
       'MotherTongue': new FormControl(null, [Validators.required, Validators.pattern('^[a-zA-Z]*$'), Validators.maxLength(100)]),
       'Gender': new FormControl('', [Validators.required]),
@@ -253,7 +262,7 @@ export class AddEmployeeComponent implements OnInit {
       'CandidatePhoto': new FormControl(null, [Validators.required, requiredFileType(['jpg', 'png', 'jpeg'])]),
       'AadharDocument': new FormControl(null, [Validators.required, requiredFileType(['pdf'])]),
       'ResumeDocument': new FormControl(null, [requiredFileType(['pdf'])]),
-      'PANDocument': new FormControl(null, [requiredFileType(['pdf'])]),
+      'PANDocument': new FormControl(null, [Validators.required, requiredFileType(['pdf'])]),
       'IDProofDocument': new FormControl(null, [requiredFileType(['pdf'])]),
       'PassbookDocument': new FormControl(null, [Validators.required, requiredFileType(['pdf'])]),
       'QualificationDocument': new FormControl(null, [requiredFileType(['pdf'])]),
@@ -288,20 +297,25 @@ export class AddEmployeeComponent implements OnInit {
       'ESIAmount': new FormControl(null),
       'ProfessionalTax': new FormControl(null),
 
-      'Language': new FormControl(null, [Validators.required]),
+      'Language': new FormControl(null),
       'Speak': new FormControl(false),
       'Write': new FormControl(false),
       'Read': new FormControl(false),
 
       'Langauges': this.fb.array([this.fb.group({
-        Language: ['', [Validators.required]],
+        Language: [''],
         Speak: [false],
         Write: [false],
         Read: [false]
       })]),
 
       'UniversalAccount': new FormControl("", [Validators.pattern('^[0-9]{12}$')]),
-      'PFAccount': new FormControl("", [Validators.pattern('^[A-Z]{2}[A-Z]{3}[0-9]{7}[0-9A-Z]{3}[0-9]{7}$')]),
+      'PFAccount': new FormControl("", [Validators.required, Validators.pattern('^[A-Z]{2}[A-Z]{3}[0-9]{7}[0-9A-Z]{3}[0-9]{7}$')]),
+      'PFMemberId': new FormControl("", [Validators.required, Validators.pattern('^[a-zA-Z0-9]*$')]),
+      'PFJoiningDate': new FormControl(null, [Validators.required]),
+      'PFExitDate': new FormControl(null),
+      'PensionEPSNumber': new FormControl("", [Validators.required, Validators.pattern('^[a-zA-Z0-9]*$')]),
+      'PFNominatedetails': new FormControl("", [Validators.required, Validators.pattern('^[a-zA-Z ]*$')]),
       'SchemeCertificate': new FormControl("", [Validators.pattern('^[A-Z]{2}[/]{1}[A-Z]{3}[/]{1}[0-9]{5}$')]),
       'PPONumber': new FormControl("", [Validators.pattern('^[0-9]{12}$')]),
       'NonContributoryPeriod': new FormControl("", [Validators.pattern('')]),
@@ -371,7 +385,7 @@ export class AddEmployeeComponent implements OnInit {
     })
 
     this.workExperienceForm = new FormGroup({
-      'Designation': new FormControl(null, [Validators.required, Validators.pattern('^[a-zA-Z ]*$')]),
+     'Designation': new FormControl(null, [Validators.required]),
       'CompanyName': new FormControl(null, [Validators.required, Validators.pattern('^[a-zA-Z ]*$')]),
       'From': new FormControl(null, [Validators.required]),
       // 'From': new FormControl('', [Validators.required]),
@@ -383,6 +397,7 @@ export class AddEmployeeComponent implements OnInit {
       'SupervisorName': new FormControl(null, [Validators.pattern('^[a-zA-Z ]*$')]),
       'SupervisorMobile': new FormControl(null, [Validators.pattern("^((\\+91-?)|0)?[0-9]{10}$"), Validators.minLength(10), Validators.maxLength(10)]),
       'SupervisorEmail': new FormControl(null, [Validators.pattern('^[a-zA-Z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$')]),
+      'WorkExperienceLetter': new FormControl(null, [Validators.required, requiredFileType(['pdf'])]),
     })
 
     this.referencesForm = new FormGroup({
@@ -603,6 +618,12 @@ export class AddEmployeeComponent implements OnInit {
   }
 
   onSubmit() {
+    if (this.employeeForm.invalid) {
+      this.employeeForm.markAllAsTouched();
+      this.toastr.error("Please fill all required fields.");
+      return;
+    }
+
     const formData = new FormData();
     if (this.url && this.url != -1)
       formData.append("id", this.url);
@@ -802,6 +823,16 @@ export class AddEmployeeComponent implements OnInit {
 
     if (formobj.PFAccount)
       formData.append('PFAccount', formobj.PFAccount)
+    if (formobj.PFMemberId)
+      formData.append('PFMemberId', formobj.PFMemberId)
+    if (formobj.PFJoiningDate)
+      formData.append('PFJoiningDate', this.datePipe.transform(formobj.PFJoiningDate, 'dd-MMM-yyyy'))
+    if (formobj.PFExitDate)
+      formData.append('PFExitDate', this.datePipe.transform(formobj.PFExitDate, 'dd-MMM-yyyy'))
+    if (formobj.PensionEPSNumber)
+      formData.append('PensionEPSNumber', formobj.PensionEPSNumber)
+    if (formobj.PFNominatedetails)
+      formData.append('PFNominatedetails', formobj.PFNominatedetails)
     if (formobj.SchemeCertificate)
       formData.append('SchemeCertificate', formobj.SchemeCertificate)
     if (formobj.PPONumber)
@@ -959,6 +990,14 @@ export class AddEmployeeComponent implements OnInit {
       if (obj.isEdit == true) {
         delete obj.isEdit
         delete obj._id
+      }
+    })
+
+    // Extract WorkExperienceLetter files and append to formData
+    sendWork.forEach((obj: any, index: number) => {
+      if (obj.WorkExperienceLetter && obj.WorkExperienceLetter instanceof File) {
+        formData.append(`WorkExperienceLetter_${index}`, obj.WorkExperienceLetter)
+        delete obj.WorkExperienceLetter
       }
     })
 
@@ -1133,6 +1172,11 @@ export class AddEmployeeComponent implements OnInit {
 
             this.employeeForm.controls.UniversalAccount.setValue(data.UniversalAccount)
             this.employeeForm.controls.PFAccount.setValue(data.PFAccount)
+            this.employeeForm.controls.PFMemberId.setValue(data.PFMemberId)
+            this.employeeForm.controls.PFJoiningDate.setValue(data.PFJoiningDate ? data.PFJoiningDate.split('T')[0] : "")
+            this.employeeForm.controls.PFExitDate.setValue(data.PFExitDate ? data.PFExitDate.split('T')[0] : "")
+            this.employeeForm.controls.PensionEPSNumber.setValue(data.PensionEPSNumber)
+            this.employeeForm.controls.PFNominatedetails.setValue(data.PFNominatedetails)
             this.employeeForm.controls.SchemeCertificate.setValue(data.SchemeCertificate)
             this.employeeForm.controls.PPONumber.setValue(data.PPONumber)
             this.employeeForm.controls.NonContributoryPeriod.setValue(data.NonContributoryPeriod)
@@ -1426,6 +1470,7 @@ export class AddEmployeeComponent implements OnInit {
       'SupervisorName': this.workExperienceForm.controls.SupervisorName.value,
       'SupervisorMobile': this.workExperienceForm.controls.SupervisorMobile.value,
       'SupervisorEmail': this.workExperienceForm.controls.SupervisorEmail.value,
+      'WorkExperienceLetter': this.workExperienceForm.controls.WorkExperienceLetter.value,
       'isEdit': true
     })
     this.ModelClose('ExperienceModel')
@@ -1787,16 +1832,47 @@ export class AddEmployeeComponent implements OnInit {
   orgValueChange(event) {
     if (event.target.value) {
       let dob = new Date(event.target.value);
-      let today = new Date();
-
-      if (today > dob) {
-        let age = today.getFullYear() - dob.getFullYear();
-        if (today.getMonth() < dob.getMonth()) {
-          age = age - 1;
-        }
+      if (new Date() > dob) {
+        let age = this.calculateAge(dob);
         this.employeeForm.controls['Age'].patchValue(age)
       }
     }
+  }
+
+  private minimumAgeValidator(minAge: number) {
+    return (control: AbstractControl): ValidationErrors | null => {
+      if (!control.value) {
+        return null;
+      }
+
+      const dob = new Date(control.value);
+      if (isNaN(dob.getTime())) {
+        return { minimumAge: true };
+      }
+
+      return this.calculateAge(dob) >= minAge ? null : { minimumAge: true };
+    };
+  }
+
+  private calculateAge(dob: Date): number {
+    const today = new Date();
+    let age = today.getFullYear() - dob.getFullYear();
+    const monthDiff = today.getMonth() - dob.getMonth();
+
+    if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < dob.getDate())) {
+      age = age - 1;
+    }
+
+    return age;
+  }
+
+  private getDateStringForAge(age: number): string {
+    const today = new Date();
+    const date = new Date(today.getFullYear() - age, today.getMonth(), today.getDate());
+    const month = ('0' + (date.getMonth() + 1)).slice(-2);
+    const day = ('0' + date.getDate()).slice(-2);
+
+    return `${date.getFullYear()}-${month}-${day}`;
   }
 
   orgValueExp(event) {

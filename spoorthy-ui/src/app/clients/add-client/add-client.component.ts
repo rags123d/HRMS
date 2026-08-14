@@ -102,8 +102,8 @@ export class AddClientComponent implements OnInit {
 
     this.clientForm = new FormGroup({
       'name': new FormControl(null, [Validators.required, Validators.pattern('^[a-zA-Z- ]*$'), Validators.maxLength(100)]),
-'officePhoneNo': new FormControl(null, [Validators.pattern('^[0-9-]*$')]),
-'cantactNo': new FormControl(null, [Validators.required, Validators.pattern("^((\\+91-?)?[0-9]{10}|0[0-9]{2,4}-?[0-9]{5,8}|[0-9]{2,4}-[0-9]{5,8})$")]),
+      'officePhoneNo': new FormControl(null, [Validators.pattern("^[+0-9\\s\\-()]*$"), Validators.maxLength(20)]),
+      'cantactNo': new FormControl(null, [Validators.required, Validators.pattern("^[+0-9\\s\\-()]*$"), Validators.maxLength(20)]),
       'email': new FormControl(null, [Validators.required, Validators.pattern("^[a-zA-Z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$")]),
 
       'address': new FormControl(null, [Validators.required, Validators.maxLength(250)]),
