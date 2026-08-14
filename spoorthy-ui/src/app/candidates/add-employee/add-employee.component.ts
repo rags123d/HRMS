@@ -246,9 +246,11 @@ export class AddEmployeeComponent implements OnInit {
       'SpouseName': new FormControl(null, [Validators.required, Validators.pattern('^[a-zA-Z ]*$'), Validators.maxLength(100)]),
 
       'PresentAddress': new FormControl(null, [Validators.required, Validators.maxLength(250)]),
+      'PresentAddressState': new FormControl(null, [Validators.required, Validators.pattern('^[a-zA-Z ]*$'), Validators.maxLength(50)]),
       'PresentAddressPincode': new FormControl(null, [Validators.required, Validators.pattern('^[0-9]*$'), Validators.maxLength(6)]),
       'PresentAddressPhone': new FormControl(null, [Validators.required, Validators.pattern('^[0-9]*$'), Validators.maxLength(10)]),
       'PermanentAddress': new FormControl(null, [Validators.required, Validators.maxLength(250)]),
+      'PermanentAddressState': new FormControl(null, [Validators.required, Validators.pattern('^[a-zA-Z ]*$'), Validators.maxLength(50)]),
       'PermanentAddressPincode': new FormControl(null, [Validators.required, Validators.pattern('^[0-9]*$'), Validators.maxLength(6)]),
       'PermanentAddressPhone': new FormControl(null, [Validators.required, Validators.pattern('^[0-9]*$'), Validators.maxLength(10)]),
 
@@ -729,9 +731,11 @@ export class AddEmployeeComponent implements OnInit {
     }
 
     formData.append('PresentAddress', formobj.PresentAddress)
+    formData.append('PresentAddressState', formobj.PresentAddressState)
     formData.append('PresentAddressPincode', formobj.PresentAddressPincode)
     formData.append('PresentAddressPhone', formobj.PresentAddressPhone)
     formData.append('PermanentAddress', formobj.PermanentAddress)
+    formData.append('PermanentAddressState', formobj.PermanentAddressState)
     formData.append('PermanentAddressPincode', formobj.PermanentAddressPincode)
     formData.append('PermanentAddressPhone', formobj.PermanentAddressPhone)
 
@@ -1053,9 +1057,11 @@ export class AddEmployeeComponent implements OnInit {
               this.employeeForm.controls.BloodGroup.setValue(data.BloodGroup._id)
 
             this.employeeForm.controls.PresentAddress.setValue(data.PresentAddress)
+            this.employeeForm.controls.PresentAddressState.setValue(data.PresentAddressState)
             this.employeeForm.controls.PresentAddressPincode.setValue(data.PresentAddressPincode)
             this.employeeForm.controls.PresentAddressPhone.setValue(data.PresentAddressPhone)
             this.employeeForm.controls.PermanentAddress.setValue(data.PermanentAddress)
+            this.employeeForm.controls.PermanentAddressState.setValue(data.PermanentAddressState)
             this.employeeForm.controls.PermanentAddressPincode.setValue(data.PermanentAddressPincode)
             this.employeeForm.controls.PermanentAddressPhone.setValue(data.PermanentAddressPhone)
 
@@ -1923,11 +1929,13 @@ export class AddEmployeeComponent implements OnInit {
 
     if (this.selectedAddress == true) {
       this.employeeForm.controls.PermanentAddress.setValue(this.employeeForm.value.PresentAddress)
+      this.employeeForm.controls.PermanentAddressState.setValue(this.employeeForm.value.PresentAddressState)
       this.employeeForm.controls.PermanentAddressPincode.setValue(this.employeeForm.value.PresentAddressPincode)
       this.employeeForm.controls.PermanentAddressPhone.setValue(this.employeeForm.value.PresentAddressPhone)
     }
     else {
       this.employeeForm.controls.PermanentAddress.setValue('')
+      this.employeeForm.controls.PermanentAddressState.setValue('')
       this.employeeForm.controls.PermanentAddressPincode.setValue('')
       this.employeeForm.controls.PermanentAddressPhone.setValue('')
     }
