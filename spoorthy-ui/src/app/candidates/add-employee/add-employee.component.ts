@@ -299,7 +299,12 @@ export class AddEmployeeComponent implements OnInit {
       })]),
 
       'UniversalAccount': new FormControl("", [Validators.pattern('^[0-9]{12}$')]),
-      'PFAccount': new FormControl("", [Validators.pattern('^[A-Z]{2}[A-Z]{3}[0-9]{7}[0-9A-Z]{3}[0-9]{7}$')]),
+      'PFAccount': new FormControl("", [Validators.required, Validators.pattern('^[A-Z]{2}[A-Z]{3}[0-9]{7}[0-9A-Z]{3}[0-9]{7}$')]),
+      'PFMemberId': new FormControl("", [Validators.required, Validators.pattern('^[a-zA-Z0-9]*$')]),
+      'PFJoiningDate': new FormControl(null, [Validators.required]),
+      'PFExitDate': new FormControl(null),
+      'PensionEPSNumber': new FormControl("", [Validators.required, Validators.pattern('^[a-zA-Z0-9]*$')]),
+      'PFNominatedetails': new FormControl("", [Validators.required, Validators.pattern('^[a-zA-Z ]*$')]),
       'SchemeCertificate': new FormControl("", [Validators.pattern('^[A-Z]{2}[/]{1}[A-Z]{3}[/]{1}[0-9]{5}$')]),
       'PPONumber': new FormControl("", [Validators.pattern('^[0-9]{12}$')]),
       'NonContributoryPeriod': new FormControl("", [Validators.pattern('')]),
@@ -798,6 +803,16 @@ export class AddEmployeeComponent implements OnInit {
 
     if (formobj.PFAccount)
       formData.append('PFAccount', formobj.PFAccount)
+    if (formobj.PFMemberId)
+      formData.append('PFMemberId', formobj.PFMemberId)
+    if (formobj.PFJoiningDate)
+      formData.append('PFJoiningDate', this.datePipe.transform(formobj.PFJoiningDate, 'dd-MMM-yyyy'))
+    if (formobj.PFExitDate)
+      formData.append('PFExitDate', this.datePipe.transform(formobj.PFExitDate, 'dd-MMM-yyyy'))
+    if (formobj.PensionEPSNumber)
+      formData.append('PensionEPSNumber', formobj.PensionEPSNumber)
+    if (formobj.PFNominatedetails)
+      formData.append('PFNominatedetails', formobj.PFNominatedetails)
     if (formobj.SchemeCertificate)
       formData.append('SchemeCertificate', formobj.SchemeCertificate)
     if (formobj.PPONumber)
@@ -1127,6 +1142,11 @@ export class AddEmployeeComponent implements OnInit {
 
             this.employeeForm.controls.UniversalAccount.setValue(data.UniversalAccount)
             this.employeeForm.controls.PFAccount.setValue(data.PFAccount)
+            this.employeeForm.controls.PFMemberId.setValue(data.PFMemberId)
+            this.employeeForm.controls.PFJoiningDate.setValue(data.PFJoiningDate ? data.PFJoiningDate.split('T')[0] : "")
+            this.employeeForm.controls.PFExitDate.setValue(data.PFExitDate ? data.PFExitDate.split('T')[0] : "")
+            this.employeeForm.controls.PensionEPSNumber.setValue(data.PensionEPSNumber)
+            this.employeeForm.controls.PFNominatedetails.setValue(data.PFNominatedetails)
             this.employeeForm.controls.SchemeCertificate.setValue(data.SchemeCertificate)
             this.employeeForm.controls.PPONumber.setValue(data.PPONumber)
             this.employeeForm.controls.NonContributoryPeriod.setValue(data.NonContributoryPeriod)
