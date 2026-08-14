@@ -220,6 +220,21 @@
             </div>
 
             <div class="form-group">
+              <label class="required" for="PresentAddressCountry">Present Address Country</label>
+              <input type="text" class="form-control" id="PresentAddressCountry"
+                aria-describedby="PresentAddressCountry" placeholder="Enter Country" maxlength="50"
+                formControlName="PresentAddressCountry">
+              <div class="text-danger"
+                *ngIf="(employeeForm.controls['PresentAddressCountry'].touched || employeeForm.controls['PresentAddressCountry'].dirty) && employeeForm.controls['PresentAddressCountry'].errors?.required">
+                Present Address Country is required.
+              </div>
+              <div class="text-danger"
+                *ngIf="(employeeForm.controls['PresentAddressCountry'].touched || employeeForm.controls['PresentAddressCountry'].dirty) && employeeForm.controls['PresentAddressCountry'].errors?.pattern">
+                Present Address Country is not valid.
+              </div>
+            </div>
+
+            <div class="form-group">
               <label class="required" for="PresentAddressPincode">Present Address Pincode</label>
               <input type="text" class="form-control" id="PresentAddressPincode"
                 aria-describedby="PresentAddressPincode" placeholder="Enter Pincode" maxlength="6"
@@ -266,6 +281,21 @@
               <div class="text-danger"
                 *ngIf="(employeeForm.controls['PermanentAddress'].touched || employeeForm.controls['PermanentAddress'].dirty) && employeeForm.controls['PermanentAddress'].errors?.required">
                 Permanent Address is required.
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="required" for="PermanentAddressCountry">Permanent Address Country</label>
+              <input type="text" class="form-control" id="PermanentAddressCountry"
+                aria-describedby="PermanentAddressCountry" placeholder="Enter Country" maxlength="50"
+                formControlName="PermanentAddressCountry">
+              <div class="text-danger"
+                *ngIf="(employeeForm.controls['PermanentAddressCountry'].touched || employeeForm.controls['PermanentAddressCountry'].dirty) && employeeForm.controls['PermanentAddressCountry'].errors?.required">
+                Permanent Address Country is required.
+              </div>
+              <div class="text-danger"
+                *ngIf="(employeeForm.controls['PermanentAddressCountry'].touched || employeeForm.controls['PermanentAddressCountry'].dirty) && employeeForm.controls['PermanentAddressCountry'].errors?.pattern">
+                Permanent Address Country is not valid.
               </div>
             </div>
 
